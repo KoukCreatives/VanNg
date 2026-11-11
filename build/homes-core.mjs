@@ -39,6 +39,12 @@ const extraEN = {
     ['Does an enquiry hold our date?', 'No. Sending an enquiry doesn’t reserve your date. Availability and booking arrangements are confirmed separately.'],
     ['Does a ceremony include legal advice?', 'No. When I’m your celebrant, I’m there as your celebrant only, so a ceremony booking doesn’t include legal advice.'],
   ],
+  ribbon: 'Personalised ceremonies in English, Cantonese and Mandarin · Auckland, Hamilton and the South Island',
+  big1: 'Your story,', big2: 'in your words.',
+  chooseH: 'Plan your ceremony', chooseLang: 'Which languages will your guests speak?', chooseArea: 'Where are you getting married?',
+  areas: ['Auckland', 'North Shore', 'Rangitoto Island', 'Hamilton', 'South Island', 'Not sure yet'],
+  chooseBtn: 'Request a quote', chooseNote: 'Your choices are added to the enquiry form below.',
+  more: 'Read more', scroll: 'Scroll',
   pv: {
     title: 'Privacy notice', note: 'Draft for review · not legal advice',
     intro: 'This notice explains how Vannarady Ng (“Van”) collects and uses personal information through this website, in line with the New Zealand Privacy Act 2020.',
@@ -79,6 +85,12 @@ const extraZH = {
     ['提出查詢會預留日期嗎？', '不會。提出查詢並不代表已預留日期，檔期及預約安排須另行確認。'],
     ['儀式包括法律意見嗎？', '不包括。擔任你們的證婚人時，我的角色只是證婚人，因此預約儀式並不包括法律意見。'],
   ],
+  ribbon: '以英語、粵語及普通話主持個人化儀式 · 奧克蘭、漢密爾頓及南島',
+  big1: '你們的故事，', big2: '用你們的言語。',
+  chooseH: '籌劃你們的儀式', chooseLang: '你們的賓客使用哪些語言？', chooseArea: '你們在哪裡舉行婚禮？',
+  areas: ['奧克蘭', '北岸', '朗伊托托島', '漢密爾頓', '南島', '尚未決定'],
+  chooseBtn: '索取報價', chooseNote: '你的選擇會自動填入下方的查詢表格。',
+  more: '了解更多', scroll: '向下瀏覽',
   pv: {
     title: '私隱聲明', note: '草稿 · 待審閱 · 並非法律意見',
     intro: '本聲明說明 Vannarady Ng（Van）如何根據紐西蘭《2020 年私隱法》透過本網站收集及使用個人資料。',
@@ -125,6 +137,7 @@ export function fontHead(f) {
   for (const [pkg, w] of [[f.zhHead, f.zhHeadW], [f.zhBody, f.zhBodyW], [f.zhHead.replace('-tc', '-sc'), f.zhHeadW], [f.zhBody.replace('-tc', '-sc'), f.zhBodyW]]) {
     const href = cdn(pkg, `${w}.css`); if (!tags.some((x) => x.includes(href))) tags.push(`<link rel="stylesheet" href="${href}">`);
   }
+  for (const [pkg, file] of f.extra || []) tags.push(`<link rel="stylesheet" href="${cdn(pkg, file)}">`);
   if (f.accent) tags.push(`<link rel="stylesheet" href="${cdn('lxgw-wenkai-tc', '400.css')}">`, `<link rel="stylesheet" href="${cdn('lxgw-wenkai', '500.css')}">`);
   return tags.join('\n') + `\n<style>${faces.join('\n')}</style>`;
 }
@@ -172,7 +185,8 @@ a{text-underline-offset:.18em}
 .nav-m li a{display:block;padding:.6rem .75rem;text-decoration:none;color:inherit}
 .field{display:grid;gap:.35rem}
 .flag:empty{display:none}
-.ph{position:relative;overflow:hidden}
+.rv.pre{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.rv.pre.in{opacity:1;transform:none}
+.ph{position:relative;overflow:hidden;margin:0;background:#e9dedb}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .ph .badge{position:absolute;left:10px;bottom:10px;z-index:1;font:500 11px/1.3 "Source Sans 3","Noto Sans TC",system-ui,sans-serif;letter-spacing:.04em;color:#2e2a2b;background:rgba(255,255,255,.82);padding:3px 8px;border-radius:999px}
 .faq h2{font-size:calc(var(--hs)*clamp(1.875rem,1.4rem + 1.6vw,2.5rem));line-height:var(--lh-h);margin-bottom:.8em}
@@ -215,6 +229,14 @@ export const IMG = {
   hands: ['1684244276932-6ae853774c4d', 'A couple’s hands with wedding rings resting on a bouquet'],
   hold: ['1519657502999-ab785d28a1f6', 'A couple holding hands during a ceremony'],
   watch: ['1465495976277-4387d4b0b4c6', 'A couple holding hands over a bouquet'],
+  lake: ['1556878516-61356c874f03', 'A calm alpine lake framed by hills and mountains'],
+  alps: ['1571503929253-cc2ca9c4f27c', 'A blue lake between tussock hills and mountain ranges'],
+  lawn: ['1597906320579-c52635ac2b32', 'Rows of white chairs on a lakeside lawn set for a ceremony'],
+  pier: ['1637966072667-cecba8076231', 'A long aisle of white chairs leading to a small pavilion by the water'],
+  officiant: ['1781686765618-1d4e4e8cece7', 'A couple exchanging vows with a celebrant, seen from above'],
+  table: ['1750735677308-34756dc5e821', 'A long reception table with candles and flowers'],
+  candles: ['1751257567128-a90534b263e6', 'A table glowing with candles and warm flowers'],
+  veil: ['1781355480278-b2ce53e5dae1', 'A long veil spreading across the floor, seen from above, in black and white'],
   vows: ['1694432268173-012872750de3', 'A fountain pen resting on a handwritten note'],
   letter: ['1529066576253-91dff6dbeba3', 'A handwritten envelope beside dried flowers'],
 };
@@ -251,6 +273,7 @@ document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('ari
 document.querySelectorAll('.ph').forEach(function(f){var c=f.querySelector('figcaption');if(c)f.setAttribute('aria-label',c.textContent);});
 if(history.replaceState)history.replaceState(null,'',k==='en'?location.pathname:'#'+(k==='hant'?'zh-hant':'zh-hans'));document.querySelectorAll('a[href$=".html"]').forEach(function(a){a.href=a.getAttribute('href').split('#')[0]+(k==='en'?'':'#'+(k==='hant'?'zh-hant':'zh-hans'));});}
 document.addEventListener('click',function(e){var b=e.target.closest('[data-lang]');if(b){set(b.getAttribute('data-lang'));}});
+document.documentElement.classList.add('js');if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.rv').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');else{el.classList.add('pre');io.observe(el);}});}
 [['servicesH','ceremonies'],['langH','languages']].forEach(function(p){var el=document.querySelector('[data-i="'+p[0]+'"]');if(el&&!document.getElementById(p[1]))el.id=p[1];});
 var h=location.hash;if(h==='#zh-hant')set('hant');else if(h==='#zh-hans')set('hans');
 })();

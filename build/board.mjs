@@ -4,22 +4,22 @@ import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const homes = [
-  ['Petal Invitation', 'Blush', 'Cormorant Garamond + Noto Serif TC', 'Wedding-stationery feel. A framed invitation card overlaps an arched portrait, with centred sections and language “rings”. One champagne hairline.', '01-petal-letter'],
-  ['Red Editorial', 'Lucky red', 'EB Garamond + Noto Serif TC', 'Magazine cover. A large burgundy headline beside a tall portrait, a three-fact strip (languages, travel, registration) and one short burgundy band.', '02-lucky-red-letter'],
-  ['Quiet Letter', 'Blush', 'Literata + Noto Serif TC', 'The home page reads as a personal letter on paper, with a sticky sidebar for navigation on desktop. The calmest and most readable for long Chinese text.', '03-quiet-page'],
-  ['Soft Bento', 'Rose & Ivory (no gold)', 'Source Sans 3 + Noto Sans TC', 'Rounded tiles in a bento grid with a floating pill header. All sans serif, practical and light to load.', '04-soft-sans'],
-  ['Ink & Petal', 'Peony & Mocha', 'Cormorant + LXGW WenKai accent', 'A full-bleed ceremony photo with an overlapping intro panel. One short handwritten-style Chinese phrase and a mocha quote band.', '05-ink-and-petal'],
-  ['Red Thread', 'Lucky red', 'Noto Serif + Noto Serif TC', 'A burgundy hero with a framed portrait, then a red “thread” line with knots running through every section.', '06-red-thread'],
-  ['Garden Collage', 'Blush', 'Fraunces + Noto Serif TC', 'Three-photo collage with fine-line sprigs, wavy blush bands and offset cards. The most celebratory.', '07-garden-hour'],
-  ['Two Voices', 'Ivory & burgundy', 'Source Serif 4 + Noto Serif TC', 'English and Chinese heroes sit side by side, split by a vertical Chinese phrase. Each language row shows its name in both scripts.', '08-two-voices'],
+  ['Estate', 'Blush + cocoa', 'Cormorant Garamond + Noto Serif TC', 'Full-screen ceremony photo under a slim ribbon, a three-part strip (languages, travel, registration), and a photo-backed quote.', '01-petal-letter', 'Markovina Estate'],
+  ['Panorama', 'White + rose', 'EB Garamond + Noto Serif TC', 'Lake panorama first, quiet uppercase navigation with a clear 中文 switch, and a swipeable photo strip.', '02-lucky-red-letter', 'Felix Image'],
+  ['Statement', 'Lucky red', 'Source Sans 3 Black + Noto Sans TC', '“Your story, in your words.” huge on a rounded photo card, a scrolling language marquee and chunky rounded panels.', '04-soft-sans', 'Fallon Photography'],
+  ['Planner', 'Blush', 'Literata + Noto Serif TC', 'Pick languages and location in the hero. The choice fills the enquiry form for you.', '03-quiet-page', 'OneThreeOneFour'],
+  ['Cinematic', 'Peony + mocha', 'Cormorant Garamond Italic + Noto Serif TC', 'Black-and-white film-like hero with an italic headline, then image and text in a zig-zag.', '05-ink-and-petal', 'Abel Estate'],
+  ['Horizon', 'Warm ivory', 'EB Garamond Italic + Noto Serif TC', 'Oversized serif with one rose italic phrase, over an alpine lake with a round photo inset.', '07-garden-hour', 'Queenstown Elopements'],
+  ['Gallery', 'White + rose', 'Cormorant Garamond + Noto Serif TC', 'Centred wordmark with split menu, and a full-width crossfading slideshow.', '06-red-thread', 'Roy Byrne Photography'],
+  ['Journal', 'Lucky red', 'Source Serif 4 + Noto Serif TC', 'Magazine masthead, image tiles that jump to each section, and a drop cap.', '08-two-voices', 'Together Journal'],
 ];
-const card = ([name, pal, type, desc, slug], i) => {
+const card = ([name, pal, type, desc, slug, ref], i) => {
   const f = `Home-${String(i + 1).padStart(2, '0')}.html`;
   return `<article class="c">
 <a class="pv" href="${f}" aria-label="Open ${name}"><iframe src="${f}" loading="lazy" tabindex="-1" title="${name} preview" scrolling="no"></iframe></a>
 <div class="meta"><p class="num">Home ${String(i + 1).padStart(2, '0')}</p><h2><a href="${f}">${name}</a></h2>
-<p class="tags"><span>${pal}</span><span>${type}</span></p><p>${desc}</p>
-<p class="links"><a href="${f}">English</a><a href="${f}#zh-hant" lang="zh-Hant">繁體中文</a><a href="${f}#zh-hans" lang="zh-Hans">简体 (test)</a><a href="concepts/${slug}-type.html">Type sheet</a></p></div>
+<p class="tags"><span>${pal}</span><span>${type}</span><span>Pattern from: ${ref}</span></p><p>${desc}</p>
+<p class="links"><a href="${f}">English</a><a href="${f}#zh-hant" lang="zh-Hant">繁體中文</a><a href="${f}#zh-hans" lang="zh-Hans">简体 (test)</a></p></div>
 </article>`;
 };
 const html = `<!doctype html>
@@ -46,7 +46,7 @@ footer{padding-block:0 64px;color:var(--muted);font-size:.9375rem}footer a{color
 </style></head><body>
 <header class="wrap"><p class="status">KC-575 · not client-approved · draft copy from KC-576 · Chinese is a type-testing draft for fluent review</p>
 <h1>Van Ng: 8 homepage designs</h1>
-<p class="lede">Each design is a live, responsive home page. Use the language switch in its header to change between English, Traditional Chinese, and a Simplified test. The pink boxes stand in for Van’s authorised photos.</p></header>
+<p class="lede">Round 2. Each design is an original Van home page built on one strong pattern from a leading NZ wedding site. Nothing is copied from those sites. Each page is live and responsive. Use the language switch in its header to change between English, Traditional Chinese, and a Simplified test. Photos are Unsplash samples standing in for Van’s authorised photos.</p></header>
 <main class="wrap"><div class="grid">${homes.map(card).join('\n')}</div></main>
 <footer class="wrap"><p><a href="typography.html">Typography decisions</a> · <a href="https://github.com/KoukCreatives/VanNg">Source on GitHub</a></p></footer>
 <script>
