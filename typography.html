@@ -1,0 +1,171 @@
+<!doctype html><html lang="en-NZ"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Typography system · Van Ng concepts</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Noto+Sans+TC:wght@400&display=swap">
+<style>body{margin:0;background:#f7f4f2;color:#232022;font:400 17px/1.65 "Source Sans 3","Noto Sans TC",system-ui,sans-serif;font-synthesis:none}
+main{max-width:52rem;margin:0 auto;padding:40px max(16px,env(safe-area-inset-right,0px)) 80px max(16px,env(safe-area-inset-left,0px))}
+h1{font-size:2.25rem;line-height:1.15;text-wrap:balance}h2{font-size:1.375rem;margin-top:2.5rem}a{color:#7a3e4e}
+table{border-collapse:collapse;display:block;overflow-x:auto;font-size:.9375rem}th,td{text-align:left;padding:.45rem .9rem .45rem 0;border-bottom:1px solid #e2dcd9;vertical-align:top}
+pre{background:#fff;border:1px solid #e2dcd9;border-radius:6px;padding:1rem;overflow-x:auto;font-size:.8125rem}code{font-size:.875em}
+.back{font-size:.9375rem}</style></head><body><main><p class="back"><a href="index.html">← All concepts</a></p><h1>Van Ng: bilingual typography system (Round 1)</h1>
+<p>This system is shared by all eight concepts. Each concept changes the display faces and colour, not these rules. Each concept&#39;s <code>-type.html</code> sheet shows the scale in both scripts, long headings, a long Chinese paragraph, mixed-script lines, punctuation, numerals and calculated contrast.</p>
+<h2>1. Pairings explored</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Concept</th>
+<th>English display</th>
+<th>Chinese display</th>
+<th>Body (EN / 中文)</th>
+<th>Palette</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Petal Letter</td>
+<td>Cormorant Garamond 600</td>
+<td>Noto Serif TC 600</td>
+<td>Source Sans 3 / Noto Sans TC</td>
+<td>Blush</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Lucky Red Letter</td>
+<td>Cormorant Garamond 600</td>
+<td>Noto Serif TC 600</td>
+<td>Source Sans 3 / Noto Sans TC</td>
+<td>Lucky red</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Quiet Page</td>
+<td>Literata 500</td>
+<td>Noto Serif TC 500</td>
+<td>Source Sans 3 / Noto Sans TC</td>
+<td>Blush</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Soft Sans</td>
+<td>Source Sans 3 600</td>
+<td>Noto Sans TC 500</td>
+<td>Source Sans 3 / Noto Sans TC</td>
+<td>Rose &amp; Ivory</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ink &amp; Petal</td>
+<td>Cormorant Garamond 600 (+ LXGW WenKai TC phrase)</td>
+<td>Noto Serif TC 600</td>
+<td>Source Sans 3 / Noto Sans TC</td>
+<td>Peony &amp; Mocha</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Red Thread</td>
+<td>Noto Serif 600</td>
+<td>Noto Serif TC 600</td>
+<td>Source Sans 3 / Noto Sans TC</td>
+<td>Lucky red</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Garden Hour</td>
+<td>Fraunces 500</td>
+<td>Noto Serif TC 500</td>
+<td>Source Sans 3 / Noto Sans TC</td>
+<td>Blush</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Two Voices</td>
+<td>Source Serif 4 600</td>
+<td>Noto Serif TC 600</td>
+<td>Source Sans 3 / Noto Sans TC</td>
+<td>Lucky red</td>
+</tr>
+</tbody></table>
+<p>All of these are SIL OFL 1.1 families. The brief&#39;s licence checks cover Cormorant, Source Sans 3, Noto Serif/Sans TC/SC and LXGW WenKai TC. Literata, Fraunces, Noto Serif (Latin) and Source Serif 4 are also OFL 1.1, but Kouk needs to record those checks before any of them is chosen.</p>
+<h2>2. Main finding: Cormorant vs CJK optical size</h2>
+<p>Cormorant Garamond has a very small x-height (about 0.40 em). CJK ideographs fill most of the em box. At the same font-size, a Latin name inside a Chinese heading looks about two sizes smaller. There are two ways to fix this:</p>
+<ul>
+<li><strong>Keep Cormorant (Concepts 1, 2, 5).</strong> English headings run larger: H1 is up to 68px and nothing in Cormorant goes below 24px. On Chinese pages the same Latin file is re-declared as <code>HeadLatinZh</code> with <code>size-adjust: 116%</code>. &quot;Vannarady Ng&quot; and &quot;Van&quot; then sit at the same visual size as 宋體 glyphs. Elements tagged <code>lang=&quot;en&quot;</code> inside Chinese pages, like the wordmark, reset to the unadjusted face.</li>
+<li><strong>Choose a Latin serif with CJK-friendly proportions (Concepts 3, 6, 7, 8).</strong> Literata, Noto Serif and Source Serif 4 need 0–4% adjustment. Noto Serif plus Noto Serif TC (Concept 6) is the most consistent pair because they were designed as one system.</li>
+</ul>
+<p>My recommendation for Round 2 is to keep both routes until Van reacts. If she loves the soft, luxurious feel of the poster, Concept 1/2&#39;s tuned Cormorant is right. If readability and calm matter more, Concept 3 or 6.</p>
+<h2>3. Scale</h2>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>English</th>
+<th>Chinese</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>H1</td>
+<td>38 → 64px (Cormorant concepts up to 68px), lh 1.08</td>
+<td>30 → 46px, lh 1.32</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>32 → 44px, lh 1.12</td>
+<td>24 → 34px, lh 1.38</td>
+</tr>
+<tr>
+<td>H3</td>
+<td>24px, lh 1.3</td>
+<td>21px, lh 1.3</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>17px mobile / 18px desktop, lh 1.6, weight 400 (600 for labels and links)</td>
+<td>16px mobile / 17px desktop, lh 1.8, weight 400</td>
+</tr>
+<tr>
+<td>Measure</td>
+<td>~36rem</td>
+<td>~34rem (about 32–34 characters)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Chinese display sizes are about 0.7× English. Because the glyph fills the em box, they read as the same rank.</li>
+<li>Chinese <code>letter-spacing: normal</code> everywhere, including headings, nav and buttons. The only exception is +0.02em on button labels.</li>
+<li>Headings use <code>text-wrap: balance</code>, and paragraphs use <code>text-wrap: pretty</code>. Chinese uses <code>line-break: strict</code> so closing punctuation never starts a line. Long-heading tests in the type sheets wrap with no single-character orphans at 390px.</li>
+<li>There are no fixed-height boxes. Cards, bands and buttons grow with their text.</li>
+</ul>
+<h2>4. Weights, synthesis and emphasis</h2>
+<ul>
+<li><code>font-synthesis: none</code> is set on <code>html</code>, so there is no faux bold or faux italic. Chinese has no italics at all.</li>
+<li>Each concept loads two CJK weights (heading + body). Chinese body has one weight, so <code>&lt;strong&gt;</code> in Chinese uses the heading colour instead of bold. Labels, buttons and nav links in Chinese use weight 400.</li>
+<li>Cormorant weight 300 is never used, and no Cormorant text appears below 24px.</li>
+<li>LXGW WenKai TC (Concept 5 only) is limited to one short phrase. In production, subset it to just those glyphs (about 10 KB). If it isn&#39;t approved, drop it and the concept still works.</li>
+</ul>
+<h2>5. Stacks and fallbacks</h2>
+<pre><code class="language-css">--font-head: var(--f-head-latin), var(--f-head-zh), Georgia, &quot;Songti TC&quot;, &quot;PMingLiU&quot;, &quot;MingLiU&quot;, &quot;Noto Serif CJK TC&quot;, serif;
+--font-body: var(--f-body-latin), var(--f-body-zh), &quot;Segoe UI&quot;, system-ui, &quot;PingFang TC&quot;, &quot;Microsoft JhengHei&quot;, &quot;Noto Sans CJK TC&quot;, sans-serif;
+/* zh-Hans swaps: Noto Serif SC / Noto Sans SC, &quot;Songti SC&quot;, &quot;SimSun&quot;, &quot;PingFang SC&quot;, &quot;Microsoft YaHei&quot; */
+</code></pre>
+<p>Latin comes first, then the CJK web font, then system CJK, then generic. I checked the pages with every web-font request blocked (<code>screens/fallback/</code>). The layout holds, nothing clips, and headings re-wrap cleanly. There is a visible but acceptable swap on load.</p>
+<h2>6. Loading plan (mobile)</h2>
+<ul>
+<li>Preload only the Latin display face (latin subset, one weight).</li>
+<li>Load Source Sans 3 as latin + latin-ext (for macrons in te reo Māori).</li>
+<li>Load CJK as Fontsource unicode-range slices (around 100 per weight). The browser fetches only the slices for characters on the page. English pages fetch only the few slices needed for the &quot;繁體中文&quot; switch label.</li>
+<li>Use <code>font-display: swap</code> throughout.</li>
+<li>For WordPress production, self-host the same WOFF2 slices in the child theme via <code>theme.json</code> <code>fontFace</code>. The concepts point at jsDelivr only so they can be browsed without a build. Don&#39;t install a font plugin without approval.</li>
+</ul>
+<h2>7. Language switch and mixed-script details</h2>
+<ul>
+<li>The switch is visibly labelled and always shows both names in their own scripts: &quot;English&quot; and &quot;繁體中文&quot; (or &quot;简体中文&quot;). Each has <code>lang</code> and <code>hreflang</code>, and the current one is marked with <code>aria-current</code>.</li>
+<li>Every Latin run inside Chinese copy has a space on each side (我是 Vannarady Ng，…). That follows Taiwan and Hong Kong web convention. The reviewer should confirm house style. <code>text-autospace</code> is set as progressive enhancement.</li>
+<li>Numerals: Arabic numerals with spaces, as in 2027 年 3 月 20 日.</li>
+<li>Chinese text uses full-width punctuation ，。、「」（）, and English uses Latin punctuation. Brackets around Latin terms in Chinese use full-width （Rangitoto Island）.</li>
+<li>The name is &quot;Vannarady Ng&quot; / &quot;Van&quot; in Latin script on every language page. There is no Chinese name (confirmed on KC-576).</li>
+</ul>
+<h2>8. Colour and gold rules applied</h2>
+<ul>
+<li>Every text pair has at least 4.5:1 contrast. Each <code>-type.html</code> sheet calculates it from the tokens. Field borders are at least 3:1 against white.</li>
+<li>Gold or champagne appears at most once per screen, as a matte hairline (Concepts 1, 2, 5). There&#39;s no gold text, gradients, foil, glow, ring clip-art, gold focus rings, gold borders or gold icons. Five of the eight concepts use no gold at all.</li>
+<li>In the red concepts, body text is charcoal sans serif. Red is limited to headings, links, buttons and short bands.</li>
+</ul>
+</main></body></html>

@@ -2,12 +2,13 @@
 
 This folder holds the Round 1 design concepts for KC-575. Nothing here is client-approved. The copy is the KC-576 draft. The Chinese text is a type-testing draft that needs the agreed translator and a fluent reviewer.
 
-**Start here:** open `index.html` (the overview board), then read `TYPOGRAPHY.md`.
+**Live concepts:** https://koukcreatives.github.io/VanNg/ (GitHub Pages, noindex). Start at the overview board, then read `TYPOGRAPHY.md` (also at `typography.html`).
 
 ## Layout
 
 ```
 index.html            overview board: 8 concepts with screenshots and links
+typography.html       TYPOGRAPHY.md rendered for the live site
 TYPOGRAPHY.md         shared bilingual type system and decisions
 concepts/
   NN-name-en.html       home page, English
@@ -32,6 +33,7 @@ npm i @fontsource/{cormorant-garamond,source-sans-3,noto-serif-tc,noto-sans-tc,n
 node build/build.mjs     # pages + concept CSS
 node build/board.mjs     # index.html
 node build/shoot.mjs     # screenshots (serves fonts from node_modules)
+ARTIFACT=1 node build/build.mjs && node build/artifact.mjs   # dist/ for claude.ai hosting (Google Fonts) + typography.html
 ```
 
 Pages load fonts from jsDelivr (Fontsource, pinned versions). Production should self-host the same WOFF2 files in the WordPress child theme.
