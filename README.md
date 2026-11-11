@@ -9,6 +9,7 @@ This folder holds the Round 1 design concepts for KC-575. Nothing here is client
 ```
 index.html            overview: links + live previews of the 8 homepage designs
 Home-01.html … Home-08.html   eight distinct homepage designs, each with an EN / 繁體 / 简体 (test) switch
+privacy.html          shared draft privacy notice (EN / 繁體 / 简体)
 typography.html       TYPOGRAPHY.md rendered for the live site
 TYPOGRAPHY.md         shared bilingual type system and decisions
 concepts/
@@ -42,6 +43,7 @@ Pages load fonts from jsDelivr (Fontsource, pinned versions). Production should 
 
 ## Image and content rules
 
-* The grey boxes are placeholders. Kouk supplies authorised photos. No likeness of Van or couples has been generated.
+* Photos on the Home pages are generic Unsplash sample images (Unsplash License), hotlinked from images.unsplash.com and marked “Sample image”. IDs are listed in `build/homes-core.mjs` (IMG). None shows Van; replace them with her authorised photos before launch.
+* `privacy.html` is a generic draft privacy notice for layout. It needs review against the real enquiry setup before any form goes live.
 * The testimonial on KC-576 is not used (permission pending).
 * There are no fees, availability promises, tea-ceremony or MC services, or legal-advice claims.
