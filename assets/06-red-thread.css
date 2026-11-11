@@ -1,0 +1,21 @@
+/* Red Thread · generated tokens */
+:root{--bg:#FBF7F2;--band:#F5EBE6;--text:#2E2A2B;--head:#6E1F2E;--muted:#575052;--btn:#8E1B24;--btn-hover:#6E1F2E;--on-btn:#FBF7F2;--link:#6E1F2E;--deco:#B8924A;--field-border:#7A7073;--focus:#2E2A2B;--surface:#FFFFFF;--line:color-mix(in srgb, #2E2A2B 18%, transparent);
+--f-body-latin:"Source Sans 3";--f-head-zh:"Noto Serif TC";--f-body-zh:"Noto Sans TC";}
+:lang(zh-Hans){--f-head-zh:"Noto Serif SC";--f-body-zh:"Noto Sans SC";}
+
+
+
+.hero { padding: 0; }
+.hero-band { background: var(--head); color: var(--bg); padding: clamp(2.5rem, 1.5rem + 4vw, 5rem) 0 clamp(6rem, 4rem + 8vw, 10rem); }
+.hero-band h1, .hero-band p, .hero-band .eyebrow { color: var(--bg); }
+.hero-band .btn { background: var(--bg); color: var(--head); }
+.hero-band .btn:hover { background: #fff; }
+.hero-band .textlink { color: var(--bg); }
+.hero-band :focus-visible { outline-color: var(--bg); }
+.hero-figwrap { margin-top: clamp(-8rem, -3rem - 6vw, -4rem); }
+.hero-fig { max-width: 60rem; aspect-ratio: 4/5; border-radius: 4px; }
+@media (min-width: 900px) { .hero-fig { aspect-ratio: 16/8; } }
+main { position: relative; }
+@media (min-width: 1100px) { main::before { content: ""; position: absolute; left: calc(50% - 38rem); top: 0; bottom: 0; width: 1px; background: var(--head); opacity: .35; } }
+.approach h2::before, .languages h2::before, .services h2::before, .enquiry h2::before { content: ""; display: block; width: 2.5rem; height: 2px; background: var(--btn); margin-bottom: 1rem; }
+.card { border-top: 2px solid var(--head); border-radius: 0; }

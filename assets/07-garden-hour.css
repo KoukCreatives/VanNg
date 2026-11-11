@@ -1,0 +1,18 @@
+/* Garden Hour · generated tokens */
+:root{--bg:#FBF3F1;--band:#F3DEDA;--text:#3B2A2E;--head:#3B2A2E;--muted:#5E464C;--btn:#8E4A5A;--btn-hover:#733B49;--on-btn:#FFFFFF;--link:#8E4A5A;--deco:#C9AE82;--field-border:#7D6469;--focus:#3B2A2E;--surface:#FFFFFF;--line:color-mix(in srgb, #3B2A2E 18%, transparent);
+--f-body-latin:"Source Sans 3";--f-head-zh:"Noto Serif TC";--f-body-zh:"Noto Sans TC";}
+:lang(zh-Hans){--f-head-zh:"Noto Serif SC";--f-body-zh:"Noto Sans SC";}
+
+
+
+:root { --h-weight: 500; --radius: 10px; }
+.hero { padding-top: clamp(1.5rem, 1rem + 3vw, 4rem); position: relative; overflow: hidden; }
+.hero-grid { display: grid; gap: 2rem; position: relative; }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: 6fr 6fr; gap: 3rem; align-items: center; } .hero-copy { padding-right: 2rem; } }
+.hero-fig { border-radius: 200px 200px 200px 24px; }
+.orn-sprig { display: block; position: absolute; width: 140px; color: var(--btn); opacity: .45; right: 0; top: 0; }
+@media (min-width: 900px) { .orn-sprig { width: 200px; right: auto; left: 43%; top: -10px; } }
+.approach { background: var(--band); border-radius: 0 120px 0 0; }
+.card { border-radius: 24px; }
+.quote p { font-style: normal; }
+.cred-travel { background: var(--band); }

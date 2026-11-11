@@ -1,0 +1,22 @@
+/* Petal Letter · generated tokens */
+:root{--bg:#FBF3F1;--band:#F3DEDA;--text:#3B2A2E;--head:#3B2A2E;--muted:#5E464C;--btn:#8E4A5A;--btn-hover:#733B49;--on-btn:#FFFFFF;--link:#8E4A5A;--deco:#C9AE82;--field-border:#7D6469;--focus:#3B2A2E;--surface:#FFFFFF;--line:color-mix(in srgb, #3B2A2E 18%, transparent);
+--f-body-latin:"Source Sans 3";--f-head-zh:"Noto Serif TC";--f-body-zh:"Noto Sans TC";}
+:lang(zh-Hans){--f-head-zh:"Noto Serif SC";--f-body-zh:"Noto Sans SC";}
+
+
+
+.hero { padding-top: clamp(2rem, 1rem + 4vw, 4.5rem); text-align: center; }
+.hero-copy { max-width: 46rem; margin: 0 auto; }
+.hero-copy p { margin-left: auto; margin-right: auto; }
+.hero .btns { justify-content: center; }
+.hero .hairline { display: block; width: 64px; margin: 2rem auto 0; }
+.hero-fig { margin: 3rem auto 0; max-width: 26rem; border-radius: 999px 999px 6px 6px; }
+@media (min-width: 900px) { :root:lang(en) { --h1: clamp(3rem, 1.6rem + 3.4vw, 4.25rem); } .hero-fig { max-width: 64rem; aspect-ratio: 16/8; border-radius: 280px 280px 6px 6px; } }
+.approach .wrap, .languages .wrap { text-align: center; }
+.approach p, .languages p { margin-left: auto; margin-right: auto; }
+.quote { margin: 2.5rem auto 0; }
+.chips { justify-content: center; }
+.services h2, .enquiry h2 { text-align: center; }
+@media (max-width: 699px) { :lang(zh) .hero-copy p:not(.eyebrow), :lang(zh) .approach p, :lang(zh) .languages p { text-align: start; } }
+.card { text-align: center; border: 1px solid var(--line); }
+.enquiry .two { align-items: start; }

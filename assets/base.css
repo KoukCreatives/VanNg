@@ -1,0 +1,188 @@
+/* Van Ng concepts · shared bilingual base
+   Every concept overrides the tokens in :root and adds its own layout rules.
+   Rules that are part of the typography system (not concept styling) live here. */
+
+:root {
+  /* palette tokens (concept sets these) */
+  --bg: #fbf3f1; --band: #f3deda; --text: #3b2a2e; --head: #3b2a2e;
+  --muted: #5e4a4f; --btn: #8e4a5a; --btn-hover: #733b49; --on-btn: #fff;
+  --link: #8e4a5a; --deco: #c9ae82; --line: rgba(59, 42, 46, .18);
+  --field-border: #7d6a6e; --focus: #3b2a2e; --surface: #fff;
+
+  /* font roles (concept sets the first family in each) */
+  --f-head-latin: "HeadLatin";
+  --f-body-latin: "Source Sans 3";
+  --f-head-zh: "Noto Serif TC";
+  --f-body-zh: "Noto Sans TC";
+  --zh-serif-fallback: "Songti TC", "PMingLiU", "MingLiU", "Noto Serif CJK TC";
+  --zh-sans-fallback: "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC";
+
+
+  /* English scale (concept may override) */
+  --h1: clamp(2.375rem, 1.6rem + 3.2vw, 4rem);
+  --h1-lh: 1.08;
+  --h2: clamp(2rem, 1.55rem + 1.8vw, 2.75rem);
+  --h2-lh: 1.12;
+  --h3: 1.5rem;
+  --h-weight: 600;
+  --body: 1.0625rem;          /* 17px mobile */
+  --body-lg: 1.125rem;        /* 18px desktop */
+  --body-lh: 1.6;
+  --small: .9375rem;
+  --eyebrow-track: .08em;
+
+  --measure: 36rem;
+  --container: 72rem;
+  --gutter: 1.25rem;
+  --radius: 4px;
+  --section-pad: clamp(3.5rem, 2rem + 6vw, 7rem);
+}
+
+/* Simplified-script test pages: swap CJK families only */
+/* Latin-tagged runs inside Chinese pages (brand, lockups) use the unadjusted face */
+:lang(en) { --f-head-latin: "HeadLatin"; }
+:lang(zh-Hans) {
+  --zh-serif-fallback: "Songti SC", "SimSun", "Noto Serif CJK SC";
+  --zh-sans-fallback: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC";
+}
+
+/* Chinese scale: CJK glyphs fill the em box, so display sizes come down
+   and line-height goes up. Letter-spacing stays normal. */
+:lang(zh) {
+  --f-head-latin: "HeadLatinZh";      /* same file, size-adjusted to sit with CJK */
+  --h1: clamp(1.875rem, 1.4rem + 2vw, 2.875rem);
+  --h1-lh: 1.32;
+  --h2: clamp(1.5rem, 1.25rem + 1.1vw, 2.125rem);
+  --h2-lh: 1.38;
+  --h3: 1.3125rem;
+  --body: 1rem;               /* 16px mobile */
+  --body-lg: 1.0625rem;       /* 17px desktop */
+  --body-lh: 1.8;
+  --small: .9375rem;
+  --eyebrow-track: .04em;
+  --measure: 34rem;           /* ~32-34 characters per line on desktop */
+}
+
+/* Mixed-script stacks: Latin first, CJK second, then system CJK, then generic.
+   Re-declared on every element with a lang attribute so nested zh / en blocks resolve their own roles. */
+:root, [lang] {
+  --font-head: var(--f-head-latin), var(--f-head-zh), Georgia, var(--zh-serif-fallback), serif;
+  --font-body: var(--f-body-latin), var(--f-body-zh), "Segoe UI", system-ui, var(--zh-sans-fallback), sans-serif;
+}
+:where([lang]) { font-family: var(--font-body); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; font-synthesis: none; text-rendering: optimizeLegibility; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--font-body); font-size: var(--body); line-height: var(--body-lh);
+  font-weight: 400; letter-spacing: normal;
+  font-kerning: normal;
+}
+:lang(zh) { line-break: strict; word-break: normal; overflow-wrap: break-word; text-autospace: normal; text-spacing-trim: normal; }
+@media (min-width: 900px) { body { font-size: var(--body-lg); } }
+
+h1, h2, h3 { font-family: var(--font-head); color: var(--head); font-weight: var(--h-weight); margin: 0 0 .5em; text-wrap: balance; letter-spacing: normal; }
+h1 { font-size: var(--h1); line-height: var(--h1-lh); }
+h2 { font-size: var(--h2); line-height: var(--h2-lh); }
+h3 { font-size: var(--h3); line-height: 1.3; }
+p { margin: 0 0 1em; max-width: var(--measure); text-wrap: pretty; }
+a { color: var(--link); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+/* real weights only: Chinese body has one weight loaded, so emphasis uses colour, not faux bold */
+strong { font-weight: 600; }
+:lang(zh) strong { font-weight: inherit; color: var(--head); }
+img, svg { display: block; max-width: 100%; }
+
+.wrap { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+@media (min-width: 900px) { :root { --gutter: 2.5rem; } }
+.skip { position: absolute; left: -999px; top: 0; background: var(--surface); padding: .5rem 1rem; z-index: 99; }
+.skip:focus { left: 1rem; }
+
+/* --- concept chrome (not part of the site) --- */
+.draftbar { font: 500 12px/1.4 "Source Sans 3", "Noto Sans TC", system-ui, sans-serif; background: #1d1b1c; color: #f4f1ee; letter-spacing: .02em; }
+.draftbar .wrap { display: flex; flex-wrap: wrap; gap: .25rem 1rem; align-items: center; justify-content: space-between; padding-top: .45rem; padding-bottom: .45rem; }
+.draftbar a { color: #f4f1ee; }
+.draftbar nav { display: flex; gap: .75rem; flex-wrap: wrap; }
+.draftbar [aria-current] { text-decoration: none; opacity: .6; }
+
+/* --- header --- */
+.site-head { position: relative; z-index: 5; }
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; }
+.brand { text-decoration: none; color: var(--head); display: grid; line-height: 1.1; }
+.brand-name { font-family: var(--font-head); font-weight: var(--h-weight); font-size: 1.3125rem; white-space: nowrap; }
+@media (min-width: 900px) { .brand-name { font-size: 1.5rem; } }
+.brand-sub { white-space: nowrap; font-size: .8125rem; letter-spacing: var(--eyebrow-track); color: var(--muted); margin-top: .2rem; }
+.nav-desk { display: none; }
+.nav-desk ul, .nav-mob ul { list-style: none; margin: 0; padding: 0; }
+.nav-desk ul { display: flex; gap: 1.5rem; }
+.nav-desk a, .nav-mob a { color: var(--text); text-decoration: none; font-size: .9375rem; }
+.nav-desk a:hover { color: var(--link); text-decoration: underline; }
+.nav-desk a[aria-current] { color: var(--link); text-decoration: underline; text-decoration-thickness: 2px; }
+.langswitch { display: flex; align-items: center; gap: .5rem; font-size: .875rem; }
+.langswitch .ls-label { color: var(--muted); }
+.langswitch a { white-space: nowrap; color: var(--text); text-decoration: none; padding: .35rem .55rem; border-radius: 999px; border: 1px solid transparent; }
+.langswitch a[aria-current] { border-color: var(--line); background: var(--surface); font-weight: 600; }
+.langswitch a:lang(zh)[aria-current] { font-weight: 400; color: var(--head); }
+.head-right { display: flex; align-items: center; gap: 1.25rem; }
+.nav-mob summary { white-space: nowrap; list-style: none; cursor: pointer; border: 1px solid var(--line); border-radius: 999px; padding: .4rem .9rem; font-size: .875rem; background: var(--surface); }
+.nav-mob summary::-webkit-details-marker { display: none; }
+.nav-mob[open] ul { position: absolute; right: var(--gutter); left: var(--gutter); top: 4.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: .5rem; box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+.nav-mob li a { display: block; padding: .7rem .8rem; }
+@media (max-width: 899px) { .langswitch .ls-label { display: none; } .head-right { gap: .5rem; } .langswitch { gap: .15rem; } .langswitch a { padding: .35rem .45rem; } }
+@media (min-width: 900px) { .nav-desk { display: block; } .nav-mob { display: none; } }
+
+/* --- shared components --- */
+.eyebrow { font-family: var(--font-body); font-size: .875rem; font-weight: 600; letter-spacing: var(--eyebrow-track); text-transform: none; color: var(--muted); margin: 0 0 1rem; }
+:lang(zh) .eyebrow { font-weight: 400; }
+.lede { font-size: 1.125em; }
+:lang(zh) .lede { font-size: 1.0625em; }
+.btns { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; margin-top: 1.75rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: .7rem 1.5rem; background: var(--btn); color: var(--on-btn); border: 0; border-radius: var(--radius); font: inherit; font-weight: 600; font-size: 1rem; text-decoration: none; cursor: pointer; line-height: 1.3; }
+:lang(zh) .btn { font-weight: 400; letter-spacing: .02em; }
+.btn:hover { background: var(--btn-hover); }
+.textlink { font-weight: 600; }
+:lang(zh) .textlink { font-weight: 400; }
+.figure { position: relative; margin: 0; background: linear-gradient(160deg, var(--band), color-mix(in srgb, var(--band) 60%, var(--bg))); color: var(--muted); display: grid; place-content: end start; padding: 1rem; aspect-ratio: 4 / 5; font-size: .8125rem; line-height: 1.4; overflow: hidden; }
+.figure::before { content: ""; position: absolute; left: 50%; top: 18%; width: 34%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; border: 1px dashed color-mix(in srgb, var(--muted) 45%, transparent); }
+.figure b { font-weight: 600; color: var(--text); }
+:lang(zh) .figure b { font-weight: 400; }
+.figure span { display: block; }
+.quote { margin: 2rem 0 0; padding: 0; max-width: var(--measure); }
+.quote p { font-family: var(--font-head); font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); line-height: 1.3; color: var(--head); margin-bottom: .6rem; font-weight: var(--h-weight); }
+:lang(zh) .quote p { font-size: clamp(1.25rem, 1.1rem + .7vw, 1.625rem); line-height: 1.6; }
+.quote footer { font-size: var(--small); color: var(--muted); }
+.flag { display: inline-block; font-family: "Source Sans 3", "Noto Sans TC", system-ui, sans-serif; font-size: .75rem; line-height: 1.4; letter-spacing: .02em; color: #6a4a00; background: #fff4d6; border: 1px dashed #b8860b; padding: .1rem .45rem; border-radius: 3px; vertical-align: middle; font-weight: 400; }
+.chips { list-style: none; padding: 0; margin: 1rem 0 1.25rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+.chips li { border: 1px solid var(--line); background: var(--surface); padding: .3rem .85rem; border-radius: 999px; font-size: .9375rem; }
+section { padding: var(--section-pad) 0; }
+.band { background: var(--band); }
+.cards { display: grid; gap: 1.25rem; }
+@media (min-width: 700px) { .cards { grid-template-columns: 1fr 1fr; } }
+.card { background: var(--surface); padding: 1.5rem; border-radius: var(--radius); }
+.card h3 { margin-bottom: .35em; }
+.card p { margin: 0; }
+.two { display: grid; gap: 2.5rem; }
+@media (min-width: 800px) { .two { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+
+/* form */
+form { display: grid; gap: 1rem; max-width: 34rem; }
+.field { display: grid; gap: .35rem; }
+label { font-size: .9375rem; font-weight: 600; color: var(--text); }
+:lang(zh) label { font-weight: 400; }
+input, textarea { font: inherit; font-size: 1rem; color: var(--text); background: var(--surface); border: 1px solid var(--field-border); border-radius: var(--radius); padding: .7rem .85rem; width: 100%; min-height: 3rem; }
+textarea { min-height: 7rem; resize: vertical; }
+input::placeholder, textarea::placeholder { color: #776a6c; }
+.note { font-size: var(--small); color: var(--muted); }
+.form-flag { margin-bottom: .25rem; }
+
+/* footer */
+.site-foot { padding: 3rem 0 4rem; font-size: var(--small); border-top: 1px solid var(--line); }
+.site-foot .wrap { display: grid; gap: 1rem; }
+@media (min-width: 800px) { .site-foot .wrap { grid-template-columns: 2fr 1fr; } }
+.site-foot p { margin: 0 0 .5rem; }
+
+/* ornaments: hidden unless a concept turns them on */
+.orn { display: none; color: var(--deco); }
+.hairline { display: none; height: 1px; background: var(--deco); border: 0; margin: 0; }

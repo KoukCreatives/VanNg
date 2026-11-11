@@ -1,0 +1,19 @@
+/* Two Voices · generated tokens */
+:root{--bg:#FBF7F2;--band:#F5EBE6;--text:#2E2A2B;--head:#6E1F2E;--muted:#575052;--btn:#8E1B24;--btn-hover:#6E1F2E;--on-btn:#FBF7F2;--link:#6E1F2E;--deco:#B8924A;--field-border:#7A7073;--focus:#2E2A2B;--surface:#FFFFFF;--line:color-mix(in srgb, #2E2A2B 18%, transparent);
+--f-body-latin:"Source Sans 3";--f-head-zh:"Noto Serif TC";--f-body-zh:"Noto Sans TC";}
+:lang(zh-Hans){--f-head-zh:"Noto Serif SC";--f-body-zh:"Noto Sans SC";}
+
+
+
+.hero { padding-top: clamp(1.5rem, 1rem + 3vw, 4rem); }
+.hero-grid { display: grid; gap: 2rem; }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: 6fr auto 5fr; gap: 0 2.5rem; align-items: stretch; } .hero-copy { grid-column: 1; align-self: center; } }
+.hero-copy { max-width: 40rem; }
+.lockup { display: flex; flex-wrap: wrap; gap: .25rem .75rem; align-items: baseline; margin: 0 0 1.25rem; padding: 0 0 .9rem; border-bottom: 1px solid var(--head); list-style: none; font-family: var(--font-head); color: var(--head); font-size: 1.125rem; }
+.lockup li + li::before { content: "·"; margin-right: .75rem; color: var(--muted); }
+.vert { display: none; }
+@media (min-width: 900px) { .vert { display: block; writing-mode: vertical-rl; text-orientation: upright; font-family: var(--f-head-zh), var(--zh-serif-fallback), serif; font-weight: 600; font-size: 1.75rem; line-height: 1; letter-spacing: .3em; color: var(--head); border-left: 1px solid var(--head); padding-left: 1rem; margin: 0; } }
+.hero-fig { aspect-ratio: 4/5; border-radius: 2px; min-width: 0; align-self: start; width: 100%; }
+.hero-grid > * { min-width: 0; }
+@media (min-width: 900px) { :root:lang(en) { --h1: clamp(2.5rem, 1.6rem + 2vw, 3.375rem); } }
+.card { border: 1px solid var(--line); border-top: 3px solid var(--btn); border-radius: 2px; }

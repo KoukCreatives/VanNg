@@ -1,0 +1,20 @@
+/* Type-system specimen pages */
+.typepage main { padding-top: 2.5rem; padding-bottom: 5rem; }
+.typepage section { padding: 2.5rem 0; border-top: 1px solid var(--line); }
+.spec-head { padding-bottom: 1.5rem; }
+.spec-title { font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem); }
+.spec-h { font-family: "Source Sans 3", system-ui, sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--text); margin-bottom: 1.25rem; }
+.spec-list { max-width: 48rem; padding-left: 1.2rem; }
+.spec-list li { margin-bottom: .6rem; }
+.spec-grid { display: grid; gap: 2.5rem; }
+@media (min-width: 900px) { .spec-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+.spec-col { min-width: 0; }
+.spec-label { font: 600 .8125rem/1.4 "Source Sans 3", system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: .5rem; }
+.spec-meta { font: 400 .75rem/1.2 ui-monospace, Menlo, monospace; color: var(--muted); margin: 1.75rem 0 .4rem; }
+.spec-col h1, .spec-col h2, .spec-col h3 { margin-bottom: 0; }
+.spec-col .quote { margin-top: 0; }
+.spec-table { border-collapse: collapse; width: 100%; font-size: .9375rem; margin: 1.5rem 0; display: block; overflow-x: auto; }
+.spec-table th, .spec-table td { text-align: left; padding: .55rem .75rem .55rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.spec-table th { font-weight: 600; }
+.sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0,0,0,.15); vertical-align: -2px; margin-right: .4rem; }
+code { font-size: .875em; background: var(--band); padding: .05rem .3rem; border-radius: 3px; }

@@ -1,0 +1,19 @@
+/* Quiet Page · generated tokens */
+:root{--bg:#FBF3F1;--band:#F3DEDA;--text:#3B2A2E;--head:#3B2A2E;--muted:#5E464C;--btn:#8E4A5A;--btn-hover:#733B49;--on-btn:#FFFFFF;--link:#8E4A5A;--deco:#C9AE82;--field-border:#7D6469;--focus:#3B2A2E;--surface:#FFFFFF;--line:color-mix(in srgb, #3B2A2E 18%, transparent);
+--f-body-latin:"Source Sans 3";--f-head-zh:"Noto Serif TC";--f-body-zh:"Noto Sans TC";}
+:lang(zh-Hans){--f-head-zh:"Noto Serif SC";--f-body-zh:"Noto Sans SC";}
+
+
+
+:root { --h-weight: 500; }
+.hero { padding-top: clamp(2rem, 1rem + 4vw, 5rem); }
+.hero-grid { display: grid; gap: 2.5rem; }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: 7fr 5fr; gap: 5rem; align-items: end; } }
+.hero-fig { border-radius: 2px; }
+.approach .wrap, .languages .wrap, .services .wrap { display: grid; gap: 1rem 4rem; }
+@media (min-width: 900px) {
+  .approach .wrap, .languages .wrap, .services .wrap { grid-template-columns: 4fr 7fr; }
+  .approach h2, .languages h2, .services h2 { grid-row: span 4; }
+}
+.card { background: transparent; border-top: 1px solid var(--head); border-radius: 0; padding: 1.25rem 0 0; }
+.quote { border-left: 2px solid var(--btn); padding-left: 1.25rem; }
