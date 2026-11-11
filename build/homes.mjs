@@ -37,6 +37,7 @@ const B = {
   travel: () => `<div class="travel rv">${T('h3', 'travelH')}<ul class="places">${[0, 1, 2, 3, 4, 5, 6].map((i) => `<li>${pin}<span data-i="places.${i}">${txt(`places.${i}`)}</span></li>`).join('')}</ul>${T('p', 'travelNote', 'class="note"')}</div>`,
   enq: () => `<p class="sec-eb" data-i="secEnquire">${txt('secEnquire')}</p>${T('h2', 'enqH')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${ph('phDetail', 'enq-ph', 'bouquet')}${T('p', 'enqNote', 'class="note"')}`,
   ctas: () => `<div class="btns"><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div>`,
+  facts: (cls = '') => `<ul class="facts ${cls}">${[0, 1, 2].map((i) => `<li><span class="fd" aria-hidden="true"></span><span data-i="heroFacts.${i}">${txt(`heroFacts.${i}`)}</span></li>`).join('')}</ul>`,
   langLink: () => `<a class="tl" href="#faq" data-i="langLink">${txt('langLink')}</a>`,
 };
 const faqBlock = (img = 'vows') => `<div class="faqx" id="faq"><div class="faqx-l"><p class="sec-eb" data-i="secQuestions">${txt('secQuestions')}</p>${T('h2', 'faqH')}${T('p', 'faqIntro')}${ph('phDetail', 'faqx-ph rv', img)}</div><div class="faq">${[0, 1, 2, 3, 4, 5].map((i) => `<details${i === 0 ? ' open' : ''}><summary data-i="faq.${i}.0">${txt(`faq.${i}.0`)}</summary>${T('p', `faq.${i}.1`)}</details>`).join('')}</div></div>`;
@@ -67,6 +68,18 @@ input,textarea{background:#fff;border:1px solid #7a7073;color:#2e2a2b}
 .split{display:grid;gap:32px}@media(min-width:900px){.split{grid-template-columns:1fr 1fr;gap:72px;align-items:center}}
 .split .ph{aspect-ratio:4/5}
 .two{display:grid;gap:32px}@media(min-width:760px){.two{grid-template-columns:1fr 1fr;gap:56px}}
+.kb img{animation:kb 22s cubic-bezier(.2,.6,.2,1) both;transform-origin:50% 60%}
+@keyframes kb{from{transform:scale(1.14)}to{transform:scale(1)}}
+.rise>*{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+.rise>*:nth-child(2){animation-delay:.12s}.rise>*:nth-child(3){animation-delay:.24s}.rise>*:nth-child(4){animation-delay:.36s}.rise>*:nth-child(5){animation-delay:.48s}.rise>*:nth-child(6){animation-delay:.6s}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.kb img,.rise>*{animation:none}}
+.facts{list-style:none;padding:0;margin:28px 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.facts li{display:inline-flex;align-items:center;gap:8px;font-size:.875rem;line-height:1.3;padding:.5rem .95rem;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 28%,transparent)}
+.facts .fd{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.75;flex:none}
+.facts.glass li{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.38);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff}
+.facts.centre{justify-content:center}
+.hero-c{width:100%}
 .sec-eb{display:flex;align-items:center;gap:12px;font-family:var(--f-body);font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:0 0 16px}
 .sec-eb::before{content:"";width:28px;height:1px;background:currentColor}
 :lang(zh) .sec-eb{letter-spacing:.08em;font-size:.875rem;font-weight:400}
@@ -146,9 +159,9 @@ designs.push({
 .enq form{background:#fff;padding:28px;border-radius:4px}
 `,
   body: () => `<p class="ribbon" data-i="ribbon">${txt('ribbon')}</p>
-<div class="hero">${ph('phCeremony', '', 'lawn', true)}
+<div class="hero">${ph('phCeremony', 'kb', 'lawn', true)}
 <header class="hd"><div class="hd-in">${brand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${langSwitch()}<a class="btn btn-q" href="#enquire" data-i="cta">${txt('cta')}</a>${mobileNav()}</div></div></header>
-<div class="in hero-c">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}</div></div>
+<div class="in hero-c rise">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}${B.facts('glass')}</div></div>
 <main id="main">
 <div class="in"><div class="pillars"><div class="rv">${T('h3', 'langH')}${chips()}</div>${B.travel()}${B.cred()}</div></div>
 <section id="approach"><div class="in split"><div class="rv">${B.approach()}${T('p', 'intro2')}</div>${ph('phPortrait', 'rv', 'peonies')}</div></section>
@@ -189,8 +202,8 @@ input{border-width:0 0 1px;padding-inline:0;background:transparent}
 `,
   body: () => `${head()}
 <main id="main">
-${ph('phCeremony', 'pano', 'lake', true)}
-<div class="in lead">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}</div>
+<div class="in pano-w">${ph('phCeremony', 'pano kb', 'lake', true)}</div>
+<div class="in lead rise">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}${B.facts('centre')}</div>
 <div class="strip" role="region" aria-label="Gallery" tabindex="0">${ph('phDetail', '', 'hands')}${ph('phDetail', '', 'park')}${ph('phDetail', '', 'bouquet')}${ph('phDetail', '', 'vows')}${ph('phDetail', '', 'alps')}${ph('phDetail', '', 'table')}</div>
 <section id="approach"><div class="in cols"><div class="rv">${B.approach()}</div><div class="rv">${B.langs()}${B.langLink()}</div><div>${B.cred()}<div style="height:28px"></div>${B.travel()}</div></div></section>
 <section class="soft qc"><div class="in">${B.quote()}</div></section>
@@ -232,7 +245,7 @@ input,textarea{border-radius:14px}
 .faq summary{font-size:1.125rem}
 `,
   body: () => `${head()}
-<div class="card">${ph('phCeremony', '', 'pier', true)}<p class="big" aria-hidden="true"><span data-i="big1">${txt('big1')}</span><span data-i="big2">${txt('big2')}</span></p></div>
+<div class="in card-w"><div class="card">${ph('phCeremony', 'kb', 'pier', true)}<p class="big rise" aria-hidden="true"><span data-i="big1">${txt('big1')}</span><span data-i="big2">${txt('big2')}</span></p>${B.facts('glass card-f')}</div></div>
 <main id="main">
 <div class="in intro">${T('h1', 'h1')}<div>${T('p', 'intro')}${B.ctas()}</div></div>
 <div class="marq" aria-hidden="true"><div>${Array(8).fill([0, 1, 2].map((i) => `<span data-i="langChips.${i}">${txt(`langChips.${i}`)}</span>`).join('')).join('')}</div></div>
@@ -282,8 +295,8 @@ designs.push({
 .enq form{background:#fff;padding:28px;border-radius:14px}
 .flash{animation:fl 1.4s ease}@keyframes fl{0%{box-shadow:0 0 0 4px rgba(142,74,90,.55)}100%{box-shadow:0 0 0 0 rgba(142,74,90,0)}}
 `,
-  body: () => `<div class="hero">${ph('phCeremony', '', 'officiant', true)}${head()}
-<div class="in hero-c">${T('h1', 'h1')}${T('p', 'intro', 'class="lede"')}
+  body: () => `<div class="hero">${ph('phCeremony', 'kb', 'officiant', true)}${head()}
+<div class="in hero-c"><div class="rise">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro', 'class="lede"')}</div>
 <form class="chooser" id="chooser" onsubmit="return false" aria-labelledby="ch-h"><p id="ch-h" class="ch-h" data-i="chooseH">${txt('chooseH')}</p>
 <fieldset><legend data-i="chooseLang">${txt('chooseLang')}</legend><div class="pills">${[0, 1, 2].map((i) => `<label><input type="checkbox" name="lg" value="${i}"${i === 0 ? ' checked' : ''}><span data-i="langChips.${i}">${txt(`langChips.${i}`)}</span></label>`).join('')}</div></fieldset>
 <div><label class="lb" for="area" data-i="chooseArea">${txt('chooseArea')}</label><select id="area">${[0, 1, 2, 3, 4, 5].map((i) => `<option value="${i}" data-i="areas.${i}">${txt(`areas.${i}`)}</option>`).join('')}</select></div>
@@ -348,8 +361,8 @@ designs.push({
 .peony{background:var(--peony)}
 .enq{display:grid;gap:40px}@media(min-width:950px){.enq{grid-template-columns:5fr 6fr;gap:80px}}
 `,
-  body: () => `<div class="hero">${ph('phCeremony', '', 'veil', true)}${head()}
-<div class="in hero-c"><p class="cine it" data-i="approachH">${txt('approachH')}</p>${T('h1', 'h1')}${B.ctas()}</div><span class="cue" aria-hidden="true" data-i="scroll">${txt('scroll')}</span></div>
+  body: () => `<div class="hero">${ph('phCeremony', 'kb', 'veil', true)}${head()}
+<div class="in hero-c rise"><p class="cine it" data-i="approachH">${txt('approachH')}</p>${T('h1', 'h1')}${B.ctas()}${B.facts('glass centre')}</div><span class="cue" aria-hidden="true" data-i="scroll">${txt('scroll')}</span></div>
 <main id="main">
 <section class="intro"><div class="in rv"><span class="it" lang="en">Vannarady Ng</span>${T('p', 'intro')}${T('p', 'intro2')}</div></section>
 <section id="approach" style="padding-top:0"><div class="in">
@@ -390,9 +403,9 @@ designs.push({
 `,
   body: () => `${head()}
 <main id="main">
-<p class="disp" aria-hidden="true"><span data-i="big1">${txt('big1')}</span><em data-i="big2">${txt('big2')}</em></p>
-<div class="in stage">${ph('phCeremony', 'land', 'alps', true)}${ph('phDetail', 'inset', 'hands', false, '(min-width: 900px) 22rem, 40vw')}</div>
-<div class="in lead">${T('h1', 'h1')}<div>${T('p', 'intro', 'class="lede"')}${T('p', 'intro2')}${B.ctas()}</div></div>
+<p class="disp rise" aria-hidden="true"><span data-i="big1">${txt('big1')}</span><em data-i="big2">${txt('big2')}</em></p>
+<div class="in stage">${ph('phCeremony', 'land kb', 'alps', true)}${ph('phDetail', 'inset', 'hands', false, '(min-width: 900px) 22rem, 40vw')}</div>
+<div class="in lead">${T('h1', 'h1')}<div>${T('p', 'intro', 'class="lede"')}${T('p', 'intro2')}${B.ctas()}${B.facts()}</div></div>
 <section id="approach"><div class="in split">${ph('phPortrait', 'rv', 'bouquet')}<div class="rv">${B.approach()}${B.langs()}${B.langLink()}</div></div></section>
 <section class="soft"><div class="in">${B.quote()}</div></section>
 <section><div class="in">${T('h2', 'servicesH', 'style="text-align:center"')}<div class="svcs">${B.services()}</div><div class="two" style="margin-top:56px">${B.cred()}${B.travel()}</div></div></section>
@@ -439,8 +452,8 @@ h2{text-align:center}
     const items = [0, 1, 2, 3, 4, 5].map((i) => `<li><a href="${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'][i]}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`);
     return `<header class="hd"><div class="hd-c"><ul class="nl">${items.slice(0, 3).join('')}</ul>${brand()}<ul class="nr">${items.slice(3).join('')}</ul>${mobileNav()}</div><div class="lsrow">${langSwitch()}</div></header>
 <main id="main">
-<div class="show">${ph('phCeremony', '', 'arch', true)}${ph('phCeremony', '', 'lawn', false, '100vw')}${ph('phCeremony', '', 'table', false, '100vw')}</div>
-<div class="in tag">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}</div>
+<div class="in"><div class="show">${ph('phCeremony', 'kb', 'arch', true)}${ph('phCeremony', '', 'lawn', false, '100vw')}${ph('phCeremony', '', 'table', false, '100vw')}<div class="show-cap">${B.facts('glass')}</div></div></div>
+<div class="in tag rise">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}</div>
 <div class="in trio">${ph('phDetail', 'rv', 'peonies')}${ph('phDetail', 'rv', 'hands')}${ph('phDetail', 'rv', 'vows')}</div>
 <section id="approach"><div class="in cent rv" style="max-width:56rem">${B.approach()}${T('p', 'intro2')}</div></section>
 <section class="soft cent"><div class="in">${B.quote()}</div></section>
@@ -497,7 +510,7 @@ h2{color:var(--bur)}
 <div class="mast">${brand()}</div><nav class="navrow nav-d" aria-label="Main">${navList()}</nav></header>
 <main id="main"><div class="in">
 <div class="tiles">
-<div class="tile t-feat">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}</div>
+<div class="tile t-feat rise">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}${B.facts()}</div>
 <a class="tile t-a" href="#approach">${ph('phPortrait', '', 'bouquet', true)}<span class="lab" data-i="nav.1">${txt('nav.1')}</span></a>
 <a class="tile" href="#ceremonies">${ph('phDetail', '', 'hands', true)}<span class="lab" data-i="services.0.h">${txt('services.0.h')}</span></a>
 <a class="tile" href="#ceremonies">${ph('phDetail', '', 'pier')}<span class="lab" data-i="services.1.h">${txt('services.1.h')}</span></a>
@@ -512,6 +525,17 @@ h2{color:var(--bur)}
 </main>${foot()}`,
 });
 
+
+const EXTRA = {
+  Estate: `.hero h1{text-shadow:0 2px 40px rgba(0,0,0,.28)}.hero .eb{display:flex;align-items:center;gap:12px}.hero .eb::before{content:"";width:36px;height:1px;background:#fff}`,
+  Panorama: `.pano-w{padding-top:24px}.pano{border-radius:6px;height:clamp(20rem,50vw,40rem)}.lead .facts li{border-color:rgba(122,62,78,.3)}.lead .fd{background:var(--acc)}`,
+  Statement: `.card-w{padding-top:8px}.card{margin:0!important}.card-f{position:absolute;z-index:1;left:clamp(16px,3vw,40px);right:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,40px);margin:0}`,
+  Planner: `.hero .eb{font-size:.8125rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;margin:0 0 16px;opacity:.95}:lang(zh) .hero .eb{letter-spacing:.1em;text-transform:none;font-weight:400;font-size:.9375rem}.hero-c{padding-block:72px 96px}.hero h1{text-shadow:0 2px 30px rgba(0,0,0,.3)}`,
+  Cinematic: `.hero .facts{margin-top:36px}`,
+  Horizon: `.land{border-radius:4px}@media(max-width:600px){.disp{font-size:calc(var(--hs)*2.9rem);padding-inline:16px}}.lead .fd{background:var(--rose)}`,
+  Gallery: `.show{border-radius:4px}.show-cap{position:absolute;z-index:3;left:clamp(16px,2.5vw,32px);right:clamp(16px,2.5vw,32px);bottom:clamp(16px,2.5vw,32px)}.show-cap .facts{margin:0}.show::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.45));pointer-events:none}`,
+  Journal: `.t-feat .facts li{border-color:rgba(110,31,46,.3)}.t-feat .fd{background:var(--acc)}`,
+};
 const gutter = G;
 // ───────────────────────── Privacy notice (shared) ─────────────────────────
 const privacy = page({
@@ -542,7 +566,7 @@ fs.writeFileSync(path.join(ROOT, 'privacy.html'), privacy);
 
 designs.forEach((d, i) => {
   const n = i + 1;
-  fs.writeFileSync(path.join(ROOT, `Home-${String(n).padStart(2, '0')}.html`), page({ n, name: d.name, fonts: d.fonts, css: d.css, body: d.body() }));
+  fs.writeFileSync(path.join(ROOT, `Home-${String(n).padStart(2, '0')}.html`), page({ n, name: d.name, fonts: d.fonts, css: d.css + (EXTRA[d.name] || ''), body: d.body() }));
 });
 export { designs };
 console.log('wrote', designs.length, 'homes');
