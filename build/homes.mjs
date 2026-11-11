@@ -144,7 +144,7 @@ input{border-width:0 0 1px;padding-inline:0;background:transparent}
 <main id="main">
 ${ph('phCeremony', 'pano', 'lake', true)}
 <div class="in lead">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}</div>
-<div class="strip" role="region" aria-label="Gallery" tabindex="0">${ph('phDetail', '', 'hands')}${ph('phDetail', '', 'pier')}${ph('phDetail', '', 'bouquet')}${ph('phDetail', '', 'vows')}${ph('phDetail', '', 'alps')}${ph('phDetail', '', 'table')}</div>
+<div class="strip" role="region" aria-label="Gallery" tabindex="0">${ph('phDetail', '', 'hands')}${ph('phDetail', '', 'park')}${ph('phDetail', '', 'bouquet')}${ph('phDetail', '', 'vows')}${ph('phDetail', '', 'alps')}${ph('phDetail', '', 'table')}</div>
 <section id="approach"><div class="in cols"><div class="rv">${B.approach()}</div><div class="rv">${B.langs()}${B.langLink()}</div><div>${B.cred()}<div style="height:28px"></div>${B.travel()}</div></div></section>
 <section class="soft qc"><div class="in">${B.quote()}</div></section>
 <section><div class="in">${T('h2', 'servicesH')}<div class="svcs">${B.services()}</div></div></section>
@@ -245,7 +245,7 @@ designs.push({
 <main id="main">
 <section><div class="in cards">
 <article class="rv">${ph('phDetail', '', 'hands')}<div class="tx">${T('h3', 'services.0.h')}${T('p', 'services.0.p')}</div></article>
-<article class="rv">${ph('phDetail', '', 'bouquet')}<div class="tx">${T('h3', 'services.1.h')}${T('p', 'services.1.p')}</div></article>
+<article class="rv">${ph('phDetail', '', 'parkback')}<div class="tx">${T('h3', 'services.1.h')}${T('p', 'services.1.p')}</div></article>
 <article class="rv">${ph('phDetail', '', 'vows')}<div class="tx">${T('h3', 'nav.3')}${T('p', 'lang1')}</div></article>
 </div></section>
 <section class="band" id="approach"><div class="in split">${ph('phPortrait', 'rv', 'peonies')}<div class="rv">${B.approach()}${B.quote()}</div></div></section>

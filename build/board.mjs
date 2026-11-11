@@ -46,7 +46,7 @@ footer{padding-block:0 64px;color:var(--muted);font-size:.9375rem}footer a{color
 </style></head><body>
 <header class="wrap"><p class="status">KC-575 · not client-approved · draft copy from KC-576 · Chinese is a type-testing draft for fluent review</p>
 <h1>Van Ng: 8 homepage designs</h1>
-<p class="lede">Round 2. Each design is an original Van home page built on one strong pattern from a leading NZ wedding site. Nothing is copied from those sites. Each page is live and responsive. Use the language switch in its header to change between English, Traditional Chinese, and a Simplified test. Photos are Unsplash samples standing in for Van’s authorised photos.</p></header>
+<p class="lede">Round 2. Each design is an original Van home page built on one strong pattern from a leading NZ wedding site. Nothing is copied from those sites. Each page is live and responsive. Use the language switch in its header to change between English, Traditional Chinese, and a Simplified test. Photos are Van’s own ceremony photos and portrait from KC-575.</p></header>
 <main class="wrap"><div class="grid">${homes.map(card).join('\n')}</div></main>
 <footer class="wrap"><p><a href="typography.html">Typography decisions</a> · <a href="https://github.com/KoukCreatives/VanNg">Source on GitHub</a></p></footer>
 <script>

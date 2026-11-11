@@ -22,7 +22,7 @@ const extraEN = {
   phPortrait: '[Van’s portrait · authorised photo to be supplied]',
   phCeremony: '[Ceremony photo · couple consent + photographer licence needed]',
   phDetail: '[Detail photo · flowers, hands or venue]',
-  conceptTag: 'Concept preview · draft copy · sample images',
+  conceptTag: 'Concept preview · draft copy',
   phPortrait: 'Sample image', phCeremony: 'Sample image', phDetail: 'Sample image',
   quoteFlag: '', formFlag: '',
   services: [EN0.services[0], { h: 'Civil unions', p: 'Personalised civil union ceremonies, prepared with the same care for your story and your words.' }],
@@ -69,7 +69,7 @@ const extraZH = {
   phPortrait: '［Van 的人像 · 待提供經授權照片］',
   phCeremony: '［儀式照片 · 須新人同意及攝影師授權］',
   phDetail: '［細節照片 · 花卉、雙手或場地］',
-  conceptTag: '概念預覽 · 中文為排版測試草稿 · 示意圖片',
+  conceptTag: '概念預覽 · 中文為排版測試草稿',
   phPortrait: '示意圖片', phCeremony: '示意圖片', phDetail: '示意圖片',
   quoteFlag: '', formFlag: '',
   services: [ZH0.services[0], { h: '民事結合', p: '同樣用心、以你們的故事和言語為中心的個人化民事結合儀式。' }],
@@ -109,7 +109,7 @@ const en = { ...EN0, ...extraEN };
 const zhHant = { ...ZH0, ...extraZH };
 const t2s = OpenCC.Converter({ from: 'tw', to: 'cn' });
 const deep = (o) => typeof o === 'string' ? t2s(o) : Array.isArray(o) ? o.map(deep) : (o && typeof o === 'object') ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, deep(v)])) : o;
-const zhHans = { ...deep(zhHant), conceptTag: '概念预览 · 简体为字体测试（由繁体自动转换）· 示意图片' };
+const zhHans = { ...deep(zhHant), conceptTag: '概念预览 · 简体为字体测试（由繁体自动转换）' };
 
 const flat = (o, pre = '', out = {}) => { for (const [k, v] of Object.entries(o)) { const key = pre ? `${pre}.${k}` : k; if (v && typeof v === 'object') flat(v, key, out); else out[key] = v; } return out; };
 export const DICT = { en: flat(en), hant: flat(zhHant), hans: flat(zhHans) };
@@ -241,7 +241,32 @@ export const IMG = {
   letter: ['1529066576253-91dff6dbeba3', 'A handwritten envelope beside dried flowers'],
 };
 const u = (id, w) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
-export const ph = (key, cls = '', img = 'peonies', eager = false, sizes) => { const [id, alt] = IMG[img]; const sz = sizes || (eager ? '100vw' : '(min-width: 900px) 60vw, 100vw'); const ws = [640, 1080, 1600, 2400, 3200]; return `<figure class="ph ${cls}"><img src="${u(id, 1600)}" srcset="${ws.map((w) => `${u(id, w)} ${w}w`).join(', ')}" sizes="${sz}" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"><figcaption class="badge" data-i="${key}">${txt(key)}</figcaption></figure>`; };
+// Van's own photos (KC-575 attachments, approved for the public site by Kouk). They replace the Unsplash samples key by key.
+const VAN = {
+  lawn: ['aisle-seaview', 'Rows of white chairs and pink floral columns set up on a seaside lawn for a ceremony'],
+  alps: ['aisle-seaview', 'Rows of white chairs and pink floral columns set up on a seaside lawn for a ceremony'],
+  lake: ['ceremony-sunlit', 'Van leading a sunlit ceremony on a lawn above the sea, between pink and white floral columns'],
+  pier: ['ceremony-sunlit', 'Van leading a sunlit ceremony on a lawn above the sea, between pink and white floral columns'],
+  veil: ['ceremony-sunlit', 'Van leading a sunlit ceremony on a lawn above the sea, between pink and white floral columns'],
+  arch: ['ceremony-setup', 'A ceremony setup of pink and white floral columns and white tables on a lawn under a blue sky'],
+  officiant: ['ceremony-setup', 'A ceremony setup of pink and white floral columns and white tables on a lawn under a blue sky'],
+  table: ['signing-sunset', 'A couple signing their marriage documents with Van at a flower-filled table at sunset'],
+  candles: ['signing-sunset', 'A couple signing their marriage documents with Van at a flower-filled table at sunset'],
+  peonies: ['van-portrait', 'Portrait of Vannarady (Van) Ng'],
+  bouquet: ['van-with-couple', 'Van smiling with a newly married couple after their ceremony'],
+  bloom: ['ceremony-reading', 'Van reading from her ceremony folder as the couple stand on either side'],
+  hands: ['ceremony-laughing', 'A couple sharing a laugh during their ceremony while Van looks on'],
+  vows: ['garden-ceremony', 'Van leading a small ceremony beside a fountain in a sunny garden'],
+  park: ['park-ceremony', 'Van leading a winter ceremony in a park as the couple read their vows'],
+  parkback: ['park-ceremony-back', 'A couple facing Van during a winter ceremony in a park'],
+};
+export const ph = (key, cls = '', img = 'peonies', eager = false, sizes) => {
+  const sz = sizes || (eager ? '100vw' : '(min-width: 900px) 60vw, 100vw');
+  const ld = eager ? ' fetchpriority="high"' : ' loading="lazy"';
+  if (VAN[img]) { const [f, alt] = VAN[img]; const op = { 'ceremony-laughing': '50% 72%', 'signing-sunset': '50% 70%', 'ceremony-reading': '50% 68%', 'van-with-couple': '50% 70%', 'park-ceremony': '50% 65%', 'park-ceremony-back': '50% 62%', 'garden-ceremony': '50% 62%', 'van-portrait': '50% 35%' }[f]; return `<figure class="ph ${cls}"><img${op ? ` style="object-position:${op}"` : ''} src="photos/${f}.jpg" srcset="photos/${f}-1000.jpg 1000w, photos/${f}.jpg 2000w" sizes="${sz}" alt="${esc(alt)}"${ld} decoding="async"></figure>`; }
+  const [id, alt] = IMG[img]; const ws = [640, 1080, 1600, 2400, 3200];
+  return `<figure class="ph ${cls}"><img src="${u(id, 1600)}" srcset="${ws.map((w) => `${u(id, w)} ${w}w`).join(', ')}" sizes="${sz}" alt="${esc(alt)}"${ld} decoding="async"><figcaption class="badge" data-i="${key}">${txt(key)}</figcaption></figure>`;
+};
 export const faq = (cls = 'faq') => `<div class="${cls}" id="faq">${T('h2', 'faqH')}${[0, 1, 2, 3, 4, 5].map((i) => `<details${i === 0 ? ' open' : ''}><summary data-i="faq.${i}.0">${txt(`faq.${i}.0`)}</summary>${T('p', `faq.${i}.1`)}</details>`).join('')}</div>`;
 
 // ---------- page shell ----------
