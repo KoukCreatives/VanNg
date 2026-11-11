@@ -79,10 +79,10 @@ input,textarea{background:#fff;border:1px solid #7a7073;color:#2e2a2b}
 .svc-l{margin-top:14px;font-weight:600;color:var(--acc);text-decoration:none;align-self:flex-start;border-bottom:1px solid currentColor;padding-bottom:2px}
 :lang(zh) .svc-l{font-weight:400}
 .svc-l:hover{opacity:.75}
-.ltiles{list-style:none;padding:0;margin:28px 0 20px;display:grid;gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.ltiles{list-style:none;padding:0;margin:28px 0 20px;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(6.5rem,1fr))}
 .ltiles li{background:color-mix(in srgb,var(--acc) 7%,var(--card,#fff));border:1px solid color-mix(in srgb,var(--acc) 22%,transparent);border-radius:var(--tile-r,16px);padding:22px 16px 18px;display:grid;gap:8px;justify-items:center;text-align:center;transition:transform .25s ease,box-shadow .25s ease}
 .ltiles li:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px color-mix(in srgb,var(--acc) 60%,transparent)}
-.ltiles .ln{font-family:var(--f-head);font-weight:var(--hw);font-size:clamp(1.5rem,1.1rem + 1.6vw,2.25rem);line-height:1.1;color:var(--acc)}
+.ltiles .ln{font-family:var(--f-head);font-weight:var(--hw);font-size:clamp(1.375rem,1.1rem + .9vw,2rem);line-height:1.15;color:var(--acc);white-space:nowrap;word-break:keep-all}
 .ltiles .ln:lang(zh){font-family:var(--zh-h),var(--zh-serif-fb),serif;font-weight:600}
 .ltiles .ls2{font-size:.8125rem;opacity:.8;line-height:1.35}
 @media(max-width:480px){.ltiles{gap:8px}.ltiles li{padding:16px 8px 14px}}
