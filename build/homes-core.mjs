@@ -240,8 +240,8 @@ export const IMG = {
   vows: ['1694432268173-012872750de3', 'A fountain pen resting on a handwritten note'],
   letter: ['1529066576253-91dff6dbeba3', 'A handwritten envelope beside dried flowers'],
 };
-const u = (id, w) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`;
-export const ph = (key, cls = '', img = 'peonies', eager = false) => { const [id, alt] = IMG[img]; return `<figure class="ph ${cls}"><img src="${u(id, 1200)}" srcset="${u(id, 600)} 600w, ${u(id, 1200)} 1200w, ${u(id, 2000)} 2000w" sizes="(min-width: 900px) 50vw, 100vw" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"><figcaption class="badge" data-i="${key}">${txt(key)}</figcaption></figure>`; };
+const u = (id, w) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
+export const ph = (key, cls = '', img = 'peonies', eager = false, sizes) => { const [id, alt] = IMG[img]; const sz = sizes || (eager ? '100vw' : '(min-width: 900px) 60vw, 100vw'); const ws = [640, 1080, 1600, 2400, 3200]; return `<figure class="ph ${cls}"><img src="${u(id, 1600)}" srcset="${ws.map((w) => `${u(id, w)} ${w}w`).join(', ')}" sizes="${sz}" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"><figcaption class="badge" data-i="${key}">${txt(key)}</figcaption></figure>`; };
 export const faq = (cls = 'faq') => `<div class="${cls}" id="faq">${T('h2', 'faqH')}${[0, 1, 2, 3, 4, 5].map((i) => `<details${i === 0 ? ' open' : ''}><summary data-i="faq.${i}.0">${txt(`faq.${i}.0`)}</summary>${T('p', `faq.${i}.1`)}</details>`).join('')}</div>`;
 
 // ---------- page shell ----------

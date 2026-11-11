@@ -105,7 +105,7 @@ designs.push({
 <main id="main">
 <div class="in"><div class="pillars"><div class="rv">${T('h3', 'langH')}${chips()}</div>${B.travel()}${B.cred()}</div></div>
 <section id="approach"><div class="in split"><div class="rv">${B.approach()}${T('p', 'intro2')}</div>${ph('phPortrait', 'rv', 'peonies')}</div></section>
-<section class="qwrap">${ph('phDetail', '', 'candles')}<div class="in">${B.quote()}</div></section>
+<section class="qwrap">${ph('phDetail', '', 'candles', false, '100vw')}<div class="in">${B.quote()}</div></section>
 <section class="band"><div class="in">${T('h2', 'servicesH')}<div class="svcs">${B.services()}</div><div style="margin-top:56px;max-width:40rem" class="rv">${T('p', 'lang1')}${B.langLink()}</div></div></section>
 <section><div class="in" style="max-width:60rem">${faq()}</div></section>
 <section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('a')}</div></div></section>
@@ -344,7 +344,7 @@ designs.push({
   body: () => `${head()}
 <main id="main">
 <p class="disp" aria-hidden="true"><span data-i="big1">${txt('big1')}</span><em data-i="big2">${txt('big2')}</em></p>
-<div class="in stage">${ph('phCeremony', 'land', 'alps', true)}${ph('phDetail', 'inset', 'hands')}</div>
+<div class="in stage">${ph('phCeremony', 'land', 'alps', true)}${ph('phDetail', 'inset', 'hands', false, '(min-width: 900px) 22rem, 40vw')}</div>
 <div class="in lead">${T('h1', 'h1')}<div>${T('p', 'intro', 'class="lede"')}${T('p', 'intro2')}${B.ctas()}</div></div>
 <section id="approach"><div class="in split">${ph('phPortrait', 'rv', 'bouquet')}<div class="rv">${B.approach()}${B.langs()}${B.langLink()}</div></div></section>
 <section class="soft"><div class="in">${B.quote()}</div></section>
@@ -392,7 +392,7 @@ h2{text-align:center}
     const items = [0, 1, 2, 3, 4, 5].map((i) => `<li><a href="${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'][i]}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`);
     return `<header class="hd"><div class="hd-c"><ul class="nl">${items.slice(0, 3).join('')}</ul>${brand()}<ul class="nr">${items.slice(3).join('')}</ul>${mobileNav()}</div><div class="lsrow">${langSwitch()}</div></header>
 <main id="main">
-<div class="show">${ph('phCeremony', '', 'arch', true)}${ph('phCeremony', '', 'lawn')}${ph('phCeremony', '', 'table')}</div>
+<div class="show">${ph('phCeremony', '', 'arch', true)}${ph('phCeremony', '', 'lawn', false, '100vw')}${ph('phCeremony', '', 'table', false, '100vw')}</div>
 <div class="in tag">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}</div>
 <div class="in trio">${ph('phDetail', 'rv', 'peonies')}${ph('phDetail', 'rv', 'hands')}${ph('phDetail', 'rv', 'vows')}</div>
 <section id="approach"><div class="in cent rv" style="max-width:56rem">${B.approach()}${T('p', 'intro2')}</div></section>
