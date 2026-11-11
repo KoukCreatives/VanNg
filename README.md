@@ -7,7 +7,8 @@ This folder holds the Round 1 design concepts for KC-575. Nothing here is client
 ## Layout
 
 ```
-index.html            overview board: 8 concepts with screenshots and links
+index.html            overview: links + live previews of the 8 homepage designs
+Home-01.html … Home-08.html   eight distinct homepage designs, each with an EN / 繁體 / 简体 (test) switch
 typography.html       TYPOGRAPHY.md rendered for the live site
 TYPOGRAPHY.md         shared bilingual type system and decisions
 concepts/
@@ -31,6 +32,7 @@ The files are flat so they can be browsed on GitHub. The real site would use `/z
 ```
 npm i @fontsource/{cormorant-garamond,source-sans-3,noto-serif-tc,noto-sans-tc,noto-serif-sc,noto-sans-sc,literata,fraunces,noto-serif,source-serif-4,lxgw-wenkai-tc,lxgw-wenkai} opencc-js playwright
 node build/build.mjs     # pages + concept CSS
+node build/homes.mjs     # Home-01.html … Home-08.html
 node build/board.mjs     # index.html
 node build/shoot.mjs     # screenshots (serves fonts from node_modules)
 ARTIFACT=1 node build/build.mjs && node build/artifact.mjs   # dist/ for claude.ai hosting (Google Fonts) + typography.html
