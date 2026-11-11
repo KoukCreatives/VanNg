@@ -46,8 +46,12 @@ a{text-underline-offset:.18em}
 .ls button[aria-pressed=true]{border-color:currentColor}
 .ls .ls-l{opacity:.75;margin-right:4px}
 .ls .t{font-size:.6875rem;opacity:.7}
-@media(max-width:899px){.ls .ls-l,.nav-d{display:none!important}.ls button{padding:.3rem .4rem}}
-@media(min-width:900px){.nav-m{display:none!important}}
+@media(max-width:1279px){.nav-d{display:none!important}}
+@media(max-width:1439px){.ls .ls-l{display:none!important}}
+@media(max-width:899px){.ls button{padding:.3rem .4rem}}
+@media(min-width:1280px){.nav-m{display:none!important}}
+.nav-d a,.nav-d li{white-space:nowrap}
+html,body{overflow-x:clip}
 @media(max-width:899px){.hd-in,.bar,.side{flex-wrap:wrap;row-gap:10px}.hd-r{display:contents!important}.hd-r .ls{order:3;width:100%;grid-column:1/-1}.hd-r .nav-m{margin-left:auto}.bar{border-radius:24px!important}}
 .nav-m{position:relative}.nav-m summary{list-style:none;cursor:pointer;border:1px solid currentColor;border-radius:999px;padding:.3rem .8rem;font-size:.875rem;white-space:nowrap}
 .nav-m summary::-webkit-details-marker{display:none}
@@ -171,7 +175,7 @@ input,textarea{background:#fff;border:1px solid #7a7073;color:#2e2a2b}
 .hero>.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,22,.6) 0%,rgba(30,20,22,.35) 35%,rgba(30,20,22,.5) 60%,rgba(30,20,22,.8) 100%)}
 .hero>.ph .badge{left:auto;right:12px;bottom:12px}
 .hero .hd{position:absolute;top:0;left:0;right:0;z-index:3;color:#fff}
-.btn-q{display:none!important}@media(min-width:900px){.btn-q{display:inline-flex!important;min-height:2.5rem!important;padding:.4rem 1.2rem!important;background:#fff!important;color:var(--cocoa)!important;border-radius:999px!important;margin-left:8px}}
+.btn-q{display:none!important}@media(min-width:1280px){.btn-q{display:inline-flex!important;min-height:2.5rem!important;padding:.4rem 1.2rem!important;background:#fff!important;color:var(--cocoa)!important;border-radius:999px!important;margin-left:8px}}
 .hero-c{position:relative;z-index:2;padding-block:150px 72px}
 .hero h1{color:#fff;font-size:calc(var(--hs)*clamp(2.75rem,1.6rem + 4.6vw,5.5rem));max-width:16ch;margin-bottom:.35em}
 :lang(zh) .hero h1{max-width:20ch}
@@ -192,7 +196,7 @@ input,textarea{background:#fff;border:1px solid #7a7073;color:#2e2a2b}
 .band{background:var(--band)}
 .enq{display:grid;gap:40px}@media(min-width:950px){.enq{grid-template-columns:5fr 6fr;gap:80px}}
 .enq form{background:#fff;padding:28px;border-radius:4px}
-.hero h1{text-shadow:0 2px 40px rgba(0,0,0,.28)}.hero .eb{display:flex;align-items:center;gap:12px}.hero .eb::before{content:"";width:36px;height:1px;background:#fff}</style>
+@media(max-width:599px){.ribbon{font-size:.75rem;line-height:1.45}}.hero h1{text-shadow:0 2px 40px rgba(0,0,0,.28)}.hero .eb{display:flex;align-items:center;gap:12px}.hero .eb::before{content:"";width:36px;height:1px;background:#fff}</style>
 </head>
 <body>
 <a class="skip" href="#main" data-i="skip">Skip to content</a>

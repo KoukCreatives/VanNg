@@ -46,8 +46,12 @@ a{text-underline-offset:.18em}
 .ls button[aria-pressed=true]{border-color:currentColor}
 .ls .ls-l{opacity:.75;margin-right:4px}
 .ls .t{font-size:.6875rem;opacity:.7}
-@media(max-width:899px){.ls .ls-l,.nav-d{display:none!important}.ls button{padding:.3rem .4rem}}
-@media(min-width:900px){.nav-m{display:none!important}}
+@media(max-width:1279px){.nav-d{display:none!important}}
+@media(max-width:1439px){.ls .ls-l{display:none!important}}
+@media(max-width:899px){.ls button{padding:.3rem .4rem}}
+@media(min-width:1280px){.nav-m{display:none!important}}
+.nav-d a,.nav-d li{white-space:nowrap}
+html,body{overflow-x:clip}
 @media(max-width:899px){.hd-in,.bar,.side{flex-wrap:wrap;row-gap:10px}.hd-r{display:contents!important}.hd-r .ls{order:3;width:100%;grid-column:1/-1}.hd-r .nav-m{margin-left:auto}.bar{border-radius:24px!important}}
 .nav-m{position:relative}.nav-m summary{list-style:none;cursor:pointer;border:1px solid currentColor;border-radius:999px;padding:.3rem .8rem;font-size:.875rem;white-space:nowrap}
 .nav-m summary::-webkit-details-marker{display:none}
@@ -174,7 +178,7 @@ input,textarea{background:#fff;border:1px solid #7a7073;color:#2e2a2b}
 .mast .bs{font-size:.8125rem;letter-spacing:.24em;text-transform:uppercase;margin-top:10px;color:var(--ink)}:lang(zh) .mast .bs{letter-spacing:.1em;font-size:.9375rem}
 .navrow{border-block:1px solid var(--ink);max-width:calc(var(--wrap) - 96px);margin:0 auto}
 .navrow ul{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 32px;list-style:none;margin:0;padding:12px 16px}
-.navrow a{color:inherit;text-decoration:none;font-size:.8125rem;text-transform:uppercase;letter-spacing:.16em}:lang(zh) .navrow a{letter-spacing:.06em;font-size:.9375rem}
+.navrow li{flex:none}.navrow a{white-space:nowrap;color:inherit;text-decoration:none;font-size:.8125rem;text-transform:uppercase;letter-spacing:.16em}:lang(zh) .navrow a{letter-spacing:.06em;font-size:.9375rem}
 .navrow a:hover{color:var(--bur)}
 @media(max-width:899px){.navrow{display:block!important;margin-inline:16px}.navrow ul{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;gap:24px}.util .nav-m{display:none}}
 .tiles{display:grid;gap:14px;padding-block:28px 0}
@@ -200,13 +204,13 @@ h2{color:var(--bur)}
 .chips li{border-color:var(--bur);color:var(--bur);border-radius:0}
 .paper{background:var(--paper)}
 .enq{display:grid;gap:40px}@media(min-width:950px){.enq{grid-template-columns:5fr 6fr;gap:80px}}
-.t-feat .facts li{border-color:rgba(110,31,46,.3)}.t-feat .fd{background:var(--acc)}</style>
+@media(max-width:599px){.mast .bn{font-size:clamp(2.25rem,1rem + 7vw,3rem)}.mast{padding-block:0 10px}.util{padding-block:8px}}.tile .lab{overflow-wrap:anywhere}.t-feat .facts li{border-color:rgba(110,31,46,.3)}.t-feat .fd{background:var(--acc)}</style>
 </head>
 <body>
 <a class="skip" href="#main" data-i="skip">Skip to content</a>
 <div class="ctag" lang="en"><span>Home 08 · Journal — <span data-i="conceptTag">Concept preview · draft copy</span></span><span><a href="index.html">All 8 designs</a> · <a href="Home-07.html">← Prev</a> · </span></div>
 <header class="hd"><div class="util"><span data-i="footContact">Auckland, New Zealand · Enquiries via the form</span><div class="hd-r"><div class="ls" role="group" aria-label="Language"><span class="ls-l" data-i="langSwitch">Language</span><button type="button" data-lang="en" lang="en" aria-pressed="true">English</button><button type="button" data-lang="hant" lang="zh-Hant" aria-pressed="false">繁體中文</button><button type="button" data-lang="hans" lang="zh-Hans" aria-pressed="false">简体<span class="t" lang="en"> test</span></button></div></div></div>
-<div class="mast"><a class="brand" href="#"><span class="bn" lang="en">Vannarady Ng</span><span class="bs" data-i="brandSub">Celebrant · Auckland</span></a></div><nav class="navrow nav-d" aria-label="Main"><ul class=""><li><a href="#main" data-i="nav.0" aria-current="page">Home</a></li><li><a href="#approach" data-i="nav.1">About Van</a></li><li><a href="#ceremonies" data-i="nav.2">Ceremonies</a></li><li><a href="#languages" data-i="nav.3">Languages</a></li><li><a href="#faq" data-i="nav.4">Questions</a></li><li><a href="#enquire" data-i="nav.5">Contact</a></li></ul></nav></header>
+<div class="mast"><a class="brand" href="#"><span class="bn" lang="en">Vannarady Ng</span><span class="bs" data-i="brandSub">Celebrant · Auckland</span></a></div><nav class="navrow" aria-label="Main"><ul class=""><li><a href="#main" data-i="nav.0" aria-current="page">Home</a></li><li><a href="#approach" data-i="nav.1">About Van</a></li><li><a href="#ceremonies" data-i="nav.2">Ceremonies</a></li><li><a href="#languages" data-i="nav.3">Languages</a></li><li><a href="#faq" data-i="nav.4">Questions</a></li><li><a href="#enquire" data-i="nav.5">Contact</a></li></ul></nav></header>
 <main id="main"><div class="in">
 <div class="tiles">
 <div class="tile t-feat rise"><p data-i="heroEyebrow" class="eb">Marriage and civil union celebrant</p><h1 data-i="h1">Auckland wedding celebrant in English, Cantonese and Mandarin</h1><p data-i="intro">I'm Vannarady Ng, also known as Van. I offer personalised wedding ceremonies in Auckland in English, Cantonese and Mandarin.</p><div class="btns"><a class="btn" href="#enquire" data-i="cta">Request a quote</a><a class="tl" href="#approach" data-i="cta2">Read about my approach</a></div><ul class="facts "><li><span class="fd" aria-hidden="true"></span><span data-i="heroFacts.0">English · 粵語 · 普通話</span></li><li><span class="fd" aria-hidden="true"></span><span data-i="heroFacts.1">Auckland, Hamilton and the South Island</span></li><li><span class="fd" aria-hidden="true"></span><span data-i="heroFacts.2">DIA-registered celebrant</span></li></ul></div>
