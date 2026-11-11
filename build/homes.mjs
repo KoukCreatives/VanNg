@@ -31,7 +31,7 @@ const B = {
   approach: () => `<p class="sec-eb" data-i="secApproach">${txt('secApproach')}</p>${T('h2', 'approachH')}${T('p', 'approach1')}${T('p', 'approach2')}`,
   quote: () => `<blockquote class="q"><span class="qm" aria-hidden="true">“</span>${T('p', 'quote')}<footer data-i="quoteBy">${txt('quoteBy')}</footer></blockquote>`,
   // KC-576 v3: weddings lead; civil unions get a one-line mention on Home.
-  services: () => `<article class="svc svc-main rv">${ph('phDetail', 'svc-ph', 'lake')}<div class="svc-b">${T('h3', 'services.0.h')}${T('p', 'services.0.p')}${T('p', 'approach1')}<a class="svc-l" href="#enquire"><span data-i="quoteCta">${txt('quoteCta')}</span> →</a></div></article><p class="svc-cu rv"><span class="fd" aria-hidden="true"></span><span data-i="cuLine">${txt('cuLine')}</span></p>`,
+  services: () => `<article class="svc svc-main rv">${ph('phDetail', 'svc-ph', 'lake')}<div class="svc-b">${T('h3', 'services.0.h')}${T('p', 'services.0.p')}${T('p', 'enq2')}<a class="svc-l" href="#enquire"><span data-i="quoteCta">${txt('quoteCta')}</span> →</a></div></article><p class="svc-cu rv"><span class="fd" aria-hidden="true"></span><span data-i="cuLine">${txt('cuLine')}</span></p>`,
   tiles: () => `<ul class="ltiles">${NATIVE.map(([n, l, z], i) => `<li class="rv"><span class="ln" lang="${l}"${z ? ` data-z="${z}" data-zl` : ''}>${n}</span><span class="ls2" data-i="langNote.${i}">${txt(`langNote.${i}`)}</span></li>`).join('')}</ul>`,
   langs: () => `<p class="sec-eb" data-i="secLanguages">${txt('secLanguages')}</p>${T('h2', 'langH')}${T('p', 'lang1')}${B.tiles()}`,
   cred: () => `<div class="cred rv">${seal}<div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a></div></div>`,
