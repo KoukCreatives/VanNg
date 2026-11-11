@@ -30,11 +30,12 @@ const B = {
   eb: (k) => `<p class="sec-eb" data-i="${k}">${txt(k)}</p>`,
   approach: () => `<p class="sec-eb" data-i="secApproach">${txt('secApproach')}</p>${T('h2', 'approachH')}${T('p', 'approach1')}${T('p', 'approach2')}`,
   quote: () => `<blockquote class="q"><span class="qm" aria-hidden="true">“</span>${T('p', 'quote')}<footer data-i="quoteBy">${txt('quoteBy')}</footer></blockquote>`,
-  services: () => [['lake', 0], ['park', 1]].map(([img, i]) => `<article class="svc rv">${ph('phDetail', 'svc-ph', img)}<div class="svc-b">${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}<a class="svc-l" href="#enquire"><span data-i="quoteCta">${txt('quoteCta')}</span> →</a></div></article>`).join(''),
+  // KC-576 v3: weddings lead; civil unions get a one-line mention on Home.
+  services: () => `<article class="svc svc-main rv">${ph('phDetail', 'svc-ph', 'lake')}<div class="svc-b">${T('h3', 'services.0.h')}${T('p', 'services.0.p')}${T('p', 'approach1')}<a class="svc-l" href="#enquire"><span data-i="quoteCta">${txt('quoteCta')}</span> →</a></div></article><p class="svc-cu rv"><span class="fd" aria-hidden="true"></span><span data-i="cuLine">${txt('cuLine')}</span></p>`,
   tiles: () => `<ul class="ltiles">${NATIVE.map(([n, l, z], i) => `<li class="rv"><span class="ln" lang="${l}"${z ? ` data-z="${z}" data-zl` : ''}>${n}</span><span class="ls2" data-i="langNote.${i}">${txt(`langNote.${i}`)}</span></li>`).join('')}</ul>`,
   langs: () => `<p class="sec-eb" data-i="secLanguages">${txt('secLanguages')}</p>${T('h2', 'langH')}${T('p', 'lang1')}${B.tiles()}`,
   cred: () => `<div class="cred rv">${seal}<div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a></div></div>`,
-  travel: () => `<div class="travel rv">${T('h3', 'travelH')}<ul class="places">${[0, 1, 2, 3, 4, 5, 6].map((i) => `<li>${pin}<span data-i="places.${i}">${txt(`places.${i}`)}</span></li>`).join('')}</ul>${T('p', 'travelNote', 'class="note"')}</div>`,
+  travel: () => `<div class="travel rv" id="travel">${T('h3', 'travelH')}<ul class="places">${[0, 1, 2, 3, 4, 5, 6].map((i) => `<li>${pin}<span data-i="places.${i}">${txt(`places.${i}`)}</span></li>`).join('')}</ul>${T('p', 'travelNote', 'class="note"')}</div>`,
   enq: () => `<p class="sec-eb" data-i="secEnquire">${txt('secEnquire')}</p>${T('h2', 'enqH')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${ph('phDetail', 'enq-ph', 'bouquet')}${T('p', 'enqNote', 'class="note"')}`,
   ctas: () => `<div class="btns"><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div>`,
   facts: (cls = '') => `<ul class="facts ${cls}">${[0, 1, 2].map((i) => `<li><span class="fd" aria-hidden="true"></span><span data-i="heroFacts.${i}">${txt(`heroFacts.${i}`)}</span></li>`).join('')}</ul>`,
@@ -91,6 +92,12 @@ input,textarea{background:#fff;border:1px solid #7a7073;color:#2e2a2b}
 .two>.cred,.two>.travel,.two>div>.cred,.two>div>.travel{flex:1}
 .travel{background:var(--card,#fff);border-radius:var(--tile-r,16px);padding:24px;border:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
 .pillars .travel,.pillars .cred{background:transparent;border:0;padding:0}
+.svcs{grid-template-columns:1fr!important}
+@media(min-width:900px){.svc-main{display:grid!important;grid-template-columns:1.15fr 1fr;align-items:stretch}.svc-main .svc-ph{aspect-ratio:auto;min-height:360px;height:100%}.svc-main .svc-b{padding:clamp(28px,3vw,48px);justify-content:center}}
+.svc-main{border-radius:var(--tile-r,20px)!important}
+.svc-main h3{font-size:calc(var(--hs)*clamp(1.75rem,1.3rem + 1.2vw,2.5rem))}
+.svc-cu{display:flex;align-items:center;gap:12px;margin:18px 0 0;font-size:1.0625em}
+.svc-cu .fd{width:8px;height:8px;border-radius:50%;background:var(--acc);flex:none}
 .sec-eb{display:flex;align-items:center;gap:12px;font-family:var(--f-body);font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:0 0 16px}
 .sec-eb::before{content:"";width:28px;height:1px;background:currentColor}
 :lang(zh) .sec-eb{letter-spacing:.08em;font-size:.875rem;font-weight:400}
@@ -316,7 +323,7 @@ designs.push({
 <main id="main">
 <section><div class="in cards">
 <article class="rv">${ph('phDetail', '', 'hands')}<div class="tx">${T('h3', 'services.0.h')}${T('p', 'services.0.p')}</div></article>
-<article class="rv">${ph('phDetail', '', 'parkback')}<div class="tx">${T('h3', 'services.1.h')}${T('p', 'services.1.p')}</div></article>
+<article class="rv">${ph('phDetail', '', 'parkback')}<div class="tx">${T('h3', 'travelH')}${T('p', 'travel')}</div></article>
 <article class="rv">${ph('phDetail', '', 'vows')}<div class="tx">${T('h3', 'nav.3')}${T('p', 'lang1')}</div></article>
 </div></section>
 <section class="band" id="approach"><div class="in split">${ph('phPortrait', 'rv', 'peonies')}<div class="rv">${B.approach()}${B.quote()}</div></div></section>
@@ -524,7 +531,7 @@ h2{color:var(--bur)}
 <div class="tile t-feat rise">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}${B.facts()}</div>
 <a class="tile t-a" href="#approach">${ph('phPortrait', '', 'bouquet', true)}<span class="lab" data-i="nav.1">${txt('nav.1')}</span></a>
 <a class="tile" href="#ceremonies">${ph('phDetail', '', 'hands', true)}<span class="lab" data-i="services.0.h">${txt('services.0.h')}</span></a>
-<a class="tile" href="#ceremonies">${ph('phDetail', '', 'pier')}<span class="lab" data-i="services.1.h">${txt('services.1.h')}</span></a>
+<a class="tile" href="#travel">${ph('phDetail', '', 'pier')}<span class="lab" data-i="travelH">${txt('travelH')}</span></a>
 <a class="tile" href="#languages">${ph('phDetail', '', 'vows')}<span class="lab" data-i="nav.3">${txt('nav.3')}</span></a>
 <a class="tile" href="#faq">${ph('phDetail', '', 'candles')}<span class="lab" data-i="nav.4">${txt('nav.4')}</span></a>
 </div></div>
