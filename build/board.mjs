@@ -1,64 +1,58 @@
-// Builds index.html, the overview board for all concepts.
+// Builds index.html: links + live previews of the eight Home-0N.html designs.
 import fs from 'node:fs';
 import path from 'node:path';
-import { concepts, palettes } from './concepts.mjs';
-import { cdn } from './build.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
-const card = (c) => {
-  const p = palettes[c.palette];
-  return `<article class="concept" id="c${c.n}">
-  <header><p class="num">Concept ${c.n}</p><h2>${c.name}</h2>
-  <p class="pal"><span class="dot" style="background:${p.bg}"></span><span class="dot" style="background:${p.band}"></span><span class="dot" style="background:${p.head}"></span><span class="dot" style="background:${p.btn}"></span><span class="dot" style="background:${p.deco}"></span>${p.name}</p></header>
-  <div class="shots">
-    <a href="screens/${c.slug}-en-desktop.jpg" class="desk"><img loading="lazy" src="screens/${c.slug}-en-desktop.jpg" alt="${c.name}, English, desktop"></a>
-    <a href="screens/${c.slug}-en-mobile.jpg" class="mob"><img loading="lazy" src="screens/${c.slug}-en-mobile.jpg" alt="${c.name}, English, mobile"></a>
-    <a href="screens/${c.slug}-zh-mobile.jpg" class="mob"><img loading="lazy" src="screens/${c.slug}-zh-mobile.jpg" alt="${c.name}, Traditional Chinese, mobile"></a>
-  </div>
-  <p>${c.summary}</p>
-  <dl><dt>English</dt><dd>${c.head.label} + ${c.bodyLatin.label}</dd><dt>中文</dt><dd>${c.zhHead.label} + ${c.zhBody.label}${c.accent ? ` + ${c.accent.label}` : ''}</dd><dt>Gold</dt><dd>${c.gold}</dd></dl>
-  <p class="links"><a href="concepts/${c.slug}-en.html">English page</a><a href="concepts/${c.slug}-zh-hant.html" lang="zh-Hant">繁體中文</a><a href="concepts/${c.slug}-zh-hans.html" lang="zh-Hans">简体 (test)</a><a href="concepts/${c.slug}-type.html">Type system and contrast</a><a href="screens/${c.slug}-zh-desktop.jpg">中文 desktop</a></p>
+const homes = [
+  ['Petal Invitation', 'Blush', 'Cormorant Garamond + Noto Serif TC', 'Wedding-stationery feel. A framed invitation card overlaps an arched portrait, with centred sections and language “rings”. One champagne hairline.', '01-petal-letter'],
+  ['Red Editorial', 'Lucky red', 'EB Garamond + Noto Serif TC', 'Magazine cover. A large burgundy headline beside a tall portrait, a three-fact strip (languages, travel, registration) and one short burgundy band.', '02-lucky-red-letter'],
+  ['Quiet Letter', 'Blush', 'Literata + Noto Serif TC', 'The home page reads as a personal letter on paper, with a sticky sidebar for navigation on desktop. The calmest and most readable for long Chinese text.', '03-quiet-page'],
+  ['Soft Bento', 'Rose & Ivory (no gold)', 'Source Sans 3 + Noto Sans TC', 'Rounded tiles in a bento grid with a floating pill header. All sans serif, practical and light to load.', '04-soft-sans'],
+  ['Ink & Petal', 'Peony & Mocha', 'Cormorant + LXGW WenKai accent', 'A full-bleed ceremony photo with an overlapping intro panel. One short handwritten-style Chinese phrase and a mocha quote band.', '05-ink-and-petal'],
+  ['Red Thread', 'Lucky red', 'Noto Serif + Noto Serif TC', 'A burgundy hero with a framed portrait, then a red “thread” line with knots running through every section.', '06-red-thread'],
+  ['Garden Collage', 'Blush', 'Fraunces + Noto Serif TC', 'Three-photo collage with fine-line sprigs, wavy blush bands and offset cards. The most celebratory.', '07-garden-hour'],
+  ['Two Voices', 'Ivory & burgundy', 'Source Serif 4 + Noto Serif TC', 'English and Chinese heroes sit side by side, split by a vertical Chinese phrase. Each language row shows its name in both scripts.', '08-two-voices'],
+];
+const card = ([name, pal, type, desc, slug], i) => {
+  const f = `Home-${String(i + 1).padStart(2, '0')}.html`;
+  return `<article class="c">
+<a class="pv" href="${f}" aria-label="Open ${name}"><iframe src="${f}" loading="lazy" tabindex="-1" title="${name} preview" scrolling="no"></iframe></a>
+<div class="meta"><p class="num">Home ${String(i + 1).padStart(2, '0')}</p><h2><a href="${f}">${name}</a></h2>
+<p class="tags"><span>${pal}</span><span>${type}</span></p><p>${desc}</p>
+<p class="links"><a href="${f}">English</a><a href="${f}#zh-hant" lang="zh-Hant">繁體中文</a><a href="${f}#zh-hans" lang="zh-Hans">简体 (test)</a><a href="concepts/${slug}-type.html">Type sheet</a></p></div>
 </article>`;
 };
-
 const html = `<!doctype html>
 <html lang="en-NZ"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Van Ng · Website concepts</title><meta name="robots" content="noindex">
-<link rel="stylesheet" href="${cdn('source-sans-3', '400.css')}"><link rel="stylesheet" href="${cdn('source-sans-3', '600.css')}"><link rel="stylesheet" href="${cdn('noto-sans-tc', '400.css')}">
+<title>Van Ng · 8 homepage designs</title><meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.3.1/400.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.3.1/600.css">
 <style>
-:root{--bg:#f7f4f2;--ink:#232022;--muted:#5d5759;--line:#e2dcd9;--card:#fff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Source Sans 3","Noto Sans TC",system-ui,sans-serif;font-synthesis:none}
-.wrap{max-width:84rem;margin:0 auto;padding:0 16px}@media(min-width:900px){.wrap{padding:0 40px}}
-header.top{padding-block:48px 24px}h1{font-size:clamp(2rem,1.5rem + 2vw,3rem);line-height:1.1;margin:0 0 .5rem;font-weight:600}
-.lede{max-width:52rem;color:var(--muted);font-size:1.125rem}
+:root{--bg:#f7f4f2;--ink:#232022;--muted:#5d5759;--line:#e2dcd9;--card:#fff;--acc:#7a3e4e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Source Sans 3",system-ui,sans-serif;font-synthesis:none}
+.wrap{max-width:86rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:900px){.wrap{padding-left:40px;padding-right:40px}}
+header{padding-block:44px 16px}h1{font-size:clamp(2rem,1.5rem + 2vw,3rem);line-height:1.1;margin:0 0 .4em;font-weight:600;text-wrap:balance}
+.lede{max-width:52rem;color:var(--muted);font-size:1.125rem;margin:0 0 .6em}
 .status{display:inline-block;background:#fff4d6;border:1px dashed #b8860b;color:#6a4a00;font-size:.8125rem;padding:.15rem .5rem;border-radius:3px}
-.grid{display:grid;gap:24px;padding:24px 0 48px}@media(min-width:1000px){.grid{grid-template-columns:1fr 1fr}}
-.concept{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
-.concept h2{margin:0;font-size:1.5rem;line-height:1.2;font-weight:600}.num{margin:0;color:var(--muted);font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase}
-.pal{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:.875rem;color:var(--muted);margin:.4rem 0 1rem}.dot{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:inline-block}.pal .dot:last-of-type{margin-right:6px}
-.shots{display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;align-items:start}.shots a{display:block;height:300px;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:#eee}
-.shots img{width:100%;display:block}
-dl{display:grid;grid-template-columns:auto 1fr;gap:.25rem 1rem;font-size:.9375rem;margin:1rem 0}dt{font-weight:600}dd{margin:0;color:var(--muted)}
-.links{display:flex;flex-wrap:wrap;gap:.25rem 1rem;font-size:.9375rem}.links a{color:#7a3e4e}
-section.notes{padding:8px 0 64px}section.notes h2{font-size:1.375rem;font-weight:600}section.notes li{margin-bottom:.4rem;max-width:56rem}
-</style></head>
-<body>
-<header class="top wrap">
-<p class="status">KC-575 · Round 1 concepts · not client-approved · draft copy from KC-576 · Chinese is a type-testing draft for fluent review</p>
-<h1>Van Ng website: eight bilingual concepts</h1>
-<p class="lede">Each concept is a working home page in English and Traditional Chinese, with a Simplified test page and a type-system sheet. The image boxes are placeholders for Van’s authorised photos. Concepts 1 and 2 are the fair palette pair: same layout, type, crop and wording, with only the colour direction changed. Start with those when asking Van which feels warm, trustworthy and genuinely her.</p>
-<p class="lede"><a href="typography.html">Typography decisions (shared system)</a> · <a href="https://github.com/KoukCreatives/VanNg">Source on GitHub</a></p>
-</header>
-<main class="wrap"><div class="grid">
-${concepts.map(card).join('\n')}
-</div>
-<section class="notes"><h2>Decisions needed before Round 2</h2><ul>
-<li>Traditional, Simplified or both. The Traditional pages are designed first because of the poster and the testimonial screenshot, but that is a clue, not a decision. Every concept already swaps to Noto SC.</li>
-<li>Blush or lucky red, and whether any decorative gold feels genuine to Van. Concepts 3, 4, 6, 7 and 8 work with no gold at all.</li>
-<li>Glossary terms for the fluent reviewer: 證婚人, 粵語 / 廣東話, 普通話 / 國語, 民事結合, 索取報價.</li>
-<li>Whether the LXGW WenKai accent (Concept 5) or the vertical phrase (Concept 8) is welcome. Both are optional and decorative.</li>
-<li>Final URLs (/ceremonies/ and the Chinese URL pattern). The concepts use flat file names only so they can be browsed from GitHub.</li>
-</ul></section></main>
+.grid{display:grid;gap:24px;padding-block:24px 64px}@media(min-width:1000px){.grid{grid-template-columns:1fr 1fr}}
+.c{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;min-width:0}
+.pv{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--line);background:#eee}
+.pv iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none}
+.meta{padding:18px 22px 22px}.num{margin:0;color:var(--muted);font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase}
+h2{margin:.1em 0 .3em;font-size:1.5rem;line-height:1.2;font-weight:600}h2 a{color:inherit;text-decoration:none}h2 a:hover{text-decoration:underline}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 .6em}.tags span{font-size:.8125rem;border:1px solid var(--line);border-radius:999px;padding:.1rem .6rem;color:var(--muted)}
+.meta p{margin:0 0 .6em}.links{display:flex;flex-wrap:wrap;gap:4px 16px}.links a{color:var(--acc);font-weight:600}
+footer{padding-block:0 64px;color:var(--muted);font-size:.9375rem}footer a{color:var(--acc)}
+</style></head><body>
+<header class="wrap"><p class="status">KC-575 · not client-approved · draft copy from KC-576 · Chinese is a type-testing draft for fluent review</p>
+<h1>Van Ng: 8 homepage designs</h1>
+<p class="lede">Each design is a live, responsive home page. Use the language switch in its header to change between English, Traditional Chinese, and a Simplified test. The pink boxes stand in for Van’s authorised photos.</p></header>
+<main class="wrap"><div class="grid">${homes.map(card).join('\n')}</div></main>
+<footer class="wrap"><p><a href="typography.html">Typography decisions</a> · <a href="https://github.com/KoukCreatives/VanNg">Source on GitHub</a></p></footer>
+<script>
+function fit(){document.querySelectorAll('.pv').forEach(function(p){var f=p.querySelector('iframe');f.style.transform='scale('+(p.clientWidth/1440)+')';});}
+addEventListener('resize',fit);fit();
+</script>
 </body></html>`;
 fs.writeFileSync(path.join(ROOT, 'index.html'), html);
 console.log('board written');
