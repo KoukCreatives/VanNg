@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en-NZ"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Van Ng · Website concepts</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.3.1/400.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.3.1/600.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-tc@5.3.1/400.css">
+<style>
+:root{--bg:#f7f4f2;--ink:#232022;--muted:#5d5759;--line:#e2dcd9;--card:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Source Sans 3","Noto Sans TC",system-ui,sans-serif;font-synthesis:none}
+.wrap{max-width:84rem;margin:0 auto;padding:0 16px}@media(min-width:900px){.wrap{padding:0 40px}}
+header.top{padding:48px 0 24px}h1{font-size:clamp(2rem,1.5rem + 2vw,3rem);line-height:1.1;margin:0 0 .5rem;font-weight:600}
+.lede{max-width:52rem;color:var(--muted);font-size:1.125rem}
+.status{display:inline-block;background:#fff4d6;border:1px dashed #b8860b;color:#6a4a00;font-size:.8125rem;padding:.15rem .5rem;border-radius:3px}
+.grid{display:grid;gap:24px;padding:24px 0 48px}@media(min-width:1000px){.grid{grid-template-columns:1fr 1fr}}
+.concept{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+.concept h2{margin:0;font-size:1.5rem;line-height:1.2;font-weight:600}.num{margin:0;color:var(--muted);font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase}
+.pal{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:.875rem;color:var(--muted);margin:.4rem 0 1rem}.dot{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:inline-block}.pal .dot:last-of-type{margin-right:6px}
+.shots{display:grid;grid-template-columns:3fr 1fr 1fr;gap:8px;align-items:start}.shots a{display:block;height:300px;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:#eee}
+.shots img{width:100%;display:block}
+dl{display:grid;grid-template-columns:auto 1fr;gap:.25rem 1rem;font-size:.9375rem;margin:1rem 0}dt{font-weight:600}dd{margin:0;color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:.25rem 1rem;font-size:.9375rem}.links a{color:#7a3e4e}
+section.notes{padding:8px 0 64px}section.notes h2{font-size:1.375rem;font-weight:600}section.notes li{margin-bottom:.4rem;max-width:56rem}
+</style></head>
+<body>
+<header class="top wrap">
+<p class="status">KC-575 · Round 1 concepts · not client-approved · draft copy from KC-576 · Chinese is a type-testing draft for fluent review</p>
+<h1>Van Ng website: eight bilingual concepts</h1>
+<p class="lede">Each concept is a working home page in English and Traditional Chinese, with a Simplified test page and a type-system sheet. The image boxes are placeholders for Van’s authorised photos. Concepts 1 and 2 are the fair palette pair: same layout, type, crop and wording, with only the colour direction changed. Start with those when asking Van which feels warm, trustworthy and genuinely her.</p>
+<p class="lede"><a href="TYPOGRAPHY.md">Typography decisions (shared system)</a> · <a href="README.md">How this repo is organised</a></p>
+</header>
+<main class="wrap"><div class="grid">
+<article class="concept" id="c1">
+  <header><p class="num">Concept 1</p><h2>Petal Letter</h2>
+  <p class="pal"><span class="dot" style="background:#FBF3F1"></span><span class="dot" style="background:#F3DEDA"></span><span class="dot" style="background:#3B2A2E"></span><span class="dot" style="background:#8E4A5A"></span><span class="dot" style="background:#C9AE82"></span>Blush (Van’s preference)</p></header>
+  <div class="shots">
+    <a href="screens/01-petal-letter-en-desktop.jpg" class="desk"><img loading="lazy" src="screens/01-petal-letter-en-desktop.jpg" alt="Petal Letter, English, desktop"></a>
+    <a href="screens/01-petal-letter-en-mobile.jpg" class="mob"><img loading="lazy" src="screens/01-petal-letter-en-mobile.jpg" alt="Petal Letter, English, mobile"></a>
+    <a href="screens/01-petal-letter-zh-mobile.jpg" class="mob"><img loading="lazy" src="screens/01-petal-letter-zh-mobile.jpg" alt="Petal Letter, Traditional Chinese, mobile"></a>
+  </div>
+  <p>The brief’s starting pairing, tuned. Soft, airy and centred, with an arched portrait frame and one champagne hairline under the hero.</p>
+  <dl><dt>English</dt><dd>Cormorant Garamond 600 + Source Sans 3 400 / 600</dd><dt>中文</dt><dd>Noto Serif TC 600 + Noto Sans TC 400</dd><dt>Gold</dt><dd>One matte champagne hairline under the hero copy. It is decorative, carries no meaning, and appears once per screen.</dd></dl>
+  <p class="links"><a href="concepts/01-petal-letter-en.html">English page</a><a href="concepts/01-petal-letter-zh-hant.html" lang="zh-Hant">繁體中文</a><a href="concepts/01-petal-letter-zh-hans.html" lang="zh-Hans">简体 (test)</a><a href="concepts/01-petal-letter-type.html">Type system and contrast</a><a href="screens/01-petal-letter-zh-desktop.jpg">中文 desktop</a></p>
+</article>
+<article class="concept" id="c2">
+  <header><p class="num">Concept 2</p><h2>Lucky Red Letter</h2>
+  <p class="pal"><span class="dot" style="background:#FBF7F2"></span><span class="dot" style="background:#F5EBE6"></span><span class="dot" style="background:#6E1F2E"></span><span class="dot" style="background:#8E1B24"></span><span class="dot" style="background:#B8924A"></span>Chinese lucky red (Simon’s alternative)</p></header>
+  <div class="shots">
+    <a href="screens/02-lucky-red-letter-en-desktop.jpg" class="desk"><img loading="lazy" src="screens/02-lucky-red-letter-en-desktop.jpg" alt="Lucky Red Letter, English, desktop"></a>
+    <a href="screens/02-lucky-red-letter-en-mobile.jpg" class="mob"><img loading="lazy" src="screens/02-lucky-red-letter-en-mobile.jpg" alt="Lucky Red Letter, English, mobile"></a>
+    <a href="screens/02-lucky-red-letter-zh-mobile.jpg" class="mob"><img loading="lazy" src="screens/02-lucky-red-letter-zh-mobile.jpg" alt="Lucky Red Letter, Traditional Chinese, mobile"></a>
+  </div>
+  <p>The fair A/B partner to Concept 1. It has the same layout, type, crop and wording, so the only variable is the colour direction. Ivory reading surfaces, burgundy headings, a lucky-red button and one short burgundy band.</p>
+  <dl><dt>English</dt><dd>Cormorant Garamond 600 + Source Sans 3 400 / 600</dd><dt>中文</dt><dd>Noto Serif TC 600 + Noto Sans TC 400</dd><dt>Gold</dt><dd>Matte gold appears only as the 64px hairline under the hero. There is no gold on the burgundy band.</dd></dl>
+  <p class="links"><a href="concepts/02-lucky-red-letter-en.html">English page</a><a href="concepts/02-lucky-red-letter-zh-hant.html" lang="zh-Hant">繁體中文</a><a href="concepts/02-lucky-red-letter-zh-hans.html" lang="zh-Hans">简体 (test)</a><a href="concepts/02-lucky-red-letter-type.html">Type system and contrast</a><a href="screens/02-lucky-red-letter-zh-desktop.jpg">中文 desktop</a></p>
+</article>
+<article class="concept" id="c3">
+  <header><p class="num">Concept 3</p><h2>Quiet Page</h2>
+  <p class="pal"><span class="dot" style="background:#FBF3F1"></span><span class="dot" style="background:#F3DEDA"></span><span class="dot" style="background:#3B2A2E"></span><span class="dot" style="background:#8E4A5A"></span><span class="dot" style="background:#C9AE82"></span>Blush (Van’s preference)</p></header>
+  <div class="shots">
+    <a href="screens/03-quiet-page-en-desktop.jpg" class="desk"><img loading="lazy" src="screens/03-quiet-page-en-desktop.jpg" alt="Quiet Page, English, desktop"></a>
+    <a href="screens/03-quiet-page-en-mobile.jpg" class="mob"><img loading="lazy" src="screens/03-quiet-page-en-mobile.jpg" alt="Quiet Page, English, mobile"></a>
+    <a href="screens/03-quiet-page-zh-mobile.jpg" class="mob"><img loading="lazy" src="screens/03-quiet-page-zh-mobile.jpg" alt="Quiet Page, Traditional Chinese, mobile"></a>
+  </div>
+  <p>A calm, book-like page. Text is left-aligned, headings sit in a left column with reading text on the right, and there’s plenty of blush space. It feels less “wedding stationery” and more personal letter.</p>
+  <dl><dt>English</dt><dd>Literata 500 + Source Sans 3 400 / 600</dd><dt>中文</dt><dd>Noto Serif TC 500 + Noto Sans TC 400</dd><dt>Gold</dt><dd>No gold at all. Rose and cocoa-plum do all the work.</dd></dl>
+  <p class="links"><a href="concepts/03-quiet-page-en.html">English page</a><a href="concepts/03-quiet-page-zh-hant.html" lang="zh-Hant">繁體中文</a><a href="concepts/03-quiet-page-zh-hans.html" lang="zh-Hans">简体 (test)</a><a href="concepts/03-quiet-page-type.html">Type system and contrast</a><a href="screens/03-quiet-page-zh-desktop.jpg">中文 desktop</a></p>
+</article>
+<article class="concept" id="c4">
+  <header><p class="num">Concept 4</p><h2>Soft Sans</h2>
+  <p class="pal"><span class="dot" style="background:#FFFAF7"></span><span class="dot" style="background:#F6E4E4"></span><span class="dot" style="background:#2F2A2B"></span><span class="dot" style="background:#7A3E4E"></span><span class="dot" style="background:#C99AA3"></span>Rose & Ivory (gold-free fallback)</p></header>
+  <div class="shots">
+    <a href="screens/04-soft-sans-en-desktop.jpg" class="desk"><img loading="lazy" src="screens/04-soft-sans-en-desktop.jpg" alt="Soft Sans, English, desktop"></a>
+    <a href="screens/04-soft-sans-en-mobile.jpg" class="mob"><img loading="lazy" src="screens/04-soft-sans-en-mobile.jpg" alt="Soft Sans, English, mobile"></a>
+    <a href="screens/04-soft-sans-zh-mobile.jpg" class="mob"><img loading="lazy" src="screens/04-soft-sans-zh-mobile.jpg" alt="Soft Sans, Traditional Chinese, mobile"></a>
+  </div>
+  <p>All sans serif, gold-free and gentle. Rounded panels, dusty-rose and sage shapes, and an easy mobile rhythm. It’s the most practical, modern and legible direction, and the lightest to load.</p>
+  <dl><dt>English</dt><dd>Source Sans 3 600 + Source Sans 3 400 / 600</dd><dt>中文</dt><dd>Noto Sans TC 500 + Noto Sans TC 400</dd><dt>Gold</dt><dd>None (Rose & Ivory fallback). Dusty rose and sage are decorative blobs only (2.35:1 and 2.88:1). They never carry text.</dd></dl>
+  <p class="links"><a href="concepts/04-soft-sans-en.html">English page</a><a href="concepts/04-soft-sans-zh-hant.html" lang="zh-Hant">繁體中文</a><a href="concepts/04-soft-sans-zh-hans.html" lang="zh-Hans">简体 (test)</a><a href="concepts/04-soft-sans-type.html">Type system and contrast</a><a href="screens/04-soft-sans-zh-desktop.jpg">中文 desktop</a></p>
+</article>
+<article class="concept" id="c5">
+  <header><p class="num">Concept 5</p><h2>Ink & Petal</h2>
+  <p class="pal"><span class="dot" style="background:#FDF6F2"></span><span class="dot" style="background:#F2D4D2"></span><span class="dot" style="background:#3A2C27"></span><span class="dot" style="background:#5C4036"></span><span class="dot" style="background:#B89A6A"></span>Peony & Mocha (warmer fallback)</p></header>
+  <div class="shots">
+    <a href="screens/05-ink-and-petal-en-desktop.jpg" class="desk"><img loading="lazy" src="screens/05-ink-and-petal-en-desktop.jpg" alt="Ink & Petal, English, desktop"></a>
+    <a href="screens/05-ink-and-petal-en-mobile.jpg" class="mob"><img loading="lazy" src="screens/05-ink-and-petal-en-mobile.jpg" alt="Ink & Petal, English, mobile"></a>
+    <a href="screens/05-ink-and-petal-zh-mobile.jpg" class="mob"><img loading="lazy" src="screens/05-ink-and-petal-zh-mobile.jpg" alt="Ink & Petal, Traditional Chinese, mobile"></a>
+  </div>
+  <p>Warmer and more personal. A mocha anchor, peony band and portrait on the left. One short handwritten-feel Chinese phrase from LXGW WenKai TC opens the hero on both language pages, like a note in Van’s own hand. It isn’t her handwriting, and it isn’t a logo.</p>
+  <dl><dt>English</dt><dd>Cormorant Garamond 600 + Source Sans 3 400 / 600</dd><dt>中文</dt><dd>Noto Serif TC 600 + Noto Sans TC 400 + LXGW WenKai TC 400 (accent only, needs approval)</dd><dt>Gold</dt><dd>Soft brass appears only as a short underline beneath the accent phrase. It is decorative and appears once.</dd></dl>
+  <p class="links"><a href="concepts/05-ink-and-petal-en.html">English page</a><a href="concepts/05-ink-and-petal-zh-hant.html" lang="zh-Hant">繁體中文</a><a href="concepts/05-ink-and-petal-zh-hans.html" lang="zh-Hans">简体 (test)</a><a href="concepts/05-ink-and-petal-type.html">Type system and contrast</a><a href="screens/05-ink-and-petal-zh-desktop.jpg">中文 desktop</a></p>
+</article>
+<article class="concept" id="c6">
+  <header><p class="num">Concept 6</p><h2>Red Thread</h2>
+  <p class="pal"><span class="dot" style="background:#FBF7F2"></span><span class="dot" style="background:#F5EBE6"></span><span class="dot" style="background:#6E1F2E"></span><span class="dot" style="background:#8E1B24"></span><span class="dot" style="background:#B8924A"></span>Chinese lucky red (Simon’s alternative)</p></header>
+  <div class="shots">
+    <a href="screens/06-red-thread-en-desktop.jpg" class="desk"><img loading="lazy" src="screens/06-red-thread-en-desktop.jpg" alt="Red Thread, English, desktop"></a>
+    <a href="screens/06-red-thread-en-mobile.jpg" class="mob"><img loading="lazy" src="screens/06-red-thread-en-mobile.jpg" alt="Red Thread, English, mobile"></a>
+    <a href="screens/06-red-thread-zh-mobile.jpg" class="mob"><img loading="lazy" src="screens/06-red-thread-zh-mobile.jpg" alt="Red Thread, Traditional Chinese, mobile"></a>
+  </div>
+  <p>A confident lucky-red direction. A short burgundy hero band with ivory type sits above the portrait, and a thin burgundy “thread” rule runs down the page, tying sections together. Reading surfaces stay ivory.</p>
+  <dl><dt>English</dt><dd>Noto Serif 600 + Source Sans 3 400 / 600</dd><dt>中文</dt><dd>Noto Serif TC 600 + Noto Sans TC 400</dd><dt>Gold</dt><dd>No gold in the interface. The brief suggests letting real brass or gold objects in authorised photos supply any gold.</dd></dl>
+  <p class="links"><a href="concepts/06-red-thread-en.html">English page</a><a href="concepts/06-red-thread-zh-hant.html" lang="zh-Hant">繁體中文</a><a href="concepts/06-red-thread-zh-hans.html" lang="zh-Hans">简体 (test)</a><a href="concepts/06-red-thread-type.html">Type system and contrast</a><a href="screens/06-red-thread-zh-desktop.jpg">中文 desktop</a></p>
+</article>
+<article class="concept" id="c7">
+  <header><p class="num">Concept 7</p><h2>Garden Hour</h2>
+  <p class="pal"><span class="dot" style="background:#FBF3F1"></span><span class="dot" style="background:#F3DEDA"></span><span class="dot" style="background:#3B2A2E"></span><span class="dot" style="background:#8E4A5A"></span><span class="dot" style="background:#C9AE82"></span>Blush (Van’s preference)</p></header>
+  <div class="shots">
+    <a href="screens/07-garden-hour-en-desktop.jpg" class="desk"><img loading="lazy" src="screens/07-garden-hour-en-desktop.jpg" alt="Garden Hour, English, desktop"></a>
+    <a href="screens/07-garden-hour-en-mobile.jpg" class="mob"><img loading="lazy" src="screens/07-garden-hour-en-mobile.jpg" alt="Garden Hour, English, mobile"></a>
+    <a href="screens/07-garden-hour-zh-mobile.jpg" class="mob"><img loading="lazy" src="screens/07-garden-hour-zh-mobile.jpg" alt="Garden Hour, Traditional Chinese, mobile"></a>
+  </div>
+  <p>A little celebration. Asymmetric layout, a big softly rounded photo, a fine-line floral sprig in rose (not gold) and generous blush bands. Friendly and contemporary rather than formal.</p>
+  <dl><dt>English</dt><dd>Fraunces 500 + Source Sans 3 400 / 600</dd><dt>中文</dt><dd>Noto Serif TC 500 + Noto Sans TC 400</dd><dt>Gold</dt><dd>None. The floral line drawing uses rose at reduced opacity and is purely decorative (aria-hidden).</dd></dl>
+  <p class="links"><a href="concepts/07-garden-hour-en.html">English page</a><a href="concepts/07-garden-hour-zh-hant.html" lang="zh-Hant">繁體中文</a><a href="concepts/07-garden-hour-zh-hans.html" lang="zh-Hans">简体 (test)</a><a href="concepts/07-garden-hour-type.html">Type system and contrast</a><a href="screens/07-garden-hour-zh-desktop.jpg">中文 desktop</a></p>
+</article>
+<article class="concept" id="c8">
+  <header><p class="num">Concept 8</p><h2>Two Voices</h2>
+  <p class="pal"><span class="dot" style="background:#FBF7F2"></span><span class="dot" style="background:#F5EBE6"></span><span class="dot" style="background:#6E1F2E"></span><span class="dot" style="background:#8E1B24"></span><span class="dot" style="background:#B8924A"></span>Chinese lucky red (Simon’s alternative)</p></header>
+  <div class="shots">
+    <a href="screens/08-two-voices-en-desktop.jpg" class="desk"><img loading="lazy" src="screens/08-two-voices-en-desktop.jpg" alt="Two Voices, English, desktop"></a>
+    <a href="screens/08-two-voices-en-mobile.jpg" class="mob"><img loading="lazy" src="screens/08-two-voices-en-mobile.jpg" alt="Two Voices, English, mobile"></a>
+    <a href="screens/08-two-voices-zh-mobile.jpg" class="mob"><img loading="lazy" src="screens/08-two-voices-zh-mobile.jpg" alt="Two Voices, Traditional Chinese, mobile"></a>
+  </div>
+  <p>Bilingualism as the visual idea. A language lockup (English · 粵語 · 普通話) sits in the hero, and on desktop a vertical Chinese phrase in Noto Serif TC runs beside the portrait, a native CJK typographic device rather than a decoration. Ivory, burgundy and red.</p>
+  <dl><dt>English</dt><dd>Source Serif 4 600 + Source Sans 3 400 / 600</dd><dt>中文</dt><dd>Noto Serif TC 600 + Noto Sans TC 400</dd><dt>Gold</dt><dd>None. Burgundy fine rules only.</dd></dl>
+  <p class="links"><a href="concepts/08-two-voices-en.html">English page</a><a href="concepts/08-two-voices-zh-hant.html" lang="zh-Hant">繁體中文</a><a href="concepts/08-two-voices-zh-hans.html" lang="zh-Hans">简体 (test)</a><a href="concepts/08-two-voices-type.html">Type system and contrast</a><a href="screens/08-two-voices-zh-desktop.jpg">中文 desktop</a></p>
+</article>
+</div>
+<section class="notes"><h2>Decisions needed before Round 2</h2><ul>
+<li>Traditional, Simplified or both. The Traditional pages are designed first because of the poster and the testimonial screenshot, but that is a clue, not a decision. Every concept already swaps to Noto SC.</li>
+<li>Blush or lucky red, and whether any decorative gold feels genuine to Van. Concepts 3, 4, 6, 7 and 8 work with no gold at all.</li>
+<li>Glossary terms for the fluent reviewer: 證婚人, 粵語 / 廣東話, 普通話 / 國語, 民事結合, 索取報價.</li>
+<li>Whether the LXGW WenKai accent (Concept 5) or the vertical phrase (Concept 8) is welcome. Both are optional and decorative.</li>
+<li>Final URLs (/ceremonies/ and the Chinese URL pattern). The concepts use flat file names only so they can be browsed from GitHub.</li>
+</ul></section></main>
+</body></html>
