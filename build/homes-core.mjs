@@ -190,8 +190,12 @@ a{text-underline-offset:.18em}
 .ls button[aria-pressed=true]{border-color:currentColor}
 .ls .ls-l{opacity:.75;margin-right:4px}
 .ls .t{font-size:.6875rem;opacity:.7}
-@media(max-width:899px){.ls .ls-l,.nav-d{display:none!important}.ls button{padding:.3rem .4rem}}
-@media(min-width:900px){.nav-m{display:none!important}}
+@media(max-width:1279px){.nav-d{display:none!important}}
+@media(max-width:1439px){.ls .ls-l{display:none!important}}
+@media(max-width:899px){.ls button{padding:.3rem .4rem}}
+@media(min-width:1280px){.nav-m{display:none!important}}
+.nav-d a,.nav-d li{white-space:nowrap}
+html,body{overflow-x:clip}
 @media(max-width:899px){.hd-in,.bar,.side{flex-wrap:wrap;row-gap:10px}.hd-r{display:contents!important}.hd-r .ls{order:3;width:100%;grid-column:1/-1}.hd-r .nav-m{margin-left:auto}.bar{border-radius:24px!important}}
 .nav-m{position:relative}.nav-m summary{list-style:none;cursor:pointer;border:1px solid currentColor;border-radius:999px;padding:.3rem .8rem;font-size:.875rem;white-space:nowrap}
 .nav-m summary::-webkit-details-marker{display:none}

@@ -147,7 +147,7 @@ designs.push({
 .hero>.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,22,.6) 0%,rgba(30,20,22,.35) 35%,rgba(30,20,22,.5) 60%,rgba(30,20,22,.8) 100%)}
 .hero>.ph .badge{left:auto;right:12px;bottom:12px}
 .hero .hd{position:absolute;top:0;left:0;right:0;z-index:3;color:#fff}
-.btn-q{display:none!important}@media(min-width:900px){.btn-q{display:inline-flex!important;min-height:2.5rem!important;padding:.4rem 1.2rem!important;background:#fff!important;color:var(--cocoa)!important;border-radius:999px!important;margin-left:8px}}
+.btn-q{display:none!important}@media(min-width:1280px){.btn-q{display:inline-flex!important;min-height:2.5rem!important;padding:.4rem 1.2rem!important;background:#fff!important;color:var(--cocoa)!important;border-radius:999px!important;margin-left:8px}}
 .hero-c{position:relative;z-index:2;padding-block:150px 72px}
 .hero h1{color:#fff;font-size:calc(var(--hs)*clamp(2.75rem,1.6rem + 4.6vw,5.5rem));max-width:16ch;margin-bottom:.35em}
 :lang(zh) .hero h1{max-width:20ch}
@@ -435,11 +435,11 @@ designs.push({
 .hd-c .brand{grid-column:2;text-align:center;justify-items:center}.hd-c .bn{font-size:2.25rem;letter-spacing:.04em;color:var(--rose)}
 .hd-c .bs{text-transform:uppercase;letter-spacing:.24em;font-size:.6875rem}:lang(zh) .hd-c .bs{letter-spacing:.1em;font-size:.8125rem}
 .nl,.nr{list-style:none;margin:0;padding:0;display:none;gap:24px}.nr{justify-content:flex-end}
-@media(min-width:1000px){.nl,.nr{display:flex}.hd-c .nav-m{display:none!important}}
+@media(min-width:1280px){.nl,.nr{display:flex}.hd-c .nav-m{display:none!important}}
 .nl a,.nr a{color:inherit;text-decoration:none;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase}:lang(zh) .nl a,:lang(zh) .nr a{letter-spacing:.08em;font-size:.875rem}
 .nl a:hover,.nr a:hover{color:var(--rose)}
 .lsrow{display:flex;justify-content:center;padding-bottom:14px}
-@media(max-width:999px){.hd-c{grid-template-columns:1fr auto}.hd-c .brand{grid-column:1;text-align:left;justify-items:start}.lsrow{justify-content:flex-start;${G}}.hd-c .bn{font-size:1.75rem}}
+@media(max-width:1279px){.hd-c{grid-template-columns:1fr auto}.hd-c .brand{grid-column:1;text-align:left;justify-items:start}.lsrow{justify-content:flex-start;${G}}.hd-c .bn{font-size:1.75rem}}
 .show{position:relative;height:clamp(24rem,62vw,48rem);overflow:hidden;background:#eee}
 .show .ph{position:absolute!important;inset:0;opacity:0;animation:xf 18s infinite}
 .show .ph:nth-child(2){animation-delay:6s}.show .ph:nth-child(3){animation-delay:12s}
@@ -490,7 +490,7 @@ designs.push({
 .mast .bs{font-size:.8125rem;letter-spacing:.24em;text-transform:uppercase;margin-top:10px;color:var(--ink)}:lang(zh) .mast .bs{letter-spacing:.1em;font-size:.9375rem}
 .navrow{border-block:1px solid var(--ink);max-width:calc(var(--wrap) - 96px);margin:0 auto}
 .navrow ul{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 32px;list-style:none;margin:0;padding:12px 16px}
-.navrow a{color:inherit;text-decoration:none;font-size:.8125rem;text-transform:uppercase;letter-spacing:.16em}:lang(zh) .navrow a{letter-spacing:.06em;font-size:.9375rem}
+.navrow li{flex:none}.navrow a{white-space:nowrap;color:inherit;text-decoration:none;font-size:.8125rem;text-transform:uppercase;letter-spacing:.16em}:lang(zh) .navrow a{letter-spacing:.06em;font-size:.9375rem}
 .navrow a:hover{color:var(--bur)}
 @media(max-width:899px){.navrow{display:block!important;margin-inline:16px}.navrow ul{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;gap:24px}.util .nav-m{display:none}}
 .tiles{display:grid;gap:14px;padding-block:28px 0}
@@ -518,7 +518,7 @@ h2{color:var(--bur)}
 .enq{display:grid;gap:40px}@media(min-width:950px){.enq{grid-template-columns:5fr 6fr;gap:80px}}
 `,
   body: () => `<header class="hd"><div class="util"><span data-i="footContact">${txt('footContact')}</span><div class="hd-r">${langSwitch()}</div></div>
-<div class="mast">${brand()}</div><nav class="navrow nav-d" aria-label="Main">${navList()}</nav></header>
+<div class="mast">${brand()}</div><nav class="navrow" aria-label="Main">${navList()}</nav></header>
 <main id="main"><div class="in">
 <div class="tiles">
 <div class="tile t-feat rise">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}${B.facts()}</div>
@@ -538,14 +538,14 @@ h2{color:var(--bur)}
 
 
 const EXTRA = {
-  Estate: `.hero h1{text-shadow:0 2px 40px rgba(0,0,0,.28)}.hero .eb{display:flex;align-items:center;gap:12px}.hero .eb::before{content:"";width:36px;height:1px;background:#fff}`,
+  Estate: `@media(max-width:599px){.ribbon{font-size:.75rem;line-height:1.45}}.hero h1{text-shadow:0 2px 40px rgba(0,0,0,.28)}.hero .eb{display:flex;align-items:center;gap:12px}.hero .eb::before{content:"";width:36px;height:1px;background:#fff}`,
   Panorama: `.pano-w{padding-top:24px}.pano{border-radius:6px;height:clamp(20rem,50vw,40rem)}.lead .facts li{border-color:rgba(122,62,78,.3)}.lead .fd{background:var(--acc)}`,
   Statement: `.card-w{padding-top:8px}.card{margin:0!important}.card-f{position:absolute;z-index:1;left:clamp(16px,3vw,40px);right:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,40px);margin:0}`,
   Planner: `.hero .eb{font-size:.8125rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;margin:0 0 16px;opacity:.95}:lang(zh) .hero .eb{letter-spacing:.1em;text-transform:none;font-weight:400;font-size:.9375rem}.hero-c{padding-block:72px 96px}.hero h1{text-shadow:0 2px 30px rgba(0,0,0,.3)}`,
   Cinematic: `.hero .facts{margin-top:36px}`,
   Horizon: `.land{border-radius:4px}@media(max-width:600px){.disp{font-size:calc(var(--hs)*2.9rem);padding-inline:16px}}.lead .fd{background:var(--rose)}`,
   Gallery: `.show{border-radius:4px}.show-cap{position:absolute;z-index:3;left:clamp(16px,2.5vw,32px);right:clamp(16px,2.5vw,32px);bottom:clamp(16px,2.5vw,32px)}.show-cap .facts{margin:0}.show::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.45));pointer-events:none}`,
-  Journal: `.t-feat .facts li{border-color:rgba(110,31,46,.3)}.t-feat .fd{background:var(--acc)}`,
+  Journal: `@media(max-width:599px){.mast .bn{font-size:clamp(2.25rem,1rem + 7vw,3rem)}.mast{padding-block:0 10px}.util{padding-block:8px}}.tile .lab{overflow-wrap:anywhere}.t-feat .facts li{border-color:rgba(110,31,46,.3)}.t-feat .fd{background:var(--acc)}`,
 };
 const gutter = G;
 // ───────────────────────── Privacy notice (shared) ─────────────────────────
