@@ -47,7 +47,7 @@ section.notes{padding:8px 0 64px}section.notes h2{font-size:1.375rem;font-weight
 <p class="status">KC-575 · Round 1 concepts · not client-approved · draft copy from KC-576 · Chinese is a type-testing draft for fluent review</p>
 <h1>Van Ng website: eight bilingual concepts</h1>
 <p class="lede">Each concept is a working home page in English and Traditional Chinese, with a Simplified test page and a type-system sheet. The image boxes are placeholders for Van’s authorised photos. Concepts 1 and 2 are the fair palette pair: same layout, type, crop and wording, with only the colour direction changed. Start with those when asking Van which feels warm, trustworthy and genuinely her.</p>
-<p class="lede"><a href="TYPOGRAPHY.md">Typography decisions (shared system)</a> · <a href="README.md">How this repo is organised</a></p>
+<p class="lede"><a href="typography.html">Typography decisions (shared system)</a> · <a href="https://github.com/KoukCreatives/VanNg">Source on GitHub</a></p>
 </header>
 <main class="wrap"><div class="grid">
 ${concepts.map(card).join('\n')}

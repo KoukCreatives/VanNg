@@ -23,6 +23,18 @@ const lum = (hex) => { const c = hex.replace('#', '').match(/../g).map((x) => pa
 export const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
 
 // ---------- font CSS ----------
+// ARTIFACT=1 builds dist/ for claude.ai hosting: Google Fonts CSS + inlined display face (CSP allows only those).
+const ARTIFACT = process.env.ARTIFACT === '1';
+const OUT = ARTIFACT ? path.join(ROOT, 'dist') : ROOT;
+const gname = { 'source-sans-3': 'Source Sans 3', 'noto-serif-tc': 'Noto Serif TC', 'noto-sans-tc': 'Noto Sans TC', 'noto-serif-sc': 'Noto Serif SC', 'noto-sans-sc': 'Noto Sans SC', 'lxgw-wenkai-tc': 'LXGW WenKai TC' };
+function googleLink(c, scripts) {
+  const fams = new Map([['Source Sans 3', new Set(c.bodyLatin.weights)]]);
+  const add = (pkg, w) => { const n = gname[pkg]; if (!fams.has(n)) fams.set(n, new Set()); fams.get(n).add(w); };
+  for (const s of scripts) { add(c.zhHead[s], c.zhHead.weight); add(c.zhBody[s], c.zhBody.weight); }
+  if (c.accent) add('lxgw-wenkai-tc', 400);
+  const q = [...fams].map(([n, ws]) => `family=${n.replace(/ /g, '+')}:wght@${[...ws].sort().join(';')}`).join('&');
+  return `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?${q}&display=swap">`;
+}
 function headFace(c) {
   // Re-declare the Latin display face under two names: as-is for English, size-adjusted for Chinese lines.
   const out = [];
@@ -30,7 +42,8 @@ function headFace(c) {
     const css = fs.readFileSync(`${FS}/${c.head.pkg}/${c.head.weight}.css`, 'utf8');
     const block = css.split('/* ').find((b) => b.startsWith(`${c.head.pkg}-${sub}-${c.head.weight}-normal */`));
     const range = block.match(/unicode-range:\s*([^;]+);/)[1];
-    const url = cdn(c.head.pkg, `files/${c.head.pkg}-${sub}-${c.head.weight}-normal.woff2`);
+    const file = `files/${c.head.pkg}-${sub}-${c.head.weight}-normal.woff2`;
+    const url = ARTIFACT ? `data:font/woff2;base64,${fs.readFileSync(`${FS}/${c.head.pkg}/${file}`).toString('base64')}` : cdn(c.head.pkg, file);
     for (const [fam, adj] of [['HeadLatin', 1], ['HeadLatinZh', c.head.zhAdjust]]) {
       out.push(`@font-face{font-family:"${fam}";src:url(${url}) format("woff2");font-weight:${c.head.weight};font-style:normal;font-display:swap;unicode-range:${range};${adj !== 1 ? `size-adjust:${Math.round(adj * 100)}%;` : ''}}`);
     }
@@ -38,6 +51,7 @@ function headFace(c) {
   return out.join('\n');
 }
 function fontLinks(c, script, { allScripts = false } = {}) {
+  if (ARTIFACT) return googleLink(c, allScripts ? ['tc', 'sc'] : [script]);
   const links = [];
   const pre = cdn(c.head.pkg, `files/${c.head.pkg}-latin-${c.head.weight}-normal.woff2`);
   links.push(`<link rel="preload" as="font" type="font/woff2" crossorigin href="${pre}">`);
@@ -212,13 +226,13 @@ ${fontLinks(c, 'tc', { allScripts: true })}
 }
 
 // ---------- write ----------
-fs.mkdirSync(path.join(ROOT, 'concepts'), { recursive: true });
+fs.mkdirSync(path.join(OUT, 'concepts'), { recursive: true }); fs.mkdirSync(path.join(OUT, 'assets'), { recursive: true });
 for (const c of concepts) {
-  fs.writeFileSync(path.join(ROOT, 'assets', `${c.slug}.css`), tokens(c) + c.css);
-  fs.writeFileSync(path.join(ROOT, 'concepts', `${c.slug}-en.html`), page(c, en, 'en'));
-  fs.writeFileSync(path.join(ROOT, 'concepts', `${c.slug}-zh-hant.html`), page(c, zhHant, 'hant'));
-  fs.writeFileSync(path.join(ROOT, 'concepts', `${c.slug}-zh-hans.html`), page(c, zhHans, 'hans'));
-  fs.writeFileSync(path.join(ROOT, 'concepts', `${c.slug}-type.html`), typePage(c));
+  fs.writeFileSync(path.join(OUT, 'assets', `${c.slug}.css`), tokens(c) + c.css);
+  fs.writeFileSync(path.join(OUT, 'concepts', `${c.slug}-en.html`), page(c, en, 'en'));
+  fs.writeFileSync(path.join(OUT, 'concepts', `${c.slug}-zh-hant.html`), page(c, zhHant, 'hant'));
+  fs.writeFileSync(path.join(OUT, 'concepts', `${c.slug}-zh-hans.html`), page(c, zhHans, 'hans'));
+  fs.writeFileSync(path.join(OUT, 'concepts', `${c.slug}-type.html`), typePage(c));
 }
 // contrast report for the console
 for (const c of concepts) {
