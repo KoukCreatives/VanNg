@@ -47,6 +47,7 @@ body{background:var(--bg);color:var(--ink)}
 .btns{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:24px}
 .tl{color:inherit;font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em}
 section{padding-block:clamp(64px,6vw + 24px,128px)}
+h1{line-height:var(--lh-h)}
 h2{font-size:calc(var(--hs)*clamp(2.125rem,1.5rem + 2.2vw,3.25rem));line-height:var(--lh-h)}
 h3{font-size:calc(var(--hs)*1.625rem);line-height:1.25}
 .svc p{margin:0}
@@ -391,7 +392,7 @@ h2{text-align:center}
     const items = [0, 1, 2, 3, 4, 5].map((i) => `<li><a href="${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'][i]}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`);
     return `<header class="hd"><div class="hd-c"><ul class="nl">${items.slice(0, 3).join('')}</ul>${brand()}<ul class="nr">${items.slice(3).join('')}</ul>${mobileNav()}</div><div class="lsrow">${langSwitch()}</div></header>
 <main id="main">
-<div class="show">${ph('phCeremony', '', 'lake', true)}${ph('phCeremony', '', 'lawn')}${ph('phCeremony', '', 'table')}</div>
+<div class="show">${ph('phCeremony', '', 'arch', true)}${ph('phCeremony', '', 'lawn')}${ph('phCeremony', '', 'table')}</div>
 <div class="in tag">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${B.ctas()}</div>
 <div class="in trio">${ph('phDetail', 'rv', 'peonies')}${ph('phDetail', 'rv', 'hands')}${ph('phDetail', 'rv', 'vows')}</div>
 <section id="approach"><div class="in cent rv" style="max-width:56rem">${B.approach()}${T('p', 'intro2')}</div></section>
