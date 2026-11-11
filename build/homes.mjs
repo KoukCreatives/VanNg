@@ -2,14 +2,14 @@
 // Run: node build/homes.mjs
 import fs from 'node:fs';
 import path from 'node:path';
-import { ROOT, T, Z, txt, page, navList, langSwitch, mobileNav, brand, form, incList, chips, ph } from './homes-core.mjs';
+import { ROOT, T, Z, txt, page, navList, langSwitch, mobileNav, brand, form, incList, chips, ph, faq } from './homes-core.mjs';
 
 const serifTC = { zhHead: 'noto-serif-tc', zhBody: 'noto-sans-tc' };
 const sprig = (cls) => `<svg class="${cls}" viewBox="0 0 200 160" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><path d="M10 150C60 120 100 80 190 10"/><path d="M60 118c-6-18 4-34 22-38-2 18-10 32-22 38z"/><path d="M95 88c14-12 32-12 44-2-14 10-30 12-44 2z"/><path d="M118 62c-4-20 8-36 26-38 0 18-10 32-26 38z"/><path d="M150 36c12-8 26-6 34 2-12 8-24 8-34-2z"/><circle cx="40" cy="132" r="5"/><circle cx="172" cy="16" r="4"/></svg>`;
 const gutter = 'padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))';
 const gutterD = 'padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))';
 const head = (cls = '') => `<header class="hd ${cls}"><div class="hd-in">${brand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${langSwitch()}${mobileNav()}</div></div></header>`;
-const foot = () => `<footer class="ft"><div class="ft-in"><div><p class="bn" lang="en">Vannarady Ng</p>${T('p', 'footNote')}<p>${T('span', 'footContact')}</p></div><div>${langSwitch()}${T('p', 'copyright', 'class="note"')}</div></div></footer>`;
+const foot = () => `<footer class="ft"><div class="ft-in"><div><p class="bn" lang="en">Vannarady Ng</p>${T('p', 'footNote')}<p>${T('span', 'footContact')} · <a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p></div><div>${langSwitch()}${T('p', 'copyright', 'class="note"')}</div></div></footer>`;
 
 const designs = [];
 
@@ -69,13 +69,14 @@ input,textarea{background:#fff;border:1px solid #7D6469}
 <section class="hero"><div class="in hero-g">
   <div class="card">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${T('p', 'intro2')}
   <div class="btns"><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div><hr></div>
-  ${ph('phPortrait', 'arch')}
+  ${ph('phPortrait', 'arch', 'peonies', true)}
 </div></section>
 <section class="approach" id="approach"><div class="in">${T('h2', 'approachH', 'class="sec-h"')}
 <div class="cols">${T('p', 'approach1')}${T('p', 'approach2')}<blockquote>${T('p', 'quote')}<footer><span data-i="quoteBy">${txt('quoteBy')}</span> ${T('span', 'quoteFlag', 'class="flag"')}</footer></blockquote></div></div></section>
 <section><div class="in">${T('h2', 'servicesH', 'class="sec-h"')}<div class="svc">${[0, 1].map((i) => `<article>${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}</article>`).join('')}</div></div></section>
-<section class="band"><div class="in">${T('h2', 'langH', 'class="sec-h"')}${T('p', 'lang1')}${chips('rings')}<a class="tl" href="#" data-i="langLink">${txt('langLink')}</a></div></section>
-<section><div class="in two"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="#" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></section>
+<section class="band"><div class="in">${T('h2', 'langH', 'class="sec-h"')}${T('p', 'lang1')}${chips('rings')}<a class="tl" href="#faq" data-i="langLink">${txt('langLink')}</a></div></section>
+<section><div class="in two"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="https://celebrants.dia.govt.nz/" target="_blank" rel="noopener" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></section>
+<section><div class="in" style="max-width:58rem">${faq()}</div></section>
 <section class="band" id="enquire"><div class="in"><div class="enq-card" style="text-align:left"><div>${T('h2', 'enqH')}${T('p', 'enq1')}${T('h3', 'incH', 'style="font-size:calc(var(--hs)*1.375rem)"')}${incList()}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}</div><div>${form('a')}</div></div></div></section>
 </main>${foot()}`,
 });
@@ -135,14 +136,15 @@ textarea{border:1px solid var(--ink);padding-inline:.75rem}
   body: () => `${head()}
 <main id="main">
 <section class="cover"><div class="in">
-  <div class="cover-g"><div><p class="kicker" data-i="heroEyebrow">${txt('heroEyebrow')}</p>${T('h1', 'h1')}</div>${ph('phPortrait', 'tall')}</div>
+  <div class="cover-g"><div><p class="kicker" data-i="heroEyebrow">${txt('heroEyebrow')}</p>${T('h1', 'h1')}</div>${ph('phPortrait', 'tall', 'hold', true)}</div>
   <div class="deck">${T('p', 'intro', 'class="lede"')}${T('p', 'intro2')}<div class="btns"><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div></div>
   <div class="facts"><div>${T('h2', 'langH')}${chips('')}</div><div>${T('h2', 'travelH')}${T('p', 'travel')}</div><div>${T('h2', 'credH')}${T('p', 'cred')}</div></div>
 </div></section>
 <section id="approach"><div class="in split"><div>${T('p', 'quote', 'class="pull"')}<p><span data-i="quoteBy">${txt('quoteBy')}</span> ${T('span', 'quoteFlag', 'class="flag"')}</p></div><div>${T('h2', 'approachH')}${T('p', 'approach1')}${T('p', 'approach2')}
 <div class="svc">${[0, 1].map((i) => `<article>${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}</article>`).join('')}</div></div></div></section>
-<section class="band"><div class="in split"><div>${T('h2', 'langH')}</div><div>${T('p', 'lang1')}${chips()}<a class="tl" href="#" data-i="langLink">${txt('langLink')}</a></div></div></section>
-<section id="enquire"><div class="in enq"><div>${form('b')}</div><div>${T('h2', 'enqH')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}<p><a class="tl" href="#" data-i="credLink">${txt('credLink')}</a></p></div></div></section>
+<section class="band"><div class="in split"><div>${T('h2', 'langH')}</div><div>${T('p', 'lang1')}${chips()}<a class="tl" href="#faq" data-i="langLink">${txt('langLink')}</a></div></div></section>
+<section><div class="in" style="max-width:58rem">${faq()}</div></section>
+<section id="enquire"><div class="in enq"><div>${form('b')}</div><div>${T('h2', 'enqH')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}<p><a class="tl" href="https://celebrants.dia.govt.nz/" target="_blank" rel="noopener" data-i="credLink">${txt('credLink')}</a></p></div></div></section>
 </main>${foot()}`,
 });
 
@@ -169,7 +171,7 @@ body{background:var(--bg);color:var(--ink)}
 h1{font-size:calc(var(--hs)*clamp(2.25rem,1.6rem + 2.4vw,3.5rem));line-height:var(--lh-h)}
 .lead-row{display:grid;gap:20px;align-items:start;margin:28px 0}@media(min-width:640px){.lead-row{grid-template-columns:8rem 1fr}}
 .ph{margin:0;display:grid;place-items:center;text-align:center;padding:10px;font-size:.6875rem;line-height:1.35;color:var(--muted);background:radial-gradient(circle at 40% 35%,#f6e2de,#e8c9c3)}
-.round{width:8rem;aspect-ratio:1;border-radius:50%}
+.round{width:8rem;aspect-ratio:1;border-radius:50%}.round .badge{display:none}
 .lede{font-size:1.1875em;line-height:1.55}:lang(zh) .lede{font-size:1.0625em;line-height:1.8}
 .rule{border:0;border-top:1px solid var(--line);margin:48px 0}
 h2{font-size:calc(var(--hs)*clamp(1.625rem,1.3rem + 1.1vw,2.125rem));line-height:var(--lh-h)}
@@ -190,12 +192,13 @@ input,textarea{background:#fff;border:1px solid #7D6469}
   body: () => `<div class="shell"><aside class="side">${brand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><a class="btn side-cta" href="#enquire" data-i="cta">${txt('cta')}</a><div class="hd-r">${langSwitch()}${mobileNav()}</div></aside>
 <div><main id="main" class="letter"><article class="paper">
 ${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}
-<div class="lead-row">${ph('phPortrait', 'round')}<div>${T('p', 'intro', 'class="lede"')}${T('p', 'intro2')}<p><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a></p></div></div>
+<div class="lead-row">${ph('phPortrait', 'round', 'vows', true)}<div>${T('p', 'intro', 'class="lede"')}${T('p', 'intro2')}<p><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a></p></div></div>
 <hr class="rule" id="approach">${T('h2', 'approachH')}${T('p', 'approach1')}${T('p', 'approach2')}
 <blockquote>${T('p', 'quote')}<footer><span data-i="quoteBy">${txt('quoteBy')}</span> ${T('span', 'quoteFlag', 'class="flag"')}</footer></blockquote>
 <hr class="rule">${T('h2', 'servicesH')}<div class="svc">${[0, 1].map((i) => `<div>${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}</div>`).join('')}</div>
-<hr class="rule">${T('h2', 'langH')}${T('p', 'lang1')}${chips()}<a class="tl" href="#" data-i="langLink">${txt('langLink')}</a>
-<hr class="rule"><div class="meta"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="#" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div>
+<hr class="rule">${T('h2', 'langH')}${T('p', 'lang1')}${chips()}<a class="tl" href="#faq" data-i="langLink">${txt('langLink')}</a>
+<hr class="rule"><div class="meta"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="https://celebrants.dia.govt.nz/" target="_blank" rel="noopener" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div>
+<hr class="rule">${faq()}
 <hr class="rule" id="enquire">${T('h2', 'enqH')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}${form('c')}
 <p class="sign" lang="en">Van</p>
 </article></main>${foot()}</div></div>`,
@@ -257,14 +260,15 @@ input,textarea{background:#fff;border:1px solid #7A7073}
 <main id="main"><div class="in">
 <div class="bento">
   <div class="tile t-hero">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${T('p', 'intro2', 'class="small"')}<div class="btns"><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div><svg class="blob" viewBox="0 0 200 200" aria-hidden="true"><path fill="currentColor" d="M44 30c30-28 92-30 122 6s30 96-6 124-104 30-132-6S14 58 44 30z"/></svg></div>
-  <div class="tile t-por">${ph('phPortrait')}</div>
-  <div class="tile t-lang">${T('h2', 'langH')}${chips()}<a class="tl small" href="#" data-i="langLink">${txt('langLink')}</a></div>
+  <div class="tile t-por">${ph('phPortrait', '', 'bouquet', true)}</div>
+  <div class="tile t-lang">${T('h2', 'langH')}${chips()}<a class="tl small" href="#faq" data-i="langLink">${txt('langLink')}</a></div>
   <div class="tile t-quote"><p class="q" data-i="quote">${txt('quote')}</p><p class="by"><span data-i="quoteBy">${txt('quoteBy')}</span> ${T('span', 'quoteFlag', 'class="flag"')}</p></div>
-  <div class="tile t-ct"><div>${T('h3', 'credH')}${T('p', 'cred', 'class="small"')}<a class="tl small" href="#" data-i="credLink">${txt('credLink')}</a></div><div style="margin-top:16px">${T('h3', 'travelH')}${T('p', 'travel', 'class="small"')}</div></div>
+  <div class="tile t-ct"><div>${T('h3', 'credH')}${T('p', 'cred', 'class="small"')}<a class="tl small" href="https://celebrants.dia.govt.nz/" target="_blank" rel="noopener" data-i="credLink">${txt('credLink')}</a></div><div style="margin-top:16px">${T('h3', 'travelH')}${T('p', 'travel', 'class="small"')}</div></div>
 </div>
 <div class="sec" id="approach"><div class="sec-g">
   <div class="tile">${T('h2', 'approachH')}${T('p', 'approach1')}${T('p', 'approach2')}</div>
   <div class="tile" style="background:var(--sage-t)">${T('h2', 'servicesH')}${[0, 1].map((i) => `${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`, 'class="small"')}`).join('')}${T('p', 'lang1', 'class="small"')}</div>
+  <div class="tile" style="grid-column:1/-1">${faq()}</div>
   <div class="tile t-enq" id="enquire" style="grid-column:1/-1"><div>${T('h2', 'enqH')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}</div><div>${form('d')}</div></div>
 </div></div>
 </div></main>${foot()}`,
@@ -286,7 +290,7 @@ body{background:var(--bg);color:var(--ink)}
 .tl{color:var(--mocha);font-weight:600}
 .ph{margin:0;display:grid;align-content:end;padding:18px;font-size:.8125rem;line-height:1.4;color:var(--muted)}
 .bleed{height:clamp(26rem,62vw,40rem);background:linear-gradient(180deg,rgba(58,44,39,.55),rgba(58,44,39,0) 34%),radial-gradient(90% 120% at 70% 40%,#e9c3bf,#c79c92 70%,#9f7469);color:var(--card);padding:0 max(16px,env(safe-area-inset-left,0px)) 120px}
-.bleed figcaption{max-width:76rem;width:100%;margin:0 auto;text-align:right}
+.bleed::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(58,44,39,.6),rgba(58,44,39,0) 38%)}
 .panel{position:relative;z-index:2;margin-top:-96px;background:var(--card);padding:clamp(24px,4vw,56px);max-width:46rem;box-shadow:0 30px 60px -40px rgba(58,44,39,.45)}
 .accent{display:block;font-family:"LXGW WenKai TC","LXGW WenKai",var(--zh-b),serif;font-weight:400;font-size:clamp(1.625rem,1.3rem + 1.4vw,2.25rem);line-height:1.3;color:var(--mocha);margin:0 0 4px}
 .accent-g{display:block;font-size:.8125rem;color:var(--muted);margin-bottom:18px}
@@ -321,12 +325,13 @@ input,textarea{background:#fff;border:1px solid #7E6A62}
 `,
   body: () => `${head()}
 <main id="main">
-${ph('phCeremony', 'bleed')}
+${ph('phCeremony', 'bleed', 'arch', true)}
 <div class="in"><div class="panel"><span class="accent" data-z="accent" data-zl lang="zh-Hant">言語的力量</span><span class="accent-g" data-i="accent">${txt('accent')}</span>${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${T('p', 'intro2')}<div class="btns"><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div></div></div>
 <section><div class="in">${T('h2', 'enqH', 'class="sec-h"')}${T('p', 'enq1')}<ul class="three">${[0, 1, 2].map((i) => `<li data-i="inc.${i}">${txt(`inc.${i}`)}</li>`).join('')}</ul></div></section>
 <section class="mocha"><div class="in"><blockquote>${T('p', 'quote')}<footer><span data-i="quoteBy">${txt('quoteBy')}</span> ${T('span', 'quoteFlag', 'class="flag"')}</footer></blockquote></div></section>
-<section id="approach"><div class="in app">${ph('phPortrait')}<div>${T('h2', 'approachH', 'class="sec-h"')}${T('p', 'approach1')}${T('p', 'approach2')}<div class="svc">${[0, 1].map((i) => `<article>${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}</article>`).join('')}</div></div></div></section>
-<section class="peony"><div class="in lang-g"><div>${T('h2', 'langH', 'class="sec-h"')}${T('p', 'lang1')}${chips()}<a class="tl" href="#" data-i="langLink">${txt('langLink')}</a></div><div class="two">${T('h3', 'credH')}${T('p', 'cred')}<p><a class="tl" href="#" data-i="credLink">${txt('credLink')}</a></p>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></section>
+<section id="approach"><div class="in app">${ph('phPortrait', '', 'bloom')}<div>${T('h2', 'approachH', 'class="sec-h"')}${T('p', 'approach1')}${T('p', 'approach2')}<div class="svc">${[0, 1].map((i) => `<article>${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}</article>`).join('')}</div></div></div></section>
+<section class="peony"><div class="in lang-g"><div>${T('h2', 'langH', 'class="sec-h"')}${T('p', 'lang1')}${chips()}<a class="tl" href="#faq" data-i="langLink">${txt('langLink')}</a></div><div class="two">${T('h3', 'credH')}${T('p', 'cred')}<p><a class="tl" href="https://celebrants.dia.govt.nz/" target="_blank" rel="noopener" data-i="credLink">${txt('credLink')}</a></p>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></section>
+<section><div class="in" style="max-width:58rem">${faq()}</div></section>
 <section id="enquire"><div class="in enq"><div>${T('h2', 'enqH', 'class="sec-h"')}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}</div><div>${form('e')}</div></div></section>
 </main>${foot()}`,
 });
@@ -381,12 +386,13 @@ input,textarea{background:#fff;border:1px solid #7A7073}
 .ft{background:var(--bur);color:var(--bg);padding-block:36px 56px}.ft-in{max-width:74rem;margin:0 auto;${gutter};display:grid;gap:12px}@media(min-width:800px){.ft-in{${gutterD};grid-template-columns:2fr 1fr}}.ft .bn{font-size:1.5rem;margin:0}.ft p{margin:0 0 6px}.ft .note{color:var(--bg)}.ft :focus-visible{outline-color:var(--bg)}
 `,
   body: () => `<div class="top">${head()}
-<section class="hero"><div class="in hero-g"><div>${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${T('p', 'intro2')}<div class="btns"><a class="btn inv" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div></div>${ph('phPortrait', 'framed')}</div></section></div>
+<section class="hero"><div class="in hero-g"><div>${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${T('p', 'intro2')}<div class="btns"><a class="btn inv" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div></div>${ph('phPortrait', 'framed', 'watch', true)}</div></section></div>
 <main id="main" class="thread">
 <section id="approach"><div class="in"><div class="knot">${T('h2', 'approachH')}${T('p', 'approach1')}${T('p', 'approach2')}<blockquote>${T('p', 'quote')}<footer><span data-i="quoteBy">${txt('quoteBy')}</span> ${T('span', 'quoteFlag', 'class="flag"')}</footer></blockquote></div></div></section>
 <section><div class="in"><div class="knot">${T('h2', 'servicesH')}<div class="svc">${[0, 1].map((i) => `<article>${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}</article>`).join('')}</div></div></div></section>
-<section><div class="in"><div class="knot">${T('h2', 'langH')}${T('p', 'lang1')}${chips()}<a class="tl" href="#" data-i="langLink">${txt('langLink')}</a></div></div></section>
-<section><div class="in"><div class="knot"><div class="meta"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="#" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></div></div></section>
+<section><div class="in"><div class="knot">${T('h2', 'langH')}${T('p', 'lang1')}${chips()}<a class="tl" href="#faq" data-i="langLink">${txt('langLink')}</a></div></div></section>
+<section><div class="in"><div class="knot"><div class="meta"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="https://celebrants.dia.govt.nz/" target="_blank" rel="noopener" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></div></div></section>
+<section><div class="in"><div class="knot" style="max-width:58rem">${faq()}</div></div></section>
 <section id="enquire"><div class="in"><div class="knot enq"><div>${T('h2', 'enqH')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}</div><div>${form('f')}</div></div></div></section>
 </main>${foot()}`,
 });
@@ -441,15 +447,16 @@ input,textarea{background:#fff;border:1px solid #7D6469}
   body: () => `${head()}
 <main id="main">
 <section class="hero"><div class="in hero-g"><div>${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro')}${T('p', 'intro2')}<div class="btns"><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div></div>
-<div class="collage">${ph('phPortrait', 'p1')}${ph('phCeremony', 'p2')}${ph('phDetail', 'p3')}${sprig('s1')}${sprig('s2')}</div></div></section>
+<div class="collage">${ph('phPortrait', 'p1', 'bouquet', true)}${ph('phCeremony', 'p2', 'aisle')}${ph('phDetail', 'p3', 'hands')}${sprig('s1')}${sprig('s2')}</div></div></section>
 <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 40C240 0 480 0 720 28s480 28 720-8v36H0z"/></svg>
 <div class="band">
 <section id="approach" style="padding-top:24px"><div class="in app"><div>${T('h2', 'approachH', 'class="sec-h"')}${T('p', 'approach1')}${T('p', 'approach2')}</div><blockquote>${T('p', 'quote')}<footer><span data-i="quoteBy">${txt('quoteBy')}</span> ${T('span', 'quoteFlag', 'class="flag"')}</footer></blockquote></div></section>
 <section style="padding-top:0"><div class="in">${T('h2', 'servicesH', 'class="sec-h" style="text-align:center"')}<div class="svc">${[0, 1].map((i) => `<article>${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}</article>`).join('')}</div></div></section>
 </div>
 <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="transform:scaleY(-1)"><path fill="currentColor" d="M0 40C240 0 480 0 720 28s480 28 720-8v36H0z"/></svg>
-<section><div class="in center">${T('h2', 'langH', 'class="sec-h"')}${T('p', 'lang1')}${chips()}<a class="tl" href="#" data-i="langLink">${txt('langLink')}</a></div></section>
-<section style="padding-top:0"><div class="in meta"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="#" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></section>
+<section><div class="in center">${T('h2', 'langH', 'class="sec-h"')}${T('p', 'lang1')}${chips()}<a class="tl" href="#faq" data-i="langLink">${txt('langLink')}</a></div></section>
+<section style="padding-top:0"><div class="in meta"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="https://celebrants.dia.govt.nz/" target="_blank" rel="noopener" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></section>
+<section><div class="in" style="max-width:58rem">${faq()}</div></section>
 <section id="enquire" class="band"><div class="in enq"><div>${T('h2', 'enqH', 'class="sec-h"')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}</div><div>${form('g')}</div></div></section>
 </main>${foot()}`,
 });
@@ -513,17 +520,45 @@ input,textarea{background:#fff;border:1px solid #7A7073}
   <div class="spine" aria-hidden="true"><p data-z="accent" data-zl lang="zh-Hant">言語的力量</p></div>
   <div class="voice" data-zl lang="zh-Hant"><span class="tag" data-z="langChips.1">粵語</span> <span class="tag" data-z="langChips.2">普通話</span>${Z('p', 'h1', 'class="h1" role="heading" aria-level="2"')}${Z('p', 'intro')}</div>
 </div>
-${ph('phCeremony', 'wide')}
+${ph('phCeremony', 'wide', 'chairs', true)}
 <div class="ctaRow"><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div></div>
-<section id="approach"><div class="in app"><div>${T('h2', 'approachH', 'class="sec-h"')}${T('p', 'intro2')}${T('p', 'approach1')}${T('p', 'approach2')}</div><div>${ph('phPortrait')}</div></div>
+<section id="approach"><div class="in app"><div>${T('h2', 'approachH', 'class="sec-h"')}${T('p', 'intro2')}${T('p', 'approach1')}${T('p', 'approach2')}</div><div>${ph('phPortrait', '', 'letter')}</div></div>
 <div class="in" style="margin-top:40px"><blockquote>${T('p', 'quote')}<footer><span data-i="quoteBy">${txt('quoteBy')}</span> ${T('span', 'quoteFlag', 'class="flag"')}</footer></blockquote>
 <div class="svc">${[0, 1].map((i) => `<article>${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}</article>`).join('')}</div></div></section>
-<section class="alt"><div class="in lang-g"><div>${T('h2', 'langH', 'class="sec-h"')}${T('p', 'lang1')}<a class="tl" href="#" data-i="langLink">${txt('langLink')}</a></div>
+<section class="alt"><div class="in lang-g"><div>${T('h2', 'langH', 'class="sec-h"')}${T('p', 'lang1')}<a class="tl" href="#faq" data-i="langLink">${txt('langLink')}</a></div>
 <ul class="lockup"><li><span data-i="langChips.0">${txt('langChips.0')}</span><b lang="en" style="font-weight:inherit">English</b></li><li><span data-i="langChips.1">${txt('langChips.1')}</span><b lang="zh-Hant" data-z="langChips.1" data-zl style="font-weight:inherit">粵語</b></li><li><span data-i="langChips.2">${txt('langChips.2')}</span><b lang="zh-Hant" data-z="langChips.2" data-zl style="font-weight:inherit">普通話</b></li></ul></div></section>
-<section><div class="in meta"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="#" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></section>
+<section><div class="in meta"><div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" href="https://celebrants.dia.govt.nz/" target="_blank" rel="noopener" data-i="credLink">${txt('credLink')}</a></div><div>${T('h3', 'travelH')}${T('p', 'travel')}</div></div></section>
+<section><div class="in" style="max-width:58rem">${faq()}</div></section>
 <section id="enquire" class="alt"><div class="in enq"><div>${T('h2', 'enqH', 'class="sec-h"')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}</div><div>${form('h')}</div></div></section>
 </main>${foot()}`,
 });
+
+// ───────────────────────── Privacy notice (shared) ─────────────────────────
+const privacy = page({
+  n: 0, name: 'Privacy notice',
+  fonts: { head: { pkg: 'literata', weight: 500, zhAdjust: 1.0 }, ...serifTC, zhHeadW: 500, zhBodyW: 400 },
+  css: `
+:root{--bg:#FBF3F1;--paper:#FFFCFB;--ink:#3B2A2E;--rose:#8E4A5A;--muted:#5E464C;--line:rgba(59,42,46,.16)}
+body{background:var(--bg);color:var(--ink)}
+.hd-in{max-width:52rem;margin:0 auto;${gutter};display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:20px}
+.brand{display:grid;text-decoration:none;color:var(--ink)}.bn{font-family:var(--f-head);font-weight:500;font-size:1.375rem;white-space:nowrap}.bs{font-size:.8125rem;color:var(--muted);white-space:nowrap}
+.hd-r{display:flex;align-items:center;gap:6px}.nav-m{display:none!important}
+main{max-width:52rem;margin:0 auto;${gutter};padding-block:16px 96px}
+.paper{background:var(--paper);padding:clamp(24px,5vw,64px);box-shadow:0 1px 0 var(--line),0 24px 48px -32px rgba(59,42,46,.25)}
+.note{display:inline-block;font-size:.8125rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.15rem .7rem;margin-bottom:18px}
+h1{font-size:calc(var(--hs)*clamp(2.25rem,1.6rem + 2vw,3rem));line-height:var(--lh-h)}
+.lede{font-size:1.125em;line-height:1.6}:lang(zh) .lede{font-size:1.0625em;line-height:1.8}
+h2{font-size:calc(var(--hs)*1.5rem);margin-top:1.8em}
+.upd{color:var(--muted);font-size:.9375rem;margin-top:40px;border-top:1px solid var(--line);padding-top:16px}
+a{color:var(--rose)}
+`,
+  body: `<header class="hd"><div class="hd-in">${brand()}<div class="hd-r">${langSwitch()}</div></div></header>
+<main id="main"><p><a href="index.html" onclick="if(document.referrer&&history.length>1){history.back();return false}" data-i="pv.back">${txt('pv.back')}</a></p><article class="paper">
+${T('p', 'pv.note', 'class="note"')}${T('h1', 'pv.title')}${T('p', 'pv.intro', 'class="lede"')}
+${[0, 1, 2, 3, 4, 5].map((i) => `${T('h2', `pv.s.${i}.0`)}${T('p', `pv.s.${i}.1`)}`).join('\n')}
+${T('p', 'pv.updated', 'class="upd"')}</article></main>`,
+});
+fs.writeFileSync(path.join(ROOT, 'privacy.html'), privacy);
 
 designs.forEach((d, i) => {
   const n = i + 1;
