@@ -4,7 +4,7 @@
 // Run: node build/homes.mjs
 import fs from 'node:fs';
 import path from 'node:path';
-import { ROOT, T, txt, page, navList, langSwitch, mobileNav, brand, form, incList, chips, ph, faq } from './homes-core.mjs';
+import { ROOT, T, Z, txt, page, navList, langSwitch, mobileNav, brand, form, incList, chips, ph, faq } from './homes-core.mjs';
 
 export const REFS = [
   ['Markovina Estate', 'https://www.markovina.co.nz/', 'Immersive full-screen ceremony photo with a slim announcement ribbon'],
@@ -21,19 +21,25 @@ const serifTC = { zhHead: 'noto-serif-tc', zhBody: 'noto-sans-tc' };
 const G = 'padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))';
 const GD = 'padding-left:max(48px,env(safe-area-inset-left,0px));padding-right:max(48px,env(safe-area-inset-right,0px))';
 const head = () => `<header class="hd"><div class="hd-in">${brand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${langSwitch()}${mobileNav()}</div></div></header>`;
-const foot = () => `<footer class="ft"><div class="ft-in"><div><p class="bn" lang="en">Vannarady Ng</p>${T('p', 'footNote')}<p>${T('span', 'footContact')} · <a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p></div><div>${langSwitch()}${T('p', 'copyright', 'class="note"')}</div></div></footer>`;
+const foot = () => `<footer class="ft"><div class="ft-in"><div class="ft-a"><p class="bn ft-wm" lang="en">Vannarady Ng</p>${T('p', 'brandSub', 'class="ft-sub"')}${T('p', 'footNote', 'class="note"')}<a class="btn ft-btn" href="#enquire" data-i="cta">${txt('cta')}</a></div><nav class="ft-col" aria-label="Footer">${T('p', 'ftExplore', 'class="ft-h"')}<ul>${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'].map((h, i) => `<li><a href="${h}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`).join('')}</ul></nav><div class="ft-col">${T('p', 'ftContact', 'class="ft-h"')}${T('p', 'footContact')}<p><a ${DIA} data-i="ftDia">${txt('ftDia')}</a></p><p><a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p>${langSwitch()}</div></div><div class="ft-base">${T('span', 'copyright')}</div></footer>`;
 const DIA = 'href="https://celebrants.dia.govt.nz/" target="_blank" rel="noopener"';
+const pin = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
+const seal = '<svg class="seal" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="32" cy="32" r="23" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3"/><path d="M22 33l7 7 14-15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const NATIVE = [['English', 'en', null], ['粵語', 'zh-Hant', 'langChips.1'], ['普通話', 'zh-Hant', 'langChips.2']];
 const B = {
-  approach: () => `${T('h2', 'approachH')}${T('p', 'approach1')}${T('p', 'approach2')}`,
-  quote: () => `<blockquote class="q">${T('p', 'quote')}<footer data-i="quoteBy">${txt('quoteBy')}</footer></blockquote>`,
-  services: () => [0, 1].map((i) => `<article class="svc rv">${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}</article>`).join(''),
-  langs: () => `${T('h2', 'langH')}${T('p', 'lang1')}${chips()}`,
-  cred: () => `<div class="rv">${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a></div>`,
-  travel: () => `<div class="rv">${T('h3', 'travelH')}${T('p', 'travel')}</div>`,
-  enq: () => `${T('h2', 'enqH')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${T('p', 'enqNote', 'class="note"')}`,
+  eb: (k) => `<p class="sec-eb" data-i="${k}">${txt(k)}</p>`,
+  approach: () => `<p class="sec-eb" data-i="secApproach">${txt('secApproach')}</p>${T('h2', 'approachH')}${T('p', 'approach1')}${T('p', 'approach2')}`,
+  quote: () => `<blockquote class="q"><span class="qm" aria-hidden="true">“</span>${T('p', 'quote')}<footer data-i="quoteBy">${txt('quoteBy')}</footer></blockquote>`,
+  services: () => [['lake', 0], ['park', 1]].map(([img, i]) => `<article class="svc rv">${ph('phDetail', 'svc-ph', img)}<div class="svc-b">${T('h3', `services.${i}.h`)}${T('p', `services.${i}.p`)}<a class="svc-l" href="#enquire"><span data-i="quoteCta">${txt('quoteCta')}</span> →</a></div></article>`).join(''),
+  tiles: () => `<ul class="ltiles">${NATIVE.map(([n, l, z], i) => `<li class="rv"><span class="ln" lang="${l}"${z ? ` data-z="${z}" data-zl` : ''}>${n}</span><span class="ls2" data-i="langNote.${i}">${txt(`langNote.${i}`)}</span></li>`).join('')}</ul>`,
+  langs: () => `<p class="sec-eb" data-i="secLanguages">${txt('secLanguages')}</p>${T('h2', 'langH')}${T('p', 'lang1')}${B.tiles()}`,
+  cred: () => `<div class="cred rv">${seal}<div>${T('h3', 'credH')}${T('p', 'cred')}<a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a></div></div>`,
+  travel: () => `<div class="travel rv">${T('h3', 'travelH')}<ul class="places">${[0, 1, 2, 3, 4, 5, 6].map((i) => `<li>${pin}<span data-i="places.${i}">${txt(`places.${i}`)}</span></li>`).join('')}</ul>${T('p', 'travelNote', 'class="note"')}</div>`,
+  enq: () => `<p class="sec-eb" data-i="secEnquire">${txt('secEnquire')}</p>${T('h2', 'enqH')}${T('p', 'enq1')}${incList()}${T('p', 'enq2')}${ph('phDetail', 'enq-ph', 'bouquet')}${T('p', 'enqNote', 'class="note"')}`,
   ctas: () => `<div class="btns"><a class="btn" href="#enquire" data-i="cta">${txt('cta')}</a><a class="tl" href="#approach" data-i="cta2">${txt('cta2')}</a></div>`,
   langLink: () => `<a class="tl" href="#faq" data-i="langLink">${txt('langLink')}</a>`,
 };
+const faqBlock = (img = 'vows') => `<div class="faqx" id="faq"><div class="faqx-l"><p class="sec-eb" data-i="secQuestions">${txt('secQuestions')}</p>${T('h2', 'faqH')}${T('p', 'faqIntro')}${ph('phDetail', 'faqx-ph rv', img)}</div><div class="faq">${[0, 1, 2, 3, 4, 5].map((i) => `<details${i === 0 ? ' open' : ''}><summary data-i="faq.${i}.0">${txt(`faq.${i}.0`)}</summary>${T('p', `faq.${i}.1`)}</details>`).join('')}</div></div>`;
 const base = (o = {}) => `
 :root{--r:${o.r || '4px'}}
 body{background:var(--bg);color:var(--ink)}
@@ -61,7 +67,48 @@ input,textarea{background:#fff;border:1px solid #7a7073;color:#2e2a2b}
 .split{display:grid;gap:32px}@media(min-width:900px){.split{grid-template-columns:1fr 1fr;gap:72px;align-items:center}}
 .split .ph{aspect-ratio:4/5}
 .two{display:grid;gap:32px}@media(min-width:760px){.two{grid-template-columns:1fr 1fr;gap:56px}}
-.ft{padding-block:48px 64px;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)}.ft-in{max-width:${o.w || '76rem'};margin:0 auto;${G};display:grid;gap:16px}@media(min-width:800px){.ft-in{${GD};grid-template-columns:2fr 1fr}}.ft .bn{font-size:1.75rem;margin:0 0 8px}.ft p{margin:0 0 6px}
+.sec-eb{display:flex;align-items:center;gap:12px;font-family:var(--f-body);font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:0 0 16px}
+.sec-eb::before{content:"";width:28px;height:1px;background:currentColor}
+:lang(zh) .sec-eb{letter-spacing:.08em;font-size:.875rem;font-weight:400}
+[style*="text-align:center"] .sec-eb,.cent .sec-eb,.qc .sec-eb{justify-content:center}
+.q{position:relative}.qm{display:block;font-family:Georgia,"Times New Roman",serif;font-size:6rem;line-height:.6;height:.45em;color:var(--acc);opacity:.35;margin-bottom:8px}
+.svc{display:flex;flex-direction:column;overflow:hidden;padding:0!important;text-align:left!important}
+.svc .svc-ph{aspect-ratio:16/10;border-radius:0!important}
+.svc-b{padding:24px 28px 28px;display:flex;flex-direction:column;gap:6px;flex:1}
+.svc-b p{flex:1}
+.svc-l{margin-top:14px;font-weight:600;color:var(--acc);text-decoration:none;align-self:flex-start;border-bottom:1px solid currentColor;padding-bottom:2px}
+:lang(zh) .svc-l{font-weight:400}
+.svc-l:hover{opacity:.75}
+.ltiles{list-style:none;padding:0;margin:28px 0 20px;display:grid;gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.ltiles li{background:color-mix(in srgb,var(--acc) 7%,var(--card,#fff));border:1px solid color-mix(in srgb,var(--acc) 22%,transparent);border-radius:var(--tile-r,16px);padding:22px 16px 18px;display:grid;gap:8px;justify-items:center;text-align:center;transition:transform .25s ease,box-shadow .25s ease}
+.ltiles li:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px color-mix(in srgb,var(--acc) 60%,transparent)}
+.ltiles .ln{font-family:var(--f-head);font-weight:var(--hw);font-size:clamp(1.5rem,1.1rem + 1.6vw,2.25rem);line-height:1.1;color:var(--acc)}
+.ltiles .ln:lang(zh){font-family:var(--zh-h),var(--zh-serif-fb),serif;font-weight:600}
+.ltiles .ls2{font-size:.8125rem;opacity:.8;line-height:1.35}
+@media(max-width:480px){.ltiles{gap:8px}.ltiles li{padding:16px 8px 14px}}
+.cred{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;background:var(--card,#fff);border-radius:var(--tile-r,16px);padding:24px;border:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+.cred .seal{width:56px;height:56px;color:var(--acc)}
+.cred h3{margin-bottom:.3em}.cred p{margin:0 0 10px}
+.places{list-style:none;padding:0;margin:14px 0 12px;display:flex;flex-wrap:wrap;gap:8px}
+.places li{display:inline-flex;align-items:center;gap:6px;background:var(--card,#fff);border:1px solid color-mix(in srgb,var(--ink) 14%,transparent);border-radius:999px;padding:.35rem .85rem .35rem .65rem;font-size:.9375rem}
+.places svg{color:var(--acc);flex:none}
+.enq-ph{aspect-ratio:16/9;border-radius:var(--tile-r,16px);margin:8px 0 20px!important}
+.faqx{display:grid;gap:40px}@media(min-width:950px){.faqx{grid-template-columns:5fr 7fr;gap:72px;align-items:start}.faqx-l{position:sticky;top:96px}}
+.faqx-l p{max-width:30rem}
+.faqx-ph{aspect-ratio:4/3;border-radius:var(--tile-r,16px);margin-top:24px!important}
+@media(max-width:949px){.faqx-ph{display:none}}
+.faq summary{transition:color .2s ease}.faq summary:hover{color:var(--acc)}
+.ft{padding-block:0;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)}
+.ft-in{max-width:${o.w || '76rem'};margin:0 auto;${G};display:grid;gap:36px;padding-block:64px 40px}@media(min-width:800px){.ft-in{${GD};grid-template-columns:2fr 1fr 1fr}}
+.ft-wm{font-size:clamp(2rem,1.5rem + 2vw,3rem)!important;margin:0!important;line-height:1}
+.ft-sub{opacity:.8;margin:6px 0 16px!important}
+.ft-btn{margin-top:16px}
+.ft-h{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;opacity:.7;margin:0 0 14px!important}:lang(zh) .ft-h{letter-spacing:.08em;font-size:.875rem;font-weight:400}
+.ft-col ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ft-col a{color:inherit;text-decoration:none}.ft-col a:hover{text-decoration:underline}
+.ft-col p{margin:0 0 10px}
+.ft-col .ls{margin-top:14px;flex-wrap:wrap}
+.ft-base{max-width:${o.w || '76rem'};margin:0 auto;${G};padding-block:18px 28px;font-size:.8125rem;opacity:.7;border-top:1px solid color-mix(in srgb,currentColor 12%,transparent)}@media(min-width:900px){.ft-base{${GD}}}
 `;
 const designs = [];
 
@@ -73,7 +120,7 @@ designs.push({
 .ribbon{background:var(--cocoa);color:#FBF3F1;text-align:center;font-size:.8125rem;letter-spacing:.04em;margin:0;padding:9px max(16px,env(safe-area-inset-left,0px))}
 .hero{position:relative;min-height:min(92vh,880px);display:grid;align-items:end;color:#fff}
 .hero>.ph{position:absolute;inset:0}
-.hero>.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,22,.6) 0%,rgba(30,20,22,0) 30%,rgba(30,20,22,0) 42%,rgba(30,20,22,.75) 100%)}
+.hero>.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,22,.6) 0%,rgba(30,20,22,.35) 35%,rgba(30,20,22,.5) 60%,rgba(30,20,22,.8) 100%)}
 .hero>.ph .badge{left:auto;right:12px;bottom:12px}
 .hero .hd{position:absolute;top:0;left:0;right:0;z-index:3;color:#fff}
 .btn-q{display:none!important}@media(min-width:900px){.btn-q{display:inline-flex!important;min-height:2.5rem!important;padding:.4rem 1.2rem!important;background:#fff!important;color:var(--cocoa)!important;border-radius:999px!important;margin-left:8px}}
@@ -107,7 +154,7 @@ designs.push({
 <section id="approach"><div class="in split"><div class="rv">${B.approach()}${T('p', 'intro2')}</div>${ph('phPortrait', 'rv', 'peonies')}</div></section>
 <section class="qwrap">${ph('phDetail', '', 'candles', false, '100vw')}<div class="in">${B.quote()}</div></section>
 <section class="band"><div class="in">${T('h2', 'servicesH')}<div class="svcs">${B.services()}</div><div style="margin-top:56px;max-width:40rem" class="rv">${T('p', 'lang1')}${B.langLink()}</div></div></section>
-<section><div class="in" style="max-width:60rem">${faq()}</div></section>
+<section><div class="in">${faqBlock()}</div></section>
 <section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('a')}</div></div></section>
 </main>${foot()}`,
 });
@@ -148,7 +195,7 @@ ${ph('phCeremony', 'pano', 'lake', true)}
 <section id="approach"><div class="in cols"><div class="rv">${B.approach()}</div><div class="rv">${B.langs()}${B.langLink()}</div><div>${B.cred()}<div style="height:28px"></div>${B.travel()}</div></div></section>
 <section class="soft qc"><div class="in">${B.quote()}</div></section>
 <section><div class="in">${T('h2', 'servicesH')}<div class="svcs">${B.services()}</div></div></section>
-<section class="soft"><div class="in" style="max-width:60rem">${faq()}</div></section>
+<section class="soft"><div class="in">${faqBlock()}</div></section>
 <section id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('b')}</div></div></section>
 </main>${foot()}`,
 });
@@ -193,7 +240,7 @@ input,textarea{border-radius:14px}
 <section style="padding-top:0"><div class="in"><div class="qb rv">${B.quote()}</div></div></section>
 <section style="padding-top:0"><div class="in">${T('h2', 'servicesH')}<div class="svcs">${B.services()}</div></div></section>
 <section style="padding-top:0"><div class="in two"><div class="rv">${B.langs()}${B.langLink()}</div><div>${B.cred()}<div style="height:24px"></div>${B.travel()}</div></div></section>
-<section style="padding-top:0"><div class="in" style="max-width:60rem">${faq()}</div></section>
+<section style="padding-top:0"><div class="in">${faqBlock()}</div></section>
 <section style="padding-top:0" id="enquire"><div class="in"><div class="enq"><div>${B.enq()}</div><div>${form('c')}</div></div></div></section>
 </main>${foot()}`,
 });
@@ -250,7 +297,7 @@ designs.push({
 </div></section>
 <section class="band" id="approach"><div class="in split">${ph('phPortrait', 'rv', 'peonies')}<div class="rv">${B.approach()}${B.quote()}</div></div></section>
 <section><div class="in two">${B.cred()}${B.travel()}</div></section>
-<section style="padding-top:0"><div class="in" style="max-width:60rem">${faq()}</div></section>
+<section style="padding-top:0"><div class="in">${faqBlock()}</div></section>
 <section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('d')}</div></div></section>
 </main>${foot()}
 <script>
@@ -311,7 +358,7 @@ designs.push({
 </div></section>
 <section class="mocha"><div class="in">${B.quote()}</div></section>
 <section><div class="in">${T('h2', 'servicesH', 'style="text-align:center"')}<div class="svcs">${B.services()}</div><div class="two" style="margin-top:56px">${B.cred()}${B.travel()}</div></div></section>
-<section class="peony"><div class="in" style="max-width:60rem">${faq()}</div></section>
+<section class="peony"><div class="in">${faqBlock()}</div></section>
 <section id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('e')}</div></div></section>
 </main>${foot()}`,
 });
@@ -349,7 +396,7 @@ designs.push({
 <section id="approach"><div class="in split">${ph('phPortrait', 'rv', 'bouquet')}<div class="rv">${B.approach()}${B.langs()}${B.langLink()}</div></div></section>
 <section class="soft"><div class="in">${B.quote()}</div></section>
 <section><div class="in">${T('h2', 'servicesH', 'style="text-align:center"')}<div class="svcs">${B.services()}</div><div class="two" style="margin-top:56px">${B.cred()}${B.travel()}</div></div></section>
-<section class="soft"><div class="in" style="max-width:60rem">${faq()}</div></section>
+<section class="soft"><div class="in">${faqBlock()}</div></section>
 <section id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('f')}</div></div></section>
 </main>${foot()}`,
 });
@@ -399,7 +446,7 @@ h2{text-align:center}
 <section class="soft cent"><div class="in">${B.quote()}</div></section>
 <section><div class="in">${T('h2', 'servicesH')}<div class="svcs">${B.services()}</div></div></section>
 <section class="soft"><div class="in cent rv" style="max-width:56rem">${B.langs()}${B.langLink()}<div class="two" style="margin-top:48px;text-align:left">${B.cred()}${B.travel()}</div></div></section>
-<section><div class="in" style="max-width:60rem">${faq()}</div></section>
+<section><div class="in">${faqBlock()}</div></section>
 <section class="soft" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('g')}</div></div></section>
 </main>${foot()}`;
   },
@@ -460,7 +507,7 @@ h2{color:var(--bur)}
 <section id="approach"><div class="in">${T('h2', 'approachH')}<div class="cols rv">${T('p', 'approach1', 'class="dropcap"')}${T('p', 'approach2')}${T('p', 'intro2')}${T('p', 'lang1')}</div></div></section>
 <section style="padding-top:0"><div class="in"><div class="pull rv">${B.quote()}</div></div></section>
 <section style="padding-top:0"><div class="in">${T('h2', 'servicesH')}<div class="svcs">${B.services()}</div><div class="two" style="margin-top:48px"><div class="rv">${T('h3', 'langH')}${chips()}${B.langLink()}</div><div>${B.cred()}<div style="height:24px"></div>${B.travel()}</div></div></div></section>
-<section class="paper"><div class="in" style="max-width:60rem">${faq()}</div></section>
+<section class="paper"><div class="in">${faqBlock()}</div></section>
 <section id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('h')}</div></div></section>
 </main>${foot()}`,
 });
