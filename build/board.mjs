@@ -29,7 +29,7 @@ const html = `<!doctype html>
 :root{--bg:#f7f4f2;--ink:#232022;--muted:#5d5759;--line:#e2dcd9;--card:#fff}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Source Sans 3","Noto Sans TC",system-ui,sans-serif;font-synthesis:none}
 .wrap{max-width:84rem;margin:0 auto;padding:0 16px}@media(min-width:900px){.wrap{padding:0 40px}}
-header.top{padding:48px 0 24px}h1{font-size:clamp(2rem,1.5rem + 2vw,3rem);line-height:1.1;margin:0 0 .5rem;font-weight:600}
+header.top{padding-block:48px 24px}h1{font-size:clamp(2rem,1.5rem + 2vw,3rem);line-height:1.1;margin:0 0 .5rem;font-weight:600}
 .lede{max-width:52rem;color:var(--muted);font-size:1.125rem}
 .status{display:inline-block;background:#fff4d6;border:1px dashed #b8860b;color:#6a4a00;font-size:.8125rem;padding:.15rem .5rem;border-radius:3px}
 .grid{display:grid;gap:24px;padding:24px 0 48px}@media(min-width:1000px){.grid{grid-template-columns:1fr 1fr}}
