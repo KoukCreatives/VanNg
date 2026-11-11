@@ -43,7 +43,7 @@ Pages load fonts from jsDelivr (Fontsource, pinned versions). Production should 
 
 ## Image and content rules
 
-* Photos on the Home pages are generic Unsplash sample images (Unsplash License), hotlinked from images.unsplash.com and marked “Sample image”. IDs are listed in `build/homes-core.mjs` (IMG). None shows Van; replace them with her authorised photos before launch.
+* Photos on the Home pages are Van's own portrait and ceremony photos from KC-575 (approved for this site by Kouk), resized into `photos/`. The aisle photo is cropped so the couple's names on the welcome sign don't show. The poster, the hearts photo and Simon's moodboard are not used.
 * `privacy.html` is a generic draft privacy notice for layout. It needs review against the real enquiry setup before any form goes live.
 * The testimonial on KC-576 is not used (permission pending).
 * There are no fees, availability promises, tea-ceremony or MC services, or legal-advice claims.
