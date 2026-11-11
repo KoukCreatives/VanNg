@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-NZ">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6. Red Thread · Type system · Van Ng concepts</title><meta name="robots" content="noindex">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif@5.3.0/files/noto-serif-latin-600-normal.woff2">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.3.1/latin-400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.3.1/latin-ext-400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.3.1/latin-600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.3.1/latin-ext-600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-tc@5.3.1/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-tc@5.3.1/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5.3.1/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5.3.1/400.css">
+<style>@font-face{font-family:"HeadLatin";src:url(https://cdn.jsdelivr.net/npm/@fontsource/noto-serif@5.3.0/files/noto-serif-latin-600-normal.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"HeadLatinZh";src:url(https://cdn.jsdelivr.net/npm/@fontsource/noto-serif@5.3.0/files/noto-serif-latin-600-normal.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"HeadLatin";src:url(https://cdn.jsdelivr.net/npm/@fontsource/noto-serif@5.3.0/files/noto-serif-latin-ext-600-normal.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:"HeadLatinZh";src:url(https://cdn.jsdelivr.net/npm/@fontsource/noto-serif@5.3.0/files/noto-serif-latin-ext-600-normal.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}</style>
+<link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/06-red-thread.css">
+<link rel="stylesheet" href="../assets/type.css">
+</head>
+<body class="c-06-red-thread typepage">
+<div class="draftbar"><div class="wrap"><span>Concept 6 · Red Thread — type system and checks</span>
+<nav aria-label="Concept views"><a href="../index.html">All concepts</a><a href="06-red-thread-en.html">EN</a><a href="06-red-thread-zh-hant.html">繁</a><a href="06-red-thread-zh-hans.html">简 test</a><a aria-current="page" href="#">Type system</a></nav></div></div>
+<main class="wrap">
+  <header class="spec-head"><p class="eyebrow">Concept 6 · Chinese lucky red (Simon’s alternative)</p><h1 class="spec-title">Red Thread</h1><p>A confident lucky-red direction. A short burgundy hero band with ivory type sits above the portrait, and a thin burgundy “thread” rule runs down the page, tying sections together. Reading surfaces stay ivory.</p></header>
+  <section><h2 class="spec-h">Typography decisions</h2><ul class="spec-list"><li>One-family harmony: Noto Serif (Latin) and Noto Serif TC were designed together, so x-height, stroke contrast and weight 600 match exactly. Mixed lines like “Vannarady Ng（Van）” need no adjustment. This is the most consistent bilingual result.</li><li>The ivory H1 on burgundy is 10.37:1. The band holds only eyebrow, H1, two short paragraphs and the CTA, never long reading text.</li><li>Body text stays charcoal sans on ivory, per the brief.</li></ul>
+  <table class="spec-table"><thead><tr><th>Role</th><th>Font</th><th>Loading</th></tr></thead><tbody><tr><td>English headings</td><td>Noto Serif 600</td><td>noto-serif latin + latin-ext, 1 file each, preloaded (latin)</td></tr><tr><td>English body, nav, forms, buttons</td><td>Source Sans 3 400 / 600</td><td>2 weights × latin/latin-ext</td></tr><tr><td>Chinese headings</td><td>Noto Serif TC 600 / SC 600</td><td>unicode-range slices, CJK weight 1 of 2</td></tr><tr><td>Chinese body, nav, forms, buttons</td><td>Noto Sans TC 400 / SC 400</td><td>unicode-range slices, CJK weight 2 of 2</td></tr></tbody></table>
+  <p class="note">Every page sets <code>font-synthesis: none</code>, <code>font-display: swap</code> and Chinese <code>letter-spacing: normal</code>. Latin is first in every stack, then the CJK web font, then system CJK fonts. On Chinese pages the Latin display face is re-declared with <code>size-adjust: 100%</code>. Chinese uses one body weight, so emphasis uses colour, not bold.</p></section>
+  <section><h2 class="spec-h">Hierarchy in both scripts</h2><div class="spec-grid">
+  <div class="spec-col" lang="en">
+    <p class="spec-label">English</p>
+    <p class="spec-meta">H1</p><h1>Auckland wedding celebrant in English, Cantonese and Mandarin</h1>
+    <p class="spec-meta">H2</p><h2>A ceremony with your story at its heart</h2>
+    <p class="spec-meta">H3</p><h3>Registered celebrant</h3>
+    <p class="spec-meta">Long heading (H2)</p><h2>Wedding ceremonies in English, Cantonese and Mandarin, with room for the families who travel to be there</h2>
+    <p class="spec-meta">Body</p><p>The words you share can be one of the most moving parts of your wedding. What matters is that they express your own feelings, rather than someone else's idea of what you should say. In my celebrant work, heartfelt blessings matter to me alongside the responsibilities of the role. I want the ceremony to celebrate the two of you, not draw attention away from you.</p>
+    <p class="spec-meta">Mixed-script line</p><p>Ceremonies in English, 粵語 and 普通話 — Vannarady Ng (Van), 20 March 2027.</p>
+    
+    <p class="spec-meta">Quote</p><blockquote class="quote"><p>In that moment, I was reminded just how powerful words can be.</p></blockquote>
+    <p class="spec-meta">Button · label · nav</p><p><a class="btn" href="#">Request a quote</a></p><label>Preferred ceremony date (if known)</label>
+    <p>Home · About Van · Ceremonies · Languages · Questions · Contact</p>
+  </div>
+  <div class="spec-col" lang="zh-Hant">
+    <p class="spec-label">繁體中文 (draft)</p>
+    <p class="spec-meta">H1</p><h1>奧克蘭證婚人，以英語、粵語及普通話主持婚禮</h1>
+    <p class="spec-meta">H2</p><h2>以你們的故事為核心的儀式</h2>
+    <p class="spec-meta">H3</p><h3>註冊證婚人</h3>
+    <p class="spec-meta">Long heading (H2)</p><h2>以英語、粵語及普通話主持的婚禮儀式，讓遠道而來的家人也能一同參與每個重要時刻</h2>
+    <p class="spec-meta">Body</p><p>一場跨語言的婚禮，不一定要把每一句話都重複一遍。你們可以考慮在不同環節使用不同語言、為重要時刻提供簡短的摘要，或邀請家人以自己的語言朗讀一段文字。這些都只是可以一起討論的方向，並不是已包括的服務。最合適的安排，取決於你們的儀式能夠提供甚麼，以及參與其中的每一位。如果發音對你們很重要，也請在查詢時一併告訴我。</p>
+    <p class="spec-meta">Mixed-script line</p><p>Van 可在 2027 年 3 月 20 日於 Rangitoto Island 以英語、粵語或普通話主持儀式（須另行確認）。</p>
+    <p class="spec-meta">Punctuation · numerals</p><p>「我願意。」——兩個人，一個承諾；三種語言、一場儀式？<br>0123456789 · 2027 年 3 月 20 日 · 09 2027 · 3:30 pm</p>
+    <p class="spec-meta">Quote</p><blockquote class="quote"><p>那一刻，我再次體會到言語的力量。</p></blockquote>
+    <p class="spec-meta">Button · label · nav</p><p><a class="btn" href="#">索取報價</a></p><label>心儀的儀式日期（如已決定）</label>
+    <p>首頁 · 關於 Van · 婚禮儀式 · 語言與家人 · 常見問題 · 聯絡</p>
+  </div></div></section>
+  <section><h2 class="spec-h">Traditional vs Simplified (script decision pending)</h2><div class="spec-grid">
+  <div class="spec-col" lang="zh-Hant">
+    <p class="spec-label">繁體中文 (draft)</p>
+    <p class="spec-meta">H1</p><h1>奧克蘭證婚人，以英語、粵語及普通話主持婚禮</h1>
+    <p class="spec-meta">H2</p><h2>以你們的故事為核心的儀式</h2>
+    <p class="spec-meta">H3</p><h3>註冊證婚人</h3>
+    <p class="spec-meta">Long heading (H2)</p><h2>以英語、粵語及普通話主持的婚禮儀式，讓遠道而來的家人也能一同參與每個重要時刻</h2>
+    <p class="spec-meta">Body</p><p>一場跨語言的婚禮，不一定要把每一句話都重複一遍。你們可以考慮在不同環節使用不同語言、為重要時刻提供簡短的摘要，或邀請家人以自己的語言朗讀一段文字。這些都只是可以一起討論的方向，並不是已包括的服務。最合適的安排，取決於你們的儀式能夠提供甚麼，以及參與其中的每一位。如果發音對你們很重要，也請在查詢時一併告訴我。</p>
+    <p class="spec-meta">Mixed-script line</p><p>Van 可在 2027 年 3 月 20 日於 Rangitoto Island 以英語、粵語或普通話主持儀式（須另行確認）。</p>
+    <p class="spec-meta">Punctuation · numerals</p><p>「我願意。」——兩個人，一個承諾；三種語言、一場儀式？<br>0123456789 · 2027 年 3 月 20 日 · 09 2027 · 3:30 pm</p>
+    <p class="spec-meta">Quote</p><blockquote class="quote"><p>那一刻，我再次體會到言語的力量。</p></blockquote>
+    <p class="spec-meta">Button · label · nav</p><p><a class="btn" href="#">索取報價</a></p><label>心儀的儀式日期（如已決定）</label>
+    <p>首頁 · 關於 Van · 婚禮儀式 · 語言與家人 · 常見問題 · 聯絡</p>
+  </div>
+  <div class="spec-col" lang="zh-Hans">
+    <p class="spec-label">简体中文 (test)</p>
+    <p class="spec-meta">H1</p><h1>奥克兰证婚人，以英语、粤语及普通话主持婚礼</h1>
+    <p class="spec-meta">H2</p><h2>以你们的故事为核心的仪式</h2>
+    <p class="spec-meta">H3</p><h3>注册证婚人</h3>
+    <p class="spec-meta">Long heading (H2)</p><h2>以英语、粤语及普通话主持的婚礼仪式，让远道而来的家人也能一同参与每个重要时刻</h2>
+    <p class="spec-meta">Body</p><p>一场跨语言的婚礼，不一定要把每一句话都重复一遍。你们可以考虑在不同环节使用不同语言、为重要时刻提供简短的摘要，或邀请家人以自己的语言朗读一段文字。这些都只是可以一起讨论的方向，并不是已包括的服务。最合适的安排，取决于你们的仪式能够提供甚么，以及参与其中的每一位。如果发音对你们很重要，也请在查询时一并告诉我。</p>
+    <p class="spec-meta">Mixed-script line</p><p>Van 可在 2027 年 3 月 20 日于 Rangitoto Island 以英语、粤语或普通话主持仪式（须另行确认）。</p>
+    <p class="spec-meta">Punctuation · numerals</p><p>「我愿意。」——两个人，一个承诺；三种语言、一场仪式？<br>0123456789 · 2027 年 3 月 20 日 · 09 2027 · 3:30 pm</p>
+    <p class="spec-meta">Quote</p><blockquote class="quote"><p>那一刻，我再次体会到言语的力量。</p></blockquote>
+    <p class="spec-meta">Button · label · nav</p><p><a class="btn" href="#">索取报价</a></p><label>心仪的仪式日期（如已决定）</label>
+    <p>首页 · 关于 Van · 婚礼仪式 · 语言与家人 · 常见问题 · 联络</p>
+  </div></div></section>
+  <section><h2 class="spec-h">Contrast (calculated from tokens)</h2><table class="spec-table"><thead><tr><th>Pair</th><th>Foreground</th><th>Background</th><th>Ratio</th><th>AA</th></tr></thead><tbody><tr><td>Body text</td><td><span class="sw" style="background:#2E2A2B"></span>#2E2A2B</td><td><span class="sw" style="background:#FBF7F2"></span>#FBF7F2</td><td>13.28:1</td><td>pass</td></tr><tr><td>Body on band</td><td><span class="sw" style="background:#2E2A2B"></span>#2E2A2B</td><td><span class="sw" style="background:#F5EBE6"></span>#F5EBE6</td><td>12.08:1</td><td>pass</td></tr><tr><td>Headings</td><td><span class="sw" style="background:#6E1F2E"></span>#6E1F2E</td><td><span class="sw" style="background:#FBF7F2"></span>#FBF7F2</td><td>10.37:1</td><td>pass</td></tr><tr><td>Headings on band</td><td><span class="sw" style="background:#6E1F2E"></span>#6E1F2E</td><td><span class="sw" style="background:#F5EBE6"></span>#F5EBE6</td><td>9.43:1</td><td>pass</td></tr><tr><td>Muted / notes</td><td><span class="sw" style="background:#575052"></span>#575052</td><td><span class="sw" style="background:#FBF7F2"></span>#FBF7F2</td><td>7.36:1</td><td>pass</td></tr><tr><td>Muted on band</td><td><span class="sw" style="background:#575052"></span>#575052</td><td><span class="sw" style="background:#F5EBE6"></span>#F5EBE6</td><td>6.70:1</td><td>pass</td></tr><tr><td>Links</td><td><span class="sw" style="background:#6E1F2E"></span>#6E1F2E</td><td><span class="sw" style="background:#FBF7F2"></span>#FBF7F2</td><td>10.37:1</td><td>pass</td></tr><tr><td>Button label</td><td><span class="sw" style="background:#FBF7F2"></span>#FBF7F2</td><td><span class="sw" style="background:#8E1B24"></span>#8E1B24</td><td>8.44:1</td><td>pass</td></tr><tr><td>Button hover</td><td><span class="sw" style="background:#FBF7F2"></span>#FBF7F2</td><td><span class="sw" style="background:#6E1F2E"></span>#6E1F2E</td><td>10.37:1</td><td>pass</td></tr><tr><td>Field border (non-text, 3:1)</td><td><span class="sw" style="background:#7A7073"></span>#7A7073</td><td><span class="sw" style="background:#FFFFFF"></span>#FFFFFF</td><td>4.78:1</td><td>pass</td></tr><tr><td>Decorative accent (never text)</td><td><span class="sw" style="background:#B8924A"></span>#B8924A</td><td><span class="sw" style="background:#FBF7F2"></span>#FBF7F2</td><td>2.72:1</td><td>decorative only</td></tr></tbody></table>
+  <p><b>Gold / accent:</b> No gold in the interface. The brief suggests letting real brass or gold objects in authorised photos supply any gold.</p><p><b>Risks to check:</b> The strongest colour presence of the eight. It may feel too bold for Van’s stated soft, feminine preference. It’s here as the red ceiling.</p></section>
+</main>
+</body></html>
