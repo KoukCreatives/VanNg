@@ -2,12 +2,13 @@
 
 This folder holds the Round 1 design concepts for KC-575. Nothing here is client-approved. The copy is the KC-576 draft. The Chinese text is a type-testing draft that needs the agreed translator and a fluent reviewer.
 
-**Live concepts:** https://koukcreatives.github.io/VanNg/ (GitHub Pages, noindex). Start at the overview board, then read `TYPOGRAPHY.md` (also at `typography.html`).
+**Live concepts:** https://koukcreatives.github.io/VanNg/ (GitHub Pages, noindex). The root URL shows Home-09; the overview board is at `designs.html`. Start there, then read `TYPOGRAPHY.md` (also at `typography.html`).
 
 ## Layout
 
 ```
-index.html            overview: links + live previews of the 8 homepage designs
+index.html            site root: a copy of Home-09 (Van's chosen direction, Round 2)
+designs.html          overview: links + live previews of the homepage designs
 Home-01.html … Home-08.html   eight distinct homepage designs, each with an EN / 繁體 / 简体 (test) switch
 Home-09.html          Round 2: Van's pick (04 layout + 05 hero, brightened) with her 14 Nov feedback; ?sig=a|b|c|d previews signature styles
 privacy.html          shared draft privacy notice (EN / 繁體 / 简体)
@@ -35,7 +36,7 @@ The files are flat so they can be browsed on GitHub. The real site would use `/z
 npm i @fontsource/{cormorant-garamond,source-sans-3,noto-serif-tc,noto-sans-tc,noto-serif-sc,noto-sans-sc,literata,fraunces,noto-serif,source-serif-4,lxgw-wenkai-tc,lxgw-wenkai} opencc-js playwright
 node build/build.mjs     # pages + concept CSS
 node build/homes.mjs     # Home-01.html … Home-08.html
-node build/board.mjs     # index.html
+node build/board.mjs     # designs.html
 node build/shoot.mjs     # screenshots (serves fonts from node_modules)
 ARTIFACT=1 node build/build.mjs && node build/artifact.mjs   # dist/ for claude.ai hosting (Google Fonts) + typography.html
 ```
