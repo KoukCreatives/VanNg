@@ -767,6 +767,15 @@ main section{position:relative}
 .testi9 .tq p:first-of-type{font-size:calc(var(--hs)*clamp(1.25rem,1.1rem + .5vw,1.5rem));line-height:1.6}
 .testi9 .tq>li{grid-auto-columns:min(100%,52rem)}
 .tq{grid-auto-columns:min(100%,52rem)}
+/* single review: full width, edges line up with the floating menu bar */
+.testi9 .in{max-width:1560px;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.testi9 .tq:has(>li:only-child){grid-auto-columns:100%;justify-content:stretch}
+@media(min-width:900px){.testi9 .tq:has(>li:only-child){grid-auto-columns:100%;justify-content:stretch}
+.testi9 .tq blockquote{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(40px,5vw,88px);padding:clamp(40px,4.5vw,72px) clamp(40px,5vw,88px);border-radius:28px}
+.testi9 .tq blockquote>.qm,.testi9 .tq blockquote>p:first-of-type,.testi9 .tq blockquote>footer{grid-column:1/-1}
+.testi9 .tq blockquote>p:first-of-type{max-width:none;font-size:calc(var(--hs)*clamp(1.375rem,1.1rem + .8vw,1.875rem));line-height:1.5;margin-bottom:28px}
+.testi9 .tq blockquote>p:not(:first-of-type){margin-bottom:0}
+.testi9 .tq blockquote>footer{margin-top:28px}}
 /* credentials + travel */
 .trust9{background:#fff}
 .trust9 .two{align-items:stretch}.trust9 .two>*{height:100%;margin:0}
