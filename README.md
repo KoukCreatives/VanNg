@@ -9,6 +9,7 @@ This folder holds the Round 1 design concepts for KC-575. Nothing here is client
 ```
 index.html            overview: links + live previews of the 8 homepage designs
 Home-01.html … Home-08.html   eight distinct homepage designs, each with an EN / 繁體 / 简体 (test) switch
+Home-09.html          Round 2: Van's pick (04 layout + 05 hero, brightened) with her 14 Nov feedback; ?sig=a|b|c|d previews signature styles
 privacy.html          shared draft privacy notice (EN / 繁體 / 简体)
 typography.html       TYPOGRAPHY.md rendered for the live site
 TYPOGRAPHY.md         shared bilingual type system and decisions
