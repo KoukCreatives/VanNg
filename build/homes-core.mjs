@@ -53,6 +53,37 @@ const extraEN = {
   faqIntro: 'Short answers to what couples usually ask first. Anything else, just include it in your enquiry.',
   quoteCta: 'Request a quote', ftExplore: 'Explore', ftContact: 'Contact', ftDia: 'DIA Celebrants Online',
   langNote: ['Ceremony in English', 'Ceremony in Cantonese', 'Ceremony in Mandarin'],
+  // ── Home-09 (Round 2 merge, Van's feedback 14 Nov 2026) ──
+  aboutEb: 'About Van', aboutH: 'Hi, I’m Van.',
+  about: [
+    'I’m a registered Marriage and Civil Union Celebrant based in East Auckland. I was born and raised in Hong Kong, and Cantonese is my first language. I’m also fluent in Mandarin and English. I can hold your ceremony in one language or weave all three together, so everyone you love, from your grandparents to your closest friends, can understand every word and share the moment with you.',
+    'By day, I’m a solicitor at a law firm in East Auckland, and I genuinely love what I do. My journey in law began in Hong Kong, and it has grown into a career I’m truly passionate about. I help clients buy their first homes, protect their families and plan for the future. Nothing is more rewarding than taking something that feels complicated or worrying and making it clear and simple. I enjoy finding solutions, spotting risks early and giving my clients real peace of mind.',
+    'I bring that same care and attention to your wedding. From checking your marriage licence to lodging your particulars with Births, Deaths and Marriages afterwards, I’ll take care of all the legal details for you. All you need to do is be present, hold each other’s hands and soak in every moment of your special day.',
+  ],
+  aboutMore: 'Read more about me',
+  aboutWhyH: 'Why I became a celebrant',
+  aboutWhy: [
+    'To me, being a celebrant is a real privilege. I get to stand beside two people at one of the biggest milestones of their lives. A wedding is more than a celebration. It’s the moment two people step into new roles together. You become a husband or a wife, a partner for life, a son-in-law or daughter-in-law. One day, perhaps, you’ll become a father or a mother. Two families become one.',
+    'I’ve always felt that moments like these deserve to be marked with meaning, and with words that truly belong to you. Being there as you make that promise, surrounded by the people who love you most, is what drew me to this work. It’s also what keeps me coming back to it with a full heart.',
+  ],
+  aboutYoursH: 'Your ceremony, your story',
+  aboutYours: [
+    'Your ceremony should be all about the two of you, not me. I’ll take the time to get to know you, hear your story and help you find your own words. That way your ceremony feels personal, relaxed and completely yours.',
+    'Whether you’re dreaming of an intimate ceremony on Rangitoto Island, a garden wedding in Auckland or a celebration further afield, I’d love to hear from you.',
+  ],
+  testiEb: 'Kind words', testiH: 'From couples I’ve married',
+  testi: [
+    {
+      q: ['Thank you so much, Vannarady. From the moment I met you, I’ve always felt you were so sweet and gentle, and so easy to get along with. Before and after the wedding, you gave me not only professional help and support, but you were also like a big sister to me, which made me feel so reassured.',
+        'And the script you wrote was just wonderful! When you read it out on the day, my husband told me his eyes welled up and he almost couldn’t hold back his tears. It was such a touching moment, and I felt you expressed our story and our feelings so beautifully.',
+        'Thank you for your patience, thoughtfulness and warmth all along, and thank you for giving our wedding such a special and precious memory. I feel truly lucky to have had you as my celebrant.'],
+      by: '[Couple’s names and wedding month · to confirm with Van]',
+    },
+  ],
+  socLabel: 'Van on social media', socCopy: 'Copy ID', socCopied: 'Copied', socClose: 'Close',
+  socWechat: 'WeChat ID', socRed: 'Xiaohongshu (RedNote) ID', socHint: 'Search this ID in the app to find Van.', socQr: '[QR code · to be supplied by Van]',
+  regNo: 'Registration no. 61327',
+  canz: 'Member of Celebrants Aotearoa', canzLink: 'My Celebrants Aotearoa profile', canzLogo: '[Celebrants Aotearoa logo · file from Van]',
   pv: {
     title: 'Privacy notice', note: 'Draft for review · not legal advice',
     intro: 'This notice explains how Vannarady Ng (“Van”) collects and uses personal information through this website, in line with the New Zealand Privacy Act 2020.',
@@ -107,6 +138,30 @@ const extraZH = {
   faqIntro: '新人最常問的問題，簡單解答。其他問題，歡迎在查詢中一併提出。',
   quoteCta: '索取報價', ftExplore: '瀏覽', ftContact: '聯絡', ftDia: '內政部證婚人名冊',
   langNote: ['以英語主持儀式', '以粵語主持儀式', '以普通話主持儀式'],
+  // ── Home-09: working draft for layout only; needs the agreed translator + Van's review ──
+  aboutEb: '關於 Van', aboutH: '你好，我是 Van。',
+  about: [
+    '我是常駐奧克蘭東區的註冊婚姻及民事結合證婚人。我在香港出生和長大，母語是粵語，也能說流利的普通話和英語。你們的儀式可以只用一種語言，也可以把三種語言融合在一起，讓你們所愛的每一個人，由祖父母到最要好的朋友，都能聽懂每一句話，一同分享這個時刻。',
+    '平日，我是奧克蘭東區一間律師事務所的律師，我很熱愛自己的工作。我的法律之路始於香港，後來發展成一份我真心熱愛的事業。我協助客戶購買第一個家、保障家人，並為將來作好規劃。把看似複雜或令人擔心的事情變得清晰簡單，是最有滿足感的事。我享受尋找解決方法、及早發現風險，讓客戶真正安心。',
+    '我會以同樣的用心和細心對待你們的婚禮。由核對你們的結婚證書（marriage licence），到婚禮後向出生、死亡及婚姻登記處（Births, Deaths and Marriages）遞交婚姻資料，所有法律細節都由我為你們處理。你們只需要全心投入，牽著對方的手，好好感受這個特別日子的每一刻。',
+  ],
+  aboutMore: '閱讀更多',
+  aboutWhyH: '我為何成為證婚人',
+  aboutWhy: [
+    '對我來說，成為證婚人是一份榮幸。我可以在兩個人人生最重要的里程碑之一，站在他們身旁。婚禮不只是一場慶祝，更是兩個人一同踏入新角色的時刻。你們成為丈夫或妻子、成為一生的伴侶、成為女婿或媳婦，將來或許還會成為父親或母親。兩個家庭從此合而為一。',
+    '我一直覺得，這樣的時刻值得以有意義的方式記下，並用真正屬於你們的言語表達。在最愛你們的人環繞下，陪伴你們許下承諾，正是吸引我投入這份工作的原因，也是讓我每一次都滿心歡喜地繼續下去的原因。',
+  ],
+  aboutYoursH: '你們的儀式，你們的故事',
+  aboutYours: [
+    '你們的儀式應該以你們兩人為中心，而不是我。我會花時間認識你們、聆聽你們的故事，並幫助你們找到屬於自己的言語，讓儀式感覺親切、自在，完完全全屬於你們。',
+    '無論你們夢想在朗伊托托島（Rangitoto Island）舉行溫馨的小型儀式、在奧克蘭的花園舉行婚禮，還是在更遠的地方慶祝，我都很期待收到你們的消息。',
+  ],
+  testiEb: '新人的話', testiH: '來自新人的心意',
+  testi: [{ q: ['［待 Van 提供中文原文］', '', ''], by: '［新人稱呼及婚禮月份待確認］' }],
+  socLabel: 'Van 的社交媒體', socCopy: '複製', socCopied: '已複製', socClose: '關閉',
+  socWechat: '微信號', socRed: '小紅書號', socHint: '在應用程式內搜尋此帳號，即可找到 Van。', socQr: '［二維碼 · 待 Van 提供］',
+  regNo: '註冊編號 61327',
+  canz: 'Celebrants Aotearoa 會員', canzLink: '我的 Celebrants Aotearoa 簡介', canzLogo: '［Celebrants Aotearoa 標誌 · 待 Van 提供檔案］',
   pv: {
     title: '私隱聲明', note: '草稿 · 待審閱 · 並非法律意見',
     intro: '本聲明說明 Vannarady Ng（Van）如何根據紐西蘭《2020 年私隱法》透過本網站收集及使用個人資料。',
@@ -268,6 +323,8 @@ const VAN = {
   lake: ['ceremony-sunlit', 'Van leading a sunlit ceremony on a lawn above the sea, between pink and white floral columns'],
   pier: ['ceremony-sunlit', 'Van leading a sunlit ceremony on a lawn above the sea, between pink and white floral columns'],
   veil: ['ceremony-sunlit', 'Van leading a sunlit ceremony on a lawn above the sea, between pink and white floral columns'],
+  // Home-09: the Concept 05 hero photo with shadows lifted and slightly warmed (Van's request, 14 Nov 2026).
+  sunbright: ['ceremony-sunlit-bright', 'Van leading a sunlit ceremony on a lawn above the sea, between pink and white floral columns'],
   arch: ['ceremony-setup', 'A ceremony setup of pink and white floral columns and white tables on a lawn under a blue sky'],
   officiant: ['ceremony-setup', 'A ceremony setup of pink and white floral columns and white tables on a lawn under a blue sky'],
   table: ['signing-sunset', 'A couple signing their marriage documents with Van at a flower-filled table at sunset'],

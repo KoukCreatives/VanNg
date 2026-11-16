@@ -4,7 +4,11 @@
 // Run: node build/homes.mjs
 import fs from 'node:fs';
 import path from 'node:path';
-import { ROOT, T, Z, txt, page, navList, langSwitch, mobileNav, brand, form, incList, chips, ph, faq } from './homes-core.mjs';
+import { createRequire } from 'node:module';
+import { ROOT, T, Z, txt, page, navList, langSwitch, mobileNav, brand, form, incList, chips, ph, faq, DICT } from './homes-core.mjs';
+const SI = createRequire(import.meta.url)('simple-icons'); // CC0 brand glyphs for the social links (Home-09)
+const DICT_TESTI = () => Object.keys(DICT.en).filter((k) => /^testi\.\d+\.by$/.test(k));
+const testiQ = (i) => Object.keys(DICT.en).filter((k) => k.startsWith(`testi.${i}.q.`)).map((k) => T('p', k)).join('');
 
 export const REFS = [
   ['Markovina Estate', 'https://www.markovina.co.nz/', 'Immersive full-screen ceremony photo with a slim announcement ribbon'],
@@ -543,6 +547,131 @@ h2{color:var(--bur)}
 </main>${foot()}`,
 });
 
+// ── 09 · Planner × Cinematic — Round 2 merge from Van's feedback (14 Nov 2026) ──
+// Concept 04 layout + Concept 05 hero photo (brightened, Ken Burns kept), signature wordmark,
+// About Van, testimonials, social links, Celebrants Aotearoa and registration number.
+const SOC = {
+  // Instagram handle: Simon has it from KC-575 — replace the placeholder URL before sending.
+  fb: { href: 'https://www.facebook.com/profile.php?id=61593286401022', label: 'Facebook', icon: 'siFacebook' },
+  ig: { href: '#instagram-url-to-add', label: 'Instagram', icon: 'siInstagram' },
+  red: { id: '63625534159', label: 'Xiaohongshu (RedNote)', key: 'socRed', icon: 'siXiaohongshu' },
+  wx: { id: 'Van_Celebrant', label: 'WeChat', key: 'socWechat', icon: 'siWechat' },
+};
+const CANZ = 'href="https://celebrantsaotearoa.co.nz/celebrants/vannarady-ng/" target="_blank" rel="noopener"';
+const svgIcon = (name) => { const i = SI[name]; return `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="${i.path}"/></svg>`; };
+const socials = (cls = 'soc') => `<ul class="${cls}" aria-label="${SOC.fb.label}, ${SOC.ig.label}, ${SOC.red.label}, ${SOC.wx.label}">${Object.entries(SOC).map(([k, s]) => s.href
+  ? `<li><a href="${s.href}" target="_blank" rel="noopener" aria-label="${s.label}" title="${s.label}">${svgIcon(s.icon)}</a></li>`
+  : `<li><button type="button" popovertarget="pop-${k}" aria-label="${s.label}" title="${s.label}">${svgIcon(s.icon)}</button></li>`).join('')}</ul>`;
+const socPops = () => ['red', 'wx'].map((k) => { const s = SOC[k]; return `<div class="pop" id="pop-${k}" popover><div class="pop-h">${svgIcon(s.icon)}<p data-i="${s.key}">${txt(s.key)}</p></div><p class="pop-id" lang="en">${s.id}</p><p class="pop-n" data-i="socHint">${txt('socHint')}</p><p><span class="flag" data-i="socQr">${txt('socQr')}</span></p><div class="pop-b"><button type="button" class="btn" data-copy="${s.id}" data-i="socCopy">${txt('socCopy')}</button><button type="button" class="tl" popovertarget="pop-${k}" popovertargetaction="hide" data-i="socClose">${txt('socClose')}</button></div></div>`; }).join('');
+const sigBrand = () => `<a class="brand" href="#"><span class="sig" lang="en">Vannarady Ng</span><span class="bs" data-i="brandSub">${txt('brandSub')}</span></a>`;
+const head9 = () => `<header class="hd"><div class="hd-in">${sigBrand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${socials()}${langSwitch()}${mobileNav()}</div></div></header>`;
+const cred9 = () => `<div class="cred rv">${seal}<div>${T('h3', 'credH')}${T('p', 'cred')}<p class="reg"><a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a> <span class="reg-n" data-i="regNo">${txt('regNo')}</span></p><div class="canz"><span class="flag" data-i="canzLogo">${txt('canzLogo')}</span><p><span data-i="canz">${txt('canz')}</span> · <a class="tl" ${CANZ} data-i="canzLink">${txt('canzLink')}</a></p></div></div></div>`;
+const foot9 = () => `<footer class="ft"><div class="ft-in"><div class="ft-a"><p class="sig ft-wm" lang="en">Vannarady Ng</p>${T('p', 'brandSub', 'class="ft-sub"')}${T('p', 'footNote', 'class="note"')}${socials('soc ft-soc')}<a class="btn ft-btn" href="#enquire" data-i="cta">${txt('cta')}</a></div><nav class="ft-col" aria-label="Footer">${T('p', 'ftExplore', 'class="ft-h"')}<ul>${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'].map((h, i) => `<li><a href="${h}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`).join('')}</ul></nav><div class="ft-col">${T('p', 'ftContact', 'class="ft-h"')}${T('p', 'footContact')}<p><a ${DIA} data-i="ftDia">${txt('ftDia')}</a> · <span data-i="regNo">${txt('regNo')}</span></p><p><a ${CANZ} data-i="canz">${txt('canz')}</a></p><p><a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p>${langSwitch()}</div></div><div class="ft-base">${T('span', 'copyright')}</div></footer>`;
+// Signature options for Van to compare (all SIL OFL 1.1, Latin subset only). Review switch: ?sig=a|b|c|d
+const SIGS = [['a', 'Corinthia', 'corinthia'], ['b', 'Pinyon Script', 'pinyon-script'], ['c', 'Great Vibes', 'great-vibes'], ['d', 'Allura', 'allura']];
+designs.push({
+  name: 'Planner × Cinematic', ref: 3,
+  fonts: { head: { pkg: 'literata', weight: 500, zhAdjust: 1.0 }, ...serifTC, zhHeadW: 500, zhBodyW: 400, extra: SIGS.map(([, , p]) => [p, 'latin-400.css']) },
+  css: designs[3].css + `
+/* signature wordmark */
+:root{--sig:"Corinthia";--sig-s:1}
+:root[data-sig=b]{--sig:"Pinyon Script";--sig-s:.62}
+:root[data-sig=c]{--sig:"Great Vibes";--sig-s:.7}
+:root[data-sig=d]{--sig:"Allura";--sig-s:.74}
+.sig{font-family:var(--sig),"Literata",Georgia,serif;font-weight:400;font-style:normal;line-height:1;white-space:nowrap;letter-spacing:0}
+.hd .sig{font-size:calc(var(--sig-s)*2.85rem);margin:-.12em 0 -.02em}
+.ft .sig.ft-wm{font-size:calc(var(--sig-s)*clamp(3.25rem,2.6rem + 2vw,4.5rem))!important;margin:0 0 .1em!important;line-height:1.05}
+.hd .bs{letter-spacing:.14em;text-transform:uppercase;font-size:.6875rem;opacity:.9}
+:lang(zh) .hd .bs{letter-spacing:.06em;text-transform:none;font-size:.8125rem}
+/* brighter hero: lighter veil, a soft scrim only where the text sits */
+.hero>.ph img{object-position:50% 58%}
+.hero>.ph::after{background:linear-gradient(180deg,rgba(40,24,28,.42) 0,rgba(40,24,28,.12) 22%,rgba(40,24,28,.08) 60%,rgba(40,24,28,.38) 100%),radial-gradient(ellipse 70% 42% at 50% 34%,rgba(40,24,28,.4),rgba(40,24,28,0) 70%)}
+.hero h1,.hero .lede,.hero .eb{text-shadow:0 1px 2px rgba(30,16,20,.45),0 2px 28px rgba(30,16,20,.45)}
+.hero .hd{text-shadow:0 1px 10px rgba(30,16,20,.35)}
+/* socials */
+.soc{list-style:none;margin:0 6px 0 0;padding:0;display:flex;gap:2px;align-items:center}
+.soc a,.soc button{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;color:inherit;background:none;border:1px solid transparent;cursor:pointer;padding:0;transition:background .2s ease,border-color .2s ease}
+.soc a:hover,.soc button:hover{border-color:currentColor}
+.hero .soc svg{filter:drop-shadow(0 1px 6px rgba(30,16,20,.35))}
+.ft-soc{margin:18px 0 0 -8px}
+@media(max-width:899px){.hd-r .nav-m{order:2}.hd-r .ls{order:3;width:auto}.hd-r .soc{order:4;margin:0 -6px 0 auto}.soc a,.soc button{width:34px;height:34px}}
+.pop{border:0;border-radius:16px;padding:24px;width:min(22rem,calc(100vw - 32px));background:#fff;color:var(--ink);box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+.pop::backdrop{background:rgba(40,24,28,.35)}
+.pop-h{display:flex;align-items:center;gap:10px;color:var(--acc)}.pop-h p{margin:0;font-weight:600;color:var(--ink)}
+:lang(zh) .pop-h p{font-weight:400}
+.pop-id{font-family:"Source Sans 3",system-ui,sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:.02em;margin:14px 0 4px;user-select:all}
+.pop-n{font-size:.9375rem;opacity:.85}
+.pop-b{display:flex;gap:16px;align-items:center;margin-top:8px}.pop-b .tl{background:none;border:0;font:inherit;cursor:pointer;color:inherit}
+/* about */
+.about{align-items:start}
+@media(min-width:900px){.about{grid-template-columns:5fr 7fr}.about>.ph{position:sticky;top:32px}}
+.about h2{margin-bottom:.4em}
+.about h3{font-size:calc(var(--hs)*1.5rem);margin-top:1.4em}
+.about p{max-width:38rem}
+.more{margin-top:8px}
+.more summary{display:inline-flex;gap:8px;align-items:center;cursor:pointer;list-style:none;font-weight:600;color:var(--acc);border-bottom:1px solid currentColor;padding-bottom:2px}
+:lang(zh) .more summary{font-weight:400}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"+";font-size:1.1em;line-height:1}.more[open] summary{display:none}
+/* testimonials: one featured card now; becomes a swipeable row as more arrive */
+.testi-h{text-align:center;margin-bottom:clamp(28px,4vw,48px)}.testi-h .sec-eb{justify-content:center}
+.tq{list-style:none;margin:0 auto;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:min(100%,46rem);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:8px}
+.tq:has(>li:only-child){justify-content:center;overflow:visible}
+.tq>li{scroll-snap-align:center}
+.tq blockquote{margin:0;height:100%;background:#fff;border-radius:18px;padding:clamp(28px,4vw,48px);box-shadow:0 24px 48px -36px rgba(59,42,46,.45);display:flex;flex-direction:column}
+.tq .qm{font-family:Georgia,serif;font-size:5rem;line-height:.6;height:.42em;color:var(--acc);opacity:.35}
+.tq p{font-size:1.0625em;line-height:1.75;margin:0 0 14px}.tq p:empty{display:none}.tq p:last-of-type{margin-bottom:22px}
+:lang(zh) .tq p{line-height:1.9}
+.tq footer{margin-top:auto;font-size:.9375rem;opacity:.85}
+/* credentials */
+.reg{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.reg-n{font-size:.9375rem;font-variant-numeric:tabular-nums;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:999px;padding:.05rem .65rem}
+.canz{margin-top:16px;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}.canz p{margin:6px 0 0;font-size:.9375rem}
+/* review-only signature switch */
+.sigpick{position:fixed;z-index:30;right:12px;bottom:12px;display:flex;gap:4px;align-items:center;font:500 12px/1.2 "Source Sans 3",system-ui,sans-serif;background:#1d1b1c;color:#f4f1ee;padding:6px 8px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.sigpick button{font:inherit;color:inherit;background:none;border:1px solid transparent;border-radius:999px;padding:4px 9px;cursor:pointer}
+.sigpick button[aria-pressed=true]{border-color:#f4f1ee}
+`,
+  body: () => `<div class="hero">${ph('phCeremony', 'kb', 'sunbright', true)}${head9()}
+<div class="in hero-c"><div class="rise">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro', 'class="lede"')}</div>
+<form class="chooser" id="chooser" onsubmit="return false" aria-labelledby="ch-h"><p id="ch-h" class="ch-h" data-i="chooseH">${txt('chooseH')}</p>
+<fieldset><legend data-i="chooseLang">${txt('chooseLang')}</legend><div class="pills">${[0, 1, 2].map((i) => `<label><input type="checkbox" name="lg" value="${i}"${i === 0 ? ' checked' : ''}><span data-i="langChips.${i}">${txt(`langChips.${i}`)}</span></label>`).join('')}</div></fieldset>
+<div><label class="lb" for="area" data-i="chooseArea">${txt('chooseArea')}</label><select id="area">${[0, 1, 2, 3, 4, 5].map((i) => `<option value="${i}" data-i="areas.${i}">${txt(`areas.${i}`)}</option>`).join('')}</select></div>
+<button class="btn" type="button" id="go" data-i="chooseBtn">${txt('chooseBtn')}</button>
+<p class="cn" data-i="chooseNote">${txt('chooseNote')}</p></form></div></div>
+${socPops()}
+<main id="main">
+<section><div class="in cards">
+<article class="rv">${ph('phDetail', '', 'hands')}<div class="tx">${T('h3', 'services.0.h')}${T('p', 'services.0.p')}</div></article>
+<article class="rv">${ph('phDetail', '', 'parkback')}<div class="tx">${T('h3', 'travelH')}${T('p', 'travel')}</div></article>
+<article class="rv">${ph('phDetail', '', 'vows')}<div class="tx">${T('h3', 'nav.3')}${T('p', 'lang1')}</div></article>
+</div></section>
+<section class="band" id="approach"><div class="in split about">${ph('phPortrait', 'rv', 'peonies')}<div class="rv">${B.eb('aboutEb')}${T('h2', 'aboutH')}${[0, 1, 2].map((i) => T('p', `about.${i}`)).join('')}
+<details class="more"><summary data-i="aboutMore">${txt('aboutMore')}</summary>${T('h3', 'aboutWhyH')}${[0, 1].map((i) => T('p', `aboutWhy.${i}`)).join('')}${T('h3', 'aboutYoursH')}${[0, 1].map((i) => T('p', `aboutYours.${i}`)).join('')}</details></div></div></section>
+<section id="kind-words"><div class="in"><div class="testi-h">${B.eb('testiEb')}${T('h2', 'testiH')}</div>
+<ul class="tq">${DICT_TESTI().map((_, i) => `<li class="rv"><blockquote><span class="qm" aria-hidden="true">“</span>${testiQ(i)}<footer data-i="testi.${i}.by">${txt(`testi.${i}.by`)}</footer></blockquote></li>`).join('')}</ul></div></section>
+<section style="padding-top:0"><div class="in two">${cred9()}${B.travel()}</div></section>
+<section style="padding-top:0"><div class="in">${faqBlock()}</div></section>
+<section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('d')}</div></div></section>
+</main>${foot9()}
+<div class="sigpick" lang="en" role="group" aria-label="Signature style (review only)"><span>Signature</span>${SIGS.map(([k, n]) => `<button type="button" data-sig="${k}" title="${n}" aria-pressed="${k === 'a'}">${k.toUpperCase()}</button>`).join('')}</div>
+<script>
+document.getElementById('go').addEventListener('click',function(){
+  var names=[].map.call(document.querySelectorAll('#chooser input[name=lg]:checked'),function(i){return i.nextElementSibling.textContent;});
+  var sep=document.documentElement.lang.indexOf('zh')===0?'、':', ';
+  var a=document.getElementById('area');
+  var l=document.getElementById('d4'),v=document.getElementById('d3');
+  if(names.length)l.value=names.join(sep);if(a.selectedIndex<5)v.value=a.options[a.selectedIndex].textContent;
+  document.getElementById('enquire').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){document.getElementById('d0').focus({preventScroll:true});[l,v].forEach(function(x){x.classList.remove('flash');void x.offsetWidth;x.classList.add('flash');});},600);
+});
+document.addEventListener('click',function(e){var c=e.target.closest('[data-copy]');if(!c)return;var t=c.textContent;
+  (navigator.clipboard?navigator.clipboard.writeText(c.getAttribute('data-copy')):Promise.reject()).then(function(){var d=document.documentElement.lang.indexOf('zh')===0?(document.documentElement.lang==='zh-Hans'?'已复制':'已複製'):'Copied';c.textContent=d;setTimeout(function(){c.textContent=t;},1600);},function(){});});
+(function(){var r=document.documentElement,q=new URLSearchParams(location.search).get('sig');
+function s(k){if(!/^[abcd]$/.test(k))k='a';if(k==='a')r.removeAttribute('data-sig');else r.setAttribute('data-sig',k);document.querySelectorAll('.sigpick [data-sig]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-sig')===k?'true':'false');});
+var u=new URL(location.href);if(k==='a')u.searchParams.delete('sig');else u.searchParams.set('sig',k);history.replaceState(null,'',u);}
+if(q)s(q);document.querySelector('.sigpick').addEventListener('click',function(e){var b=e.target.closest('[data-sig]');if(b)s(b.getAttribute('data-sig'));});})();
+</script>`,
+});
 
 const EXTRA = {
   Estate: `@media(max-width:599px){.ribbon{font-size:.75rem;line-height:1.45}}.hero h1{text-shadow:0 2px 40px rgba(0,0,0,.28)}.hero .eb{display:flex;align-items:center;gap:12px}.hero .eb::before{content:"";width:36px;height:1px;background:#fff}`,
@@ -554,6 +683,7 @@ const EXTRA = {
   Gallery: `.show{border-radius:4px}.show-cap{position:absolute;z-index:3;left:clamp(16px,2.5vw,32px);right:clamp(16px,2.5vw,32px);bottom:clamp(16px,2.5vw,32px)}.show-cap .facts{margin:0}.show::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.45));pointer-events:none}`,
   Journal: `@media(max-width:599px){.mast .bn{font-size:clamp(2.25rem,1rem + 7vw,3rem)}.mast{padding-block:0 10px}.util{padding-block:8px}}.tile .lab{overflow-wrap:anywhere}.t-feat .facts li{border-color:rgba(110,31,46,.3)}.t-feat .fd{background:var(--acc)}`,
 };
+EXTRA['Planner × Cinematic'] = EXTRA.Planner; // Home-09 inherits Concept 04's finishing rules
 const gutter = G;
 // ───────────────────────── Privacy notice (shared) ─────────────────────────
 const privacy = page({
