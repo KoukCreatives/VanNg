@@ -564,9 +564,9 @@ const socials = (cls = 'soc') => `<ul class="${cls}" aria-label="${SOC.fb.label}
   : `<li><button type="button" popovertarget="pop-${k}" aria-label="${s.label}" title="${s.label}">${svgIcon(s.icon)}</button></li>`).join('')}</ul>`;
 const socPops = () => ['red', 'wx'].map((k) => { const s = SOC[k]; return `<div class="pop" id="pop-${k}" popover><div class="pop-h">${svgIcon(s.icon)}<p data-i="${s.key}">${txt(s.key)}</p></div><p class="pop-id" lang="en">${s.id}</p><p class="pop-n" data-i="socHint">${txt('socHint')}</p><p><span class="flag" data-i="socQr">${txt('socQr')}</span></p><div class="pop-b"><button type="button" class="btn" data-copy="${s.id}" data-i="socCopy">${txt('socCopy')}</button><button type="button" class="tl" popovertarget="pop-${k}" popovertargetaction="hide" data-i="socClose">${txt('socClose')}</button></div></div>`; }).join('');
 const sigBrand = () => `<a class="brand" href="#"><span class="sig" lang="en">Vannarady Ng</span><span class="bs" data-i="brandSub">${txt('brandSub')}</span></a>`;
-const head9 = () => `<header class="hd"><div class="hd-in">${sigBrand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${socials()}${langSwitch()}${mobileNav()}</div></div></header>`;
+const head9 = () => `<header class="hd"><div class="hd-in">${sigBrand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${socials()}${langSwitch(false)}${mobileNav()}</div></div></header>`;
 const cred9 = () => `<div class="cred rv">${seal}<div>${T('h3', 'credH')}${T('p', 'cred')}<p class="reg"><a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a> <span class="reg-n" data-i="regNo">${txt('regNo')}</span></p><div class="canz"><span class="flag" data-i="canzLogo">${txt('canzLogo')}</span><p><span data-i="canz">${txt('canz')}</span> · <a class="tl" ${CANZ} data-i="canzLink">${txt('canzLink')}</a></p></div></div></div>`;
-const foot9 = () => `<footer class="ft"><div class="ft-in"><div class="ft-a"><p class="sig ft-wm" lang="en">Vannarady Ng</p>${T('p', 'brandSub', 'class="ft-sub"')}${T('p', 'footNote', 'class="note"')}${socials('soc ft-soc')}<a class="btn ft-btn" href="#enquire" data-i="cta">${txt('cta')}</a></div><nav class="ft-col" aria-label="Footer">${T('p', 'ftExplore', 'class="ft-h"')}<ul>${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'].map((h, i) => `<li><a href="${h}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`).join('')}</ul></nav><div class="ft-col">${T('p', 'ftContact', 'class="ft-h"')}${T('p', 'footContact')}<p><a ${DIA} data-i="ftDia">${txt('ftDia')}</a> · <span data-i="regNo">${txt('regNo')}</span></p><p><a ${CANZ} data-i="canz">${txt('canz')}</a></p><p><a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p>${langSwitch()}</div></div><div class="ft-base">${T('span', 'copyright')}</div></footer>`;
+const foot9 = () => `<footer class="ft"><div class="ft-in"><div class="ft-a"><p class="sig ft-wm" lang="en">Vannarady Ng</p>${T('p', 'brandSub', 'class="ft-sub"')}${T('p', 'footNote', 'class="note"')}${socials('soc ft-soc')}<a class="btn ft-btn" href="#enquire" data-i="cta">${txt('cta')}</a></div><nav class="ft-col" aria-label="Footer">${T('p', 'ftExplore', 'class="ft-h"')}<ul>${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'].map((h, i) => `<li><a href="${h}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`).join('')}</ul></nav><div class="ft-col">${T('p', 'ftContact', 'class="ft-h"')}${T('p', 'footContact')}<p><a ${DIA} data-i="ftDia">${txt('ftDia')}</a> · <span data-i="regNo">${txt('regNo')}</span></p><p><a ${CANZ} data-i="canz">${txt('canz')}</a></p><p><a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p>${langSwitch(false)}</div></div><div class="ft-base">${T('span', 'copyright')}</div></footer>`;
 // Signature options for Van to compare (all SIL OFL 1.1, Latin subset only). Review switch: ?sig=a|b|c|d
 const SIGS = [['a', 'Corinthia', 'corinthia'], ['b', 'Pinyon Script', 'pinyon-script'], ['c', 'Great Vibes', 'great-vibes'], ['d', 'Allura', 'allura']];
 designs.push({
@@ -583,11 +583,23 @@ designs.push({
 .ft .sig.ft-wm{font-size:calc(var(--sig-s)*clamp(3.25rem,2.6rem + 2vw,4.5rem))!important;margin:0 0 .1em!important;line-height:1.05}
 .hd .bs{letter-spacing:.14em;text-transform:uppercase;font-size:.6875rem;opacity:.9}
 :lang(zh) .hd .bs{letter-spacing:.06em;text-transform:none;font-size:.8125rem}
-/* brighter hero: lighter veil, a soft scrim only where the text sits */
-.hero>.ph img{object-position:50% 58%}
-.hero>.ph::after{background:linear-gradient(180deg,rgba(40,24,28,.42) 0,rgba(40,24,28,.12) 22%,rgba(40,24,28,.08) 60%,rgba(40,24,28,.38) 100%),radial-gradient(ellipse 70% 42% at 50% 34%,rgba(40,24,28,.4),rgba(40,24,28,0) 70%)}
-.hero h1,.hero .lede,.hero .eb{text-shadow:0 1px 2px rgba(30,16,20,.45),0 2px 28px rgba(30,16,20,.45)}
-.hero .hd{text-shadow:0 1px 10px rgba(30,16,20,.35)}
+/* hero: warm plum veil so the type always reads, photo still bright at the edges */
+.hero>.ph img{object-position:50% 58%;filter:saturate(1.05) contrast(1.02)}
+.hero>.ph::after{background:linear-gradient(180deg,rgba(46,22,30,.62) 0,rgba(46,22,30,.28) 18%,rgba(46,22,30,.34) 55%,rgba(46,22,30,.72) 100%),radial-gradient(ellipse 62% 48% at 50% 40%,rgba(46,22,30,.5),rgba(46,22,30,0) 72%),linear-gradient(0deg,rgba(142,74,90,.16),rgba(142,74,90,.16))}
+.hero{min-height:min(100svh,980px);display:flex;flex-direction:column}
+.hero-c{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,4vw,48px);padding-block:clamp(40px,6vw,72px) clamp(40px,5vw,64px)!important}
+.hero .eb{display:inline-flex;align-items:center;gap:14px;margin:0 0 18px!important;opacity:1!important;color:#F6DCE0}
+.hero .eb::before,.hero .eb::after{content:"";width:clamp(24px,4vw,48px);height:1px;background:currentColor;opacity:.75}
+.hero-acc{font-family:var(--sig),"Literata",Georgia,serif;font-size:calc(var(--sig-s)*clamp(3rem,2rem + 4vw,5.75rem));line-height:1;color:#FBE6E8;margin:0 auto .22em;font-weight:400;text-shadow:0 2px 30px rgba(30,14,20,.55)}
+:lang(zh) .hero-acc{font-family:var(--f-head);font-size:calc(var(--hs)*clamp(2.4rem,1.7rem + 2.6vw,3.75rem));line-height:1.3;letter-spacing:normal;margin-bottom:.3em}
+.hero-acc span{display:inline}
+.hero h1{font-size:calc(var(--hs)*clamp(1.75rem,1.2rem + 2.1vw,3.125rem))!important;max-width:22ch!important;font-weight:500;letter-spacing:-.005em;margin-bottom:.5em!important}
+.hero .lede{max-width:36rem!important;font-size:1.0625em!important;opacity:.95;margin-bottom:0!important}
+.hero h1,.hero .lede,.hero .eb{text-shadow:0 1px 2px rgba(30,14,20,.5),0 2px 24px rgba(30,14,20,.45)}
+.hero .hd{text-shadow:0 1px 10px rgba(30,14,20,.45);border-bottom:1px solid rgba(255,255,255,.16)}
+.chooser{width:100%;background:rgba(255,253,252,.94);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border:1px solid rgba(255,255,255,.6);box-shadow:0 40px 80px -36px rgba(20,8,12,.7)}
+.ch-h{display:flex;align-items:center;gap:12px}.ch-h::before{content:"";width:22px;height:1px;background:var(--acc)}
+@media(max-width:599px){.hero .eb{font-size:.6875rem;letter-spacing:.18em}.hero .eb::before,.hero .eb::after{display:none}}
 /* socials */
 .soc{list-style:none;margin:0 6px 0 0;padding:0;display:flex;gap:2px;align-items:center}
 .soc a,.soc button{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;color:inherit;background:none;border:1px solid transparent;cursor:pointer;padding:0;transition:background .2s ease,border-color .2s ease}
@@ -626,13 +638,15 @@ designs.push({
 /* credentials */
 .reg{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.reg-n{font-size:.9375rem;font-variant-numeric:tabular-nums;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:999px;padding:.05rem .65rem}
 .canz{margin-top:16px;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}.canz p{margin:6px 0 0;font-size:.9375rem}
+/* polished build: pending-content flags stay in the source but are not shown */
+.flag{display:none!important}
 /* review-only signature switch */
 .sigpick{position:fixed;z-index:30;right:12px;bottom:12px;display:flex;gap:4px;align-items:center;font:500 12px/1.2 "Source Sans 3",system-ui,sans-serif;background:#1d1b1c;color:#f4f1ee;padding:6px 8px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .sigpick button{font:inherit;color:inherit;background:none;border:1px solid transparent;border-radius:999px;padding:4px 9px;cursor:pointer}
 .sigpick button[aria-pressed=true]{border-color:#f4f1ee}
 `,
   body: () => `<div class="hero">${ph('phCeremony', 'kb', 'sunbright', true)}${head9()}
-<div class="in hero-c"><div class="rise">${T('p', 'heroEyebrow', 'class="eb"')}${T('h1', 'h1')}${T('p', 'intro', 'class="lede"')}</div>
+<div class="in hero-c"><div class="rise">${T('p', 'heroEyebrow', 'class="eb"')}<p class="hero-acc" aria-hidden="true"><span data-i="big1">${txt('big1')}</span> <span data-i="big2">${txt('big2')}</span></p>${T('h1', 'h1')}${T('p', 'intro', 'class="lede"')}</div>
 <form class="chooser" id="chooser" onsubmit="return false" aria-labelledby="ch-h"><p id="ch-h" class="ch-h" data-i="chooseH">${txt('chooseH')}</p>
 <fieldset><legend data-i="chooseLang">${txt('chooseLang')}</legend><div class="pills">${[0, 1, 2].map((i) => `<label><input type="checkbox" name="lg" value="${i}"${i === 0 ? ' checked' : ''}><span data-i="langChips.${i}">${txt(`langChips.${i}`)}</span></label>`).join('')}</div></fieldset>
 <div><label class="lb" for="area" data-i="chooseArea">${txt('chooseArea')}</label><select id="area">${[0, 1, 2, 3, 4, 5].map((i) => `<option value="${i}" data-i="areas.${i}">${txt(`areas.${i}`)}</option>`).join('')}</select></div>
@@ -653,7 +667,7 @@ ${socPops()}
 <section style="padding-top:0"><div class="in">${faqBlock()}</div></section>
 <section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('d')}</div></div></section>
 </main>${foot9()}
-<div class="sigpick" lang="en" role="group" aria-label="Signature style (review only)"><span>Signature</span>${SIGS.map(([k, n]) => `<button type="button" data-sig="${k}" title="${n}" aria-pressed="${k === 'a'}">${k.toUpperCase()}</button>`).join('')}</div>
+<!-- signature styles: preview with ?sig=b|c|d (a = Corinthia, default) -->
 <script>
 document.getElementById('go').addEventListener('click',function(){
   var names=[].map.call(document.querySelectorAll('#chooser input[name=lg]:checked'),function(i){return i.nextElementSibling.textContent;});
@@ -669,7 +683,7 @@ document.addEventListener('click',function(e){var c=e.target.closest('[data-copy
 (function(){var r=document.documentElement,q=new URLSearchParams(location.search).get('sig');
 function s(k){if(!/^[abcd]$/.test(k))k='a';if(k==='a')r.removeAttribute('data-sig');else r.setAttribute('data-sig',k);document.querySelectorAll('.sigpick [data-sig]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-sig')===k?'true':'false');});
 var u=new URL(location.href);if(k==='a')u.searchParams.delete('sig');else u.searchParams.set('sig',k);history.replaceState(null,'',u);}
-if(q)s(q);document.querySelector('.sigpick').addEventListener('click',function(e){var b=e.target.closest('[data-sig]');if(b)s(b.getAttribute('data-sig'));});})();
+if(q)s(q);})();
 </script>`,
 });
 
@@ -714,7 +728,7 @@ fs.writeFileSync(path.join(ROOT, 'privacy.html'), privacy);
 
 designs.forEach((d, i) => {
   const n = i + 1;
-  const html = page({ n, name: d.name, fonts: d.fonts, css: d.css + (EXTRA[d.name] || ''), body: d.body() });
+  const html = page({ n, name: d.name, fonts: d.fonts, css: d.css + (EXTRA[d.name] || ''), body: d.body(), ...(n === 9 ? { title: 'docTitle', bare: true } : {}) });
   fs.writeFileSync(path.join(ROOT, `Home-${String(n).padStart(2, '0')}.html`), html);
   if (n === 9) fs.writeFileSync(path.join(ROOT, 'index.html'), html); // site root = Van's chosen direction (Round 2)
 });

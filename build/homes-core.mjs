@@ -54,6 +54,8 @@ const extraEN = {
   quoteCta: 'Request a quote', ftExplore: 'Explore', ftContact: 'Contact', ftDia: 'DIA Celebrants Online',
   langNote: ['Ceremony in English', 'Ceremony in Cantonese', 'Ceremony in Mandarin'],
   // ── Home-09 (Round 2 merge, Van's feedback 14 Nov 2026) ──
+  docTitle: 'Vannarady Ng · Auckland Wedding Celebrant · English, Cantonese & Mandarin',
+  docDesc: 'Van Ng is a registered marriage and civil union celebrant in Auckland, leading personalised wedding ceremonies in English, Cantonese and Mandarin.',
   aboutEb: 'About Van', aboutH: 'Hi, I’m Van.',
   about: [
     'I’m a registered Marriage and Civil Union Celebrant based in East Auckland. I was born and raised in Hong Kong, and Cantonese is my first language. I’m also fluent in Mandarin and English. I can hold your ceremony in one language or weave all three together, so everyone you love, from your grandparents to your closest friends, can understand every word and share the moment with you.',
@@ -139,6 +141,8 @@ const extraZH = {
   quoteCta: '索取報價', ftExplore: '瀏覽', ftContact: '聯絡', ftDia: '內政部證婚人名冊',
   langNote: ['以英語主持儀式', '以粵語主持儀式', '以普通話主持儀式'],
   // ── Home-09: working draft for layout only; needs the agreed translator + Van's review ──
+  docTitle: 'Vannarady Ng · 奧克蘭證婚人 · 英語、粵語及普通話',
+  docDesc: 'Van Ng 是奧克蘭註冊婚姻及民事結合證婚人，以英語、粵語及普通話主持個人化婚禮儀式。',
   aboutEb: '關於 Van', aboutH: '你好，我是 Van。',
   about: [
     '我是常駐奧克蘭東區的註冊婚姻及民事結合證婚人。我在香港出生和長大，母語是粵語，也能說流利的普通話和英語。你們的儀式可以只用一種語言，也可以把三種語言融合在一起，讓你們所愛的每一個人，由祖父母到最要好的朋友，都能聽懂每一句話，一同分享這個時刻。',
@@ -157,7 +161,8 @@ const extraZH = {
     '無論你們夢想在朗伊托托島（Rangitoto Island）舉行溫馨的小型儀式、在奧克蘭的花園舉行婚禮，還是在更遠的地方慶祝，我都很期待收到你們的消息。',
   ],
   testiEb: '新人的話', testiH: '來自新人的心意',
-  testi: [{ q: ['［待 Van 提供中文原文］', '', ''], by: '［新人稱呼及婚禮月份待確認］' }],
+  // Until Van sends the original Chinese, the Chinese pages show the English testimonial.
+  testi: extraEN.testi.map((t) => ({ q: t.q, by: '' })),
   socLabel: 'Van 的社交媒體', socCopy: '複製', socCopied: '已複製', socClose: '關閉',
   socWechat: '微信號', socRed: '小紅書號', socHint: '在應用程式內搜尋此帳號，即可找到 Van。', socQr: '［二維碼 · 待 Van 提供］',
   regNo: '註冊編號 61327',
@@ -281,7 +286,7 @@ textarea{min-height:7rem;resize:vertical}
 
 // ---------- partials ----------
 export const navList = (cls = '') => `<ul class="${cls}">${DICT.en['nav.0'] ? [0, 1, 2, 3, 4, 5].map((i) => `<li><a href="${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'][i]}" data-i="nav.${i}"${i === 0 ? ' aria-current="page"' : ''}>${txt(`nav.${i}`)}</a></li>`).join('') : ''}</ul>`;
-export const langSwitch = () => `<div class="ls" role="group" aria-label="Language"><span class="ls-l" data-i="langSwitch">${txt('langSwitch')}</span><button type="button" data-lang="en" lang="en" aria-pressed="true">English</button><button type="button" data-lang="hant" lang="zh-Hant" aria-pressed="false">繁體中文</button><button type="button" data-lang="hans" lang="zh-Hans" aria-pressed="false">简体<span class="t" lang="en"> test</span></button></div>`;
+export const langSwitch = (test = true) => `<div class="ls" role="group" aria-label="Language"><span class="ls-l" data-i="langSwitch">${txt('langSwitch')}</span><button type="button" data-lang="en" lang="en" aria-pressed="true">English</button><button type="button" data-lang="hant" lang="zh-Hant" aria-pressed="false">繁體中文</button><button type="button" data-lang="hans" lang="zh-Hans" aria-pressed="false">${test ? '简体<span class="t" lang="en"> test</span>' : '简体中文'}</button></div>`;
 export const mobileNav = () => `<details class="nav-m"><summary data-i="menu">${txt('menu')}</summary>${navList()}</details>`;
 export const brand = (cls = 'brand') => `<a class="${cls}" href="#"><span class="bn" lang="en">Vannarady Ng</span><span class="bs" data-i="brandSub">${txt('brandSub')}</span></a>`;
 export const form = (idp = 'f') => `<p><span class="flag" data-i="formFlag">${txt('formFlag')}</span></p>
@@ -347,27 +352,27 @@ export const ph = (key, cls = '', img = 'peonies', eager = false, sizes) => {
 export const faq = (cls = 'faq') => `<div class="${cls}" id="faq">${T('h2', 'faqH')}${[0, 1, 2, 3, 4, 5].map((i) => `<details${i === 0 ? ' open' : ''}><summary data-i="faq.${i}.0">${txt(`faq.${i}.0`)}</summary>${T('p', `faq.${i}.1`)}</details>`).join('')}</div>`;
 
 // ---------- page shell ----------
-export function page({ n, name, fonts, css, body }) {
+export function page({ n, name, fonts, css, body, title, bare }) {
   return `<!doctype html>
 <html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>${n ? `Home ${String(n).padStart(2, '0')} · ` : ''}${name} · Van Ng concepts</title>
+<title>${title ? txt(title) : `${n ? `Home ${String(n).padStart(2, '0')} · ` : ''}${name} · Van Ng concepts`}</title>${title ? `\n<meta name="description" content="${txt('docDesc')}">` : ''}
 <meta name="robots" content="noindex, nofollow">
 ${fontHead(fonts)}
 <style>${core(fonts)}${css}</style>
 </head>
 <body>
 <a class="skip" href="#main" data-i="skip">${txt('skip')}</a>
-<div class="ctag" lang="en"><span>${n ? `Home ${String(n).padStart(2, '0')} · ` : ''}${name} — <span data-i="conceptTag">${txt('conceptTag')}</span></span><span><a href="designs.html">All designs</a> · ${n === 0 ? '' : n > 1 ? `<a href="Home-${String(n - 1).padStart(2, '0')}.html">← Prev</a> · ` : ''}${n > 0 && n < 8 ? `<a href="Home-${String(n + 1).padStart(2, '0')}.html">Next →</a>` : ''}</span></div>
+${bare ? '' : `<div class="ctag" lang="en"><span>${n ? `Home ${String(n).padStart(2, '0')} · ` : ''}${name} — <span data-i="conceptTag">${txt('conceptTag')}</span></span><span><a href="designs.html">All designs</a> · ${n === 0 ? '' : n > 1 ? `<a href="Home-${String(n - 1).padStart(2, '0')}.html">← Prev</a> · ` : ''}${n > 0 && n < 8 ? `<a href="Home-${String(n + 1).padStart(2, '0')}.html">Next →</a>` : ''}</span></div>`}
 ${body}
 <script>
 (function(){
 var D=${JSON.stringify(DICT)};
 var L={en:'en-NZ',hant:'zh-Hant',hans:'zh-Hans'};
 function flags(s){var e=String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');return e.replace(/(\\[[^\\]]+\\]|［[^］]+］)/g,'<span class="flag">$1</span>');}
-function set(k){if(!D[k])k='en';var d=D[k];document.documentElement.lang=L[k];
+function set(k){if(!D[k])k='en';var d=D[k];document.documentElement.lang=L[k];${title ? `if(d['${title}'])document.title=d['${title}'];` : ''}
 document.querySelectorAll('[data-i]').forEach(function(el){var v=d[el.getAttribute('data-i')];if(v!=null)el.innerHTML=flags(v);});
 var zk=k==='hans'?'hans':'hant';document.querySelectorAll('[data-z]').forEach(function(el){var v=D[zk][el.getAttribute('data-z')];if(v!=null)el.innerHTML=flags(v);});document.querySelectorAll('[data-zl]').forEach(function(el){el.lang=L[zk];});
 document.querySelectorAll('[data-ip]').forEach(function(el){var v=d[el.getAttribute('data-ip')];if(v!=null)el.setAttribute('placeholder',v);});
