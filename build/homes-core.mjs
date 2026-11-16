@@ -71,6 +71,12 @@ const extraEN = {
   svcEb: 'Ceremonies', svcH: 'A Ceremony That Feels Like the Two of You',
   cardLink: ['Request a Quote', 'See Where I Travel', 'Ask About Languages'],
   faqMore: 'Still wondering about something?', faqCta: 'Ask Van',
+  testiRate: '5-star review', testiAttr: 'A couple Van married',
+  cardP: [
+    'Personalised ceremonies shaped around your story and your words. I take care of the legal details, so you can be present.',
+    'East, central and west Auckland, the North Shore, Rangitoto Island, Hamilton and the South Island. Travel costs apply outside Auckland.',
+    'Ceremonies in English, Cantonese, Mandarin or all three, so everyone you love can understand every word on the day.',
+  ],
   aboutWhyH: 'Why I Became a Celebrant',
   aboutWhy: [
     'To me, being a celebrant is a real privilege. I get to stand beside two people at one of the biggest milestones of their lives. A wedding is more than a celebration. It’s the moment two people step into new roles together. You become a husband or a wife, a partner for life, a son-in-law or daughter-in-law. One day, perhaps, you’ll become a father or a mother. Two families become one.',
@@ -163,6 +169,12 @@ const extraZH = {
   svcEb: '婚禮儀式', svcH: '一場屬於你們兩人的儀式',
   cardLink: ['索取報價', '查看服務地區', '了解語言安排'],
   faqMore: '還有其他問題？', faqCta: '問問 Van',
+  testiRate: '五星評價', testiAttr: '由 Van 證婚的新人',
+  cardP: [
+    '以你們的故事和言語為中心度身設計的儀式。法律細節由我處理，你們只需全心投入。',
+    '奧克蘭東區、中區及西區、北岸、朗伊托托島、漢密爾頓及南島。奧克蘭以外地區需另收交通費用。',
+    '以英語、粵語、普通話或三語主持儀式，讓你們所愛的每一個人都能聽懂每一句話。',
+  ],
   aboutWhyH: '我為何成為證婚人',
   aboutWhy: [
     '對我來說，成為證婚人是一份榮幸。我可以在兩個人人生最重要的里程碑之一，站在他們身旁。婚禮不只是一場慶祝，更是兩個人一同踏入新角色的時刻。你們成為丈夫或妻子、成為一生的伴侶、成為女婿或媳婦，將來或許還會成為父親或母親。兩個家庭從此合而為一。',

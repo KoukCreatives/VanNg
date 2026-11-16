@@ -8,6 +8,7 @@ import { createRequire } from 'node:module';
 import { ROOT, T, Z, txt, page, navList, langSwitch, mobileNav, brand, form, incList, chips, ph, faq, DICT } from './homes-core.mjs';
 const SI = createRequire(import.meta.url)('simple-icons'); // CC0 brand glyphs for the social links (Home-09)
 const DICT_TESTI = () => Object.keys(DICT.en).filter((k) => /^testi\.\d+\.by$/.test(k));
+const testiQ9 = (i) => { const ks = Object.keys(DICT.en).filter((k) => k.startsWith(`testi.${i}.q.`)); return ks.map((k, j) => T('p', k, `class="${[j === 0 ? 'q0' : '', j === ks.length - 1 ? 'qz' : ''].join(' ').trim()}"`)).join(''); };
 const testiQ = (i) => Object.keys(DICT.en).filter((k) => k.startsWith(`testi.${i}.q.`)).map((k) => T('p', k)).join('');
 
 export const REFS = [
@@ -763,19 +764,31 @@ main section{position:relative}
 .testi9 h2{color:#fff}
 .testi9 .tq blockquote{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px);box-shadow:0 40px 80px -40px rgba(0,0,0,.6);color:#FBEFF0}
 .testi9 .tq .qm{color:#F2C9D0;opacity:.8}
-.testi9 .tq p{font-family:var(--f-head);font-size:calc(var(--hs)*clamp(1.0625rem,1rem + .3vw,1.25rem));line-height:1.75}
-.testi9 .tq p:first-of-type{font-size:calc(var(--hs)*clamp(1.25rem,1.1rem + .5vw,1.5rem));line-height:1.6}
-.testi9 .tq>li{grid-auto-columns:min(100%,52rem)}
 .tq{grid-auto-columns:min(100%,52rem)}
-/* single review: full width, edges line up with the floating menu bar */
+/* reviews: one column, one text size, full width with edges aligned to the menu bar */
 .testi9 .in{max-width:1560px;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
 .testi9 .tq:has(>li:only-child){grid-auto-columns:100%;justify-content:stretch}
-@media(min-width:900px){.testi9 .tq:has(>li:only-child){grid-auto-columns:100%;justify-content:stretch}
-.testi9 .tq blockquote{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(40px,5vw,88px);padding:clamp(40px,4.5vw,72px) clamp(40px,5vw,88px);border-radius:28px}
-.testi9 .tq blockquote>.qm,.testi9 .tq blockquote>p:first-of-type,.testi9 .tq blockquote>footer{grid-column:1/-1}
-.testi9 .tq blockquote>p:first-of-type{max-width:none;font-size:calc(var(--hs)*clamp(1.375rem,1.1rem + .8vw,1.875rem));line-height:1.5;margin-bottom:28px}
-.testi9 .tq blockquote>p:not(:first-of-type){margin-bottom:0}
-.testi9 .tq blockquote>footer{margin-top:28px}}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+.testi9 .tq blockquote{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(36px,5vw,80px) clamp(22px,6vw,120px);border-radius:28px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid transparent;box-shadow:0 50px 100px -50px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.12);isolation:isolate;backdrop-filter:none}
+.testi9 .tq blockquote::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--ang),rgba(242,201,208,.15),rgba(242,201,208,.9),rgba(255,255,255,.2),rgba(242,201,208,.15) 60%,rgba(242,201,208,.7),rgba(242,201,208,.15));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ring 9s linear infinite;z-index:-1}
+.testi9 .tq blockquote::after{content:"";position:absolute;left:50%;top:0;width:min(70%,640px);height:220px;transform:translate(-50%,-40%);background:radial-gradient(closest-side,rgba(242,201,208,.28),rgba(242,201,208,0));pointer-events:none;z-index:-1}
+@keyframes ring{to{--ang:360deg}}
+.stars{display:flex;gap:clamp(6px,1vw,12px);margin:0 0 18px;color:#F6CBD3}
+.stars svg{width:clamp(26px,2.4vw,34px);height:auto;filter:drop-shadow(0 0 14px rgba(246,203,211,.55));animation:star .6s cubic-bezier(.3,1.6,.5,1) both}
+.tq li.pre:not(.shown) .stars svg{animation:none;opacity:0}
+.stars svg:nth-child(2){animation-delay:.1s}.stars svg:nth-child(3){animation-delay:.2s}.stars svg:nth-child(4){animation-delay:.3s}.stars svg:nth-child(5){animation-delay:.4s}
+@keyframes star{from{opacity:0;transform:scale(.3) rotate(-30deg)}to{opacity:1;transform:none}}
+.testi9 .tq p.rate{margin:0 0 28px;font:600 .75rem/1 "Source Sans 3",system-ui,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#F2C9D0}
+:lang(zh) .testi9 .tq p.rate{letter-spacing:.08em;font-size:.875rem;font-weight:400}
+.testi9 .tq .qm{display:none}
+.testi9 .tq p:not(.rate){font-family:var(--f-head);font-size:calc(var(--hs)*clamp(1.125rem,1rem + .45vw,1.375rem));line-height:1.75;max-width:60rem;margin:0 0 1em;color:#FBEFF0}
+:lang(zh) .testi9 .tq p:not(.rate){line-height:1.95}
+.testi9 .tq p.q0::before{content:"“"}
+.testi9 .tq p.qz::after{content:"”"}
+.testi9 .tq p.qz{margin-bottom:0}
+.testi9 .tq footer{display:flex;align-items:center;gap:12px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(242,201,208,.25);font-size:.9375rem;color:#F2C9D0;opacity:1}
+.testi9 .tq footer::before{content:"";width:34px;height:34px;border-radius:50%;flex:none;background:rgba(242,201,208,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z' fill='%23F6CBD3'/%3E%3C/svg%3E") center/16px no-repeat}
+@media(prefers-reduced-motion:reduce){.testi9 .tq blockquote::before{animation:none}}
 /* credentials + travel */
 .trust9{background:#fff}
 .trust9 .two{align-items:stretch}.trust9 .two>*{height:100%;margin:0}
@@ -790,15 +803,19 @@ main section{position:relative}
 /* faq */
 .faq9{background:linear-gradient(180deg,#fff 0,var(--bg) 100%)}
 .faq9 .faqx-ph{border-radius:24px;aspect-ratio:4/3}
-@media(min-width:950px){.faq9 .faqx{align-items:start}.faq9 .faqx-l{position:sticky;top:124px;align-self:start}}
+@media(min-width:950px) and (max-width:1199px){.faq9 .faqx{grid-template-columns:1fr}.faq9 .faqx-l{position:static}}
+@media(min-width:1200px){.faq9 .faqx{align-items:start}.faq9 .faqx-l{position:sticky;top:124px;align-self:start}}
 .faq9 .faq details{background:#fff;border:1px solid color-mix(in srgb,var(--acc) 14%,transparent)!important;border-radius:18px;padding:0 22px;margin-bottom:12px;transition:box-shadow .25s ease,background .25s ease}
 .faq9 .faq details[open]{background:#FFF8F7;box-shadow:0 24px 48px -36px rgba(59,42,46,.6)}
 .faq9 .faq summary{padding:20px 0;font-size:1.0625em}
 .faq9 .faq summary::after{content:"+";display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:50%;background:color-mix(in srgb,var(--acc) 10%,#fff);color:var(--acc);font-size:1.25rem;opacity:1;transition:transform .25s ease,background .25s ease}
 .faq9 .faq details[open] summary::after{content:"+";transform:rotate(45deg);background:var(--acc);color:#fff}
 .faq9 .faq details p{padding-bottom:4px}
-.faq-cta{display:grid;justify-items:start;gap:14px;margin-top:28px;padding:24px 26px;border-radius:22px;background:#fff;box-shadow:0 24px 48px -36px rgba(59,42,46,.55);max-width:30rem}
-.faq-cta p{margin:0;font-family:var(--f-head);font-size:1.25rem}
+.faq-cta{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;margin-top:28px;padding:14px 14px 14px 24px;border-radius:999px;background:#fff;box-shadow:0 24px 48px -36px rgba(59,42,46,.55);max-width:34rem}
+.faq-cta .btn{flex:none;min-height:46px;padding:.6rem 1.25rem;white-space:nowrap}
+@media(max-width:599px){.faq-cta{gap:8px;padding:6px 6px 6px 16px}.faq-cta p{font-size:.875rem;white-space:nowrap}.faq-cta .btn{min-height:42px;padding:.5rem .85rem;font-size:.875rem;gap:6px}}
+@media(max-width:374px){.faq-cta{flex-wrap:wrap;border-radius:22px;padding:14px}.faq-cta p{white-space:normal}}
+.faq-cta p{margin:0;font-family:var(--f-head);font-size:1.0625rem;line-height:1.3}
 .faq-cta .btn{border-radius:999px;gap:8px}
 
 /* enquire */
@@ -839,13 +856,13 @@ main section{position:relative}
 ${socPops()}
 <main id="main">
 <section class="offer9" id="ceremonies"><div class="in"><div class="sec-h rv">${B.eb('svcEb')}${T('h2', 'svcH')}${T('p', 'intro2', 'class="sec-l"')}</div>
-<div class="cards9">${[['hands', IC.rings, 'services.0.h', 'services.0.p', '#enquire', ''], ['parkback', pin.replace('width="16" height="16"', 'width="20" height="20"'), 'travelH', 'travel', '#travel', ''], ['vows', IC.talk, 'nav.3', 'lang1', '#faq', ' id="languages"']].map(([img, ic, h, p, href, id], i) => `<article class="c9 rv"${id}><a class="c9-img" href="${href}" tabindex="-1" aria-hidden="true">${ph('phDetail', '', img)}<span class="c9-n">0${i + 1}</span></a><div class="c9-b"><span class="c9-ic">${ic}</span>${T('h3', h)}${T('p', p)}<a class="c9-l" href="${href}"><span data-i="cardLink.${i}">${txt(`cardLink.${i}`)}</span>${IC.arrow}</a></div></article>`).join('')}</div></div></section>
+<div class="cards9">${[['hands', IC.rings, 'services.0.h', 'cardP.0', '#enquire', ''], ['parkback', pin.replace('width="16" height="16"', 'width="20" height="20"'), 'travelH', 'cardP.1', '#travel', ''], ['vows', IC.talk, 'nav.3', 'cardP.2', '#faq', ' id="languages"']].map(([img, ic, h, p, href, id], i) => `<article class="c9 rv"${id}><a class="c9-img" href="${href}" tabindex="-1" aria-hidden="true">${ph('phDetail', '', img)}<span class="c9-n">0${i + 1}</span></a><div class="c9-b"><span class="c9-ic">${ic}</span>${T('h3', h)}${T('p', p)}<a class="c9-l" href="${href}"><span data-i="cardLink.${i}">${txt(`cardLink.${i}`)}</span>${IC.arrow}</a></div></article>`).join('')}</div></div></section>
 <section class="about9" id="approach"><div class="in ab-g"><div class="ab-pic rv"><div class="ab-frame">${ph('phPortrait', '', 'peonies')}</div>${T('p', 'heroFacts.0', 'class="ab-badge"')}</div>
 <div class="ab-t rv">${B.eb('aboutEb')}${T('h2', 'aboutH', 'class="ab-h"')}${T('p', 'about.0', 'class="ab-lede"')}${[1, 2].map((i) => T('p', `about.${i}`)).join('')}
 <details class="more" id="about-more"><summary><span data-i="aboutMore">${txt('aboutMore')}</span>${IC.plus}</summary><div class="more-b">${T('h3', 'aboutWhyH')}${[0, 1].map((i) => T('p', `aboutWhy.${i}`)).join('')}${T('h3', 'aboutYoursH')}${[0, 1].map((i) => T('p', `aboutYours.${i}`)).join('')}<button type="button" class="less" onclick="var d=this.closest('details');d.open=false;d.scrollIntoView({block:'center',behavior:'smooth'})"><span data-i="aboutLess">${txt('aboutLess')}</span>${IC.minus}</button></div></details>
 <p class="ab-sig" lang="en" aria-hidden="true">Van</p></div></div></section>
 <section class="testi9" id="kind-words"><div class="in"><div class="testi-h rv">${B.eb('testiEb')}${T('h2', 'testiH')}</div>
-<ul class="tq">${DICT_TESTI().map((_, i) => `<li class="rv"><blockquote><span class="qm" aria-hidden="true">“</span>${testiQ(i)}<footer data-i="testi.${i}.by">${txt(`testi.${i}.by`)}</footer></blockquote></li>`).join('')}</ul></div></section>
+<ul class="tq">${DICT_TESTI().map((_, i) => `<li class="rv"><blockquote><div class="stars" role="img" aria-label="5 out of 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></div><p class="rate" data-i="testiRate">${txt('testiRate')}</p>${testiQ9(i)}<footer data-i="testiAttr">${txt('testiAttr')}</footer></blockquote></li>`).join('')}</ul></div></section>
 <section class="trust9"><div class="in two">${cred9()}${B.travel()}</div></section>
 <section class="faq9"><div class="in"><div class="faqx" id="faq"><div class="faqx-l"><p class="sec-eb" data-i="secQuestions">${txt('secQuestions')}</p>${T('h2', 'faqH')}${T('p', 'faqIntro')}<div class="faq-cta"><p data-i="faqMore">${txt('faqMore')}</p><a class="btn" href="#enquire"><span data-i="faqCta">${txt('faqCta')}</span>${IC.arrow}</a></div></div><div class="faq">${[0, 1, 2, 3, 4, 5].map((i) => `<details${i === 0 ? ' open' : ''}><summary data-i="faq.${i}.0">${txt(`faq.${i}.0`)}</summary>${T('p', `faq.${i}.1`)}</details>`).join('')}</div></div></div></section>
 <section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('d')}</div></div></section>
