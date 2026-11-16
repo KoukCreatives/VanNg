@@ -714,7 +714,9 @@ fs.writeFileSync(path.join(ROOT, 'privacy.html'), privacy);
 
 designs.forEach((d, i) => {
   const n = i + 1;
-  fs.writeFileSync(path.join(ROOT, `Home-${String(n).padStart(2, '0')}.html`), page({ n, name: d.name, fonts: d.fonts, css: d.css + (EXTRA[d.name] || ''), body: d.body() }));
+  const html = page({ n, name: d.name, fonts: d.fonts, css: d.css + (EXTRA[d.name] || ''), body: d.body() });
+  fs.writeFileSync(path.join(ROOT, `Home-${String(n).padStart(2, '0')}.html`), html);
+  if (n === 9) fs.writeFileSync(path.join(ROOT, 'index.html'), html); // site root = Van's chosen direction (Round 2)
 });
 export { designs };
 console.log('wrote', designs.length, 'homes');

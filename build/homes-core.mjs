@@ -360,7 +360,7 @@ ${fontHead(fonts)}
 </head>
 <body>
 <a class="skip" href="#main" data-i="skip">${txt('skip')}</a>
-<div class="ctag" lang="en"><span>${n ? `Home ${String(n).padStart(2, '0')} · ` : ''}${name} — <span data-i="conceptTag">${txt('conceptTag')}</span></span><span><a href="index.html">All 8 designs</a> · ${n === 0 ? '' : n > 1 ? `<a href="Home-${String(n - 1).padStart(2, '0')}.html">← Prev</a> · ` : ''}${n > 0 && n < 8 ? `<a href="Home-${String(n + 1).padStart(2, '0')}.html">Next →</a>` : ''}</span></div>
+<div class="ctag" lang="en"><span>${n ? `Home ${String(n).padStart(2, '0')} · ` : ''}${name} — <span data-i="conceptTag">${txt('conceptTag')}</span></span><span><a href="designs.html">All designs</a> · ${n === 0 ? '' : n > 1 ? `<a href="Home-${String(n - 1).padStart(2, '0')}.html">← Prev</a> · ` : ''}${n > 0 && n < 8 ? `<a href="Home-${String(n + 1).padStart(2, '0')}.html">Next →</a>` : ''}</span></div>
 ${body}
 <script>
 (function(){

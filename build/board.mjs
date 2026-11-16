@@ -1,4 +1,4 @@
-// Builds index.html: links + live previews of the eight Home-0N.html designs.
+// Builds designs.html (index.html is now Home-09, Van's chosen direction): links + live previews of the eight Home-0N.html designs.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -54,5 +54,5 @@ function fit(){document.querySelectorAll('.pv').forEach(function(p){var f=p.quer
 addEventListener('resize',fit);fit();
 </script>
 </body></html>`;
-fs.writeFileSync(path.join(ROOT, 'index.html'), html);
+fs.writeFileSync(path.join(ROOT, 'designs.html'), html);
 console.log('board written');

@@ -5,7 +5,7 @@ import { createRequire } from 'node:module';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const { marked } = createRequire(import.meta.url)('/opt/npm-tools/node_modules/marked');
 const GF = 'https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Noto+Sans+TC:wght@400&display=swap';
-let b = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+let b = fs.readFileSync(path.join(ROOT, 'designs.html'), 'utf8');
 const head = b.match(/<head>([\s\S]*?)<\/head>/)[1].replace(/<meta charset[^>]*>|<meta name="viewport"[^>]*>|<meta name="robots"[^>]*>/g, '').replace(/<link rel="stylesheet" href="https:\/\/cdn\.jsdelivr[^>]*>/g, '');
 const body = b.match(/<body>([\s\S]*?)<\/body>/)[1];
 let frag = `<title>Van Ng Website Concepts</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n<link rel="stylesheet" href="${GF}">\n` + head.replace(/<title>[^<]*<\/title>/, '') + body;
@@ -20,6 +20,6 @@ main{max-width:52rem;margin:0 auto;padding:40px max(16px,env(safe-area-inset-rig
 h1{font-size:2.25rem;line-height:1.15;text-wrap:balance}h2{font-size:1.375rem;margin-top:2.5rem}a{color:#7a3e4e}
 table{border-collapse:collapse;display:block;overflow-x:auto;font-size:.9375rem}th,td{text-align:left;padding:.45rem .9rem .45rem 0;border-bottom:1px solid #e2dcd9;vertical-align:top}
 pre{background:#fff;border:1px solid #e2dcd9;border-radius:6px;padding:1rem;overflow-x:auto;font-size:.8125rem}code{font-size:.875em}
-.back{font-size:.9375rem}</style></head><body><main><p class="back"><a href="index.html">← All concepts</a></p>${md}</main></body></html>`;
+.back{font-size:.9375rem}</style></head><body><main><p class="back"><a href="designs.html">← All concepts</a></p>${md}</main></body></html>`;
 for (const f of ['dist/typography.html', 'typography.html']) fs.writeFileSync(path.join(ROOT, f), typo);
 console.log('artifact board + typography written');

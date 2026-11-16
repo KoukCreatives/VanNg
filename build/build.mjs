@@ -123,7 +123,7 @@ ${fontLinks(c, key === 'hans' ? 'sc' : 'tc')}
 <body class="c-${c.slug} l-${c.layout}">
 <a class="skip" href="#main">${isZh ? '跳至主要內容' : 'Skip to content'}</a>
 <div class="draftbar" lang="en"><div class="wrap"><span>Concept ${c.n} · ${c.name} — ${esc(L.draftFlag)}</span>
-<nav aria-label="Concept views"><a href="../index.html">All concepts</a><a href="${files.en}" ${key === 'en' ? 'aria-current="page"' : ''}>EN</a><a href="${files.hant}" ${key === 'hant' ? 'aria-current="page"' : ''}>繁</a><a href="${files.hans}" ${key === 'hans' ? 'aria-current="page"' : ''}>简 test</a><a href="${files.type}">Type system</a></nav></div></div>
+<nav aria-label="Concept views"><a href="../designs.html">All concepts</a><a href="${files.en}" ${key === 'en' ? 'aria-current="page"' : ''}>EN</a><a href="${files.hant}" ${key === 'hant' ? 'aria-current="page"' : ''}>繁</a><a href="${files.hans}" ${key === 'hans' ? 'aria-current="page"' : ''}>简 test</a><a href="${files.type}">Type system</a></nav></div></div>
 <header class="site-head"><div class="wrap">
   <a class="brand" href="#" lang="en"><span class="brand-name">${L.brand}</span><span class="brand-sub" lang="${isZh ? L.lang : 'en'}">${L.brandSub}</span></a>
   <div class="head-right">
@@ -211,7 +211,7 @@ ${fontLinks(c, 'tc', { allScripts: true })}
 </head>
 <body class="c-${c.slug} typepage">
 <div class="draftbar"><div class="wrap"><span>Concept ${c.n} · ${c.name} — type system and checks</span>
-<nav aria-label="Concept views"><a href="../index.html">All concepts</a><a href="${c.slug}-en.html">EN</a><a href="${c.slug}-zh-hant.html">繁</a><a href="${c.slug}-zh-hans.html">简 test</a><a aria-current="page" href="#">Type system</a></nav></div></div>
+<nav aria-label="Concept views"><a href="../designs.html">All concepts</a><a href="${c.slug}-en.html">EN</a><a href="${c.slug}-zh-hant.html">繁</a><a href="${c.slug}-zh-hans.html">简 test</a><a aria-current="page" href="#">Type system</a></nav></div></div>
 <main class="wrap">
   <header class="spec-head"><p class="eyebrow">Concept ${c.n} · ${palettes[c.palette].name}</p><h1 class="spec-title">${c.name}</h1><p>${c.summary}</p></header>
   <section><h2 class="spec-h">Typography decisions</h2><ul class="spec-list">${c.type.map((t) => `<li>${t}</li>`).join('')}</ul>
