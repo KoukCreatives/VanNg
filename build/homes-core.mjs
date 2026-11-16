@@ -72,6 +72,7 @@ const extraEN = {
   cardLink: ['Request a Quote', 'See Where I Travel', 'Ask About Languages'],
   faqMore: 'Still wondering about something?', faqCta: 'Ask Van',
   testiRate: '5-star review', testiAttr: 'A couple Van married',
+  credRows: ['Registration no.', 'Listed on', 'Member of'], regNum: '61327', credFootL: 'Te Tari Taiwhenua, Department of Internal Affairs', credFootR: 'Check My Registration',
   travelLede: 'Based in East Auckland, I lead ceremonies right across Auckland and the North Shore, and I’m happy to travel to Rangitoto Island, Hamilton and the South Island.', travelAsk: 'Ask About Your Venue',
   formH: 'Send an Enquiry', formP: 'Share a few details about your day and I’ll get back to you with a personalised quote.',
   cardP: [
@@ -172,6 +173,7 @@ const extraZH = {
   cardLink: ['索取報價', '查看服務地區', '了解語言安排'],
   faqMore: '還有其他問題？', faqCta: '問問 Van',
   testiRate: '五星評價', testiAttr: '由 Van 證婚的新人',
+  credRows: ['註冊編號', '登記於', '會員'], regNum: '61327', credFootL: '紐西蘭內政部', credFootR: '查核我的註冊',
   travelLede: '我常駐奧克蘭東區，在奧克蘭各區及北岸主持儀式，也樂意前往朗伊托托島、漢密爾頓及南島。', travelAsk: '查詢你們的場地',
   formH: '傳送查詢', formP: '告訴我一些關於你們婚禮的細節，我會回覆並為你們準備個人化報價。',
   cardP: [

@@ -568,13 +568,14 @@ const IC = {
   rings: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="14" r="5.5"/><path d="M10.5 4.5l1.5-2 1.5 2-1.5 2z" stroke-linejoin="round"/></g></svg>',
   talk: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3.5 5.5h11a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5H8l-3.5 3v-3h-1A1.5 1.5 0 0 1 2 13V7a1.5 1.5 0 0 1 1.5-1.5z"/><path d="M16 9.5h4.5A1.5 1.5 0 0 1 22 11v5.5a1.5 1.5 0 0 1-1.5 1.5h-1v2.5L16.5 18H12a1.5 1.5 0 0 1-1.5-1.5V15"/></g></svg>',
   map: '<svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 6.5l5.5-2.5 7 2.5L21 4v13.5L15.5 20l-7-2.5L3 20z"/><path d="M8.5 4v13.5M15.5 6.5V20"/></g></svg>',
+  check: '<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   arrow: '<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M4 10h11m-4-4.5L15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   plus: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
   minus: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
 };
 const sigBrand = () => `<a class="brand" href="#"><span class="sig" lang="en">Vannarady Ng</span><span class="bs" data-i="brandSub">${txt('brandSub')}</span></a>`;
 const head9 = () => `<header class="hd"><div class="hd-in">${sigBrand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${socials()}${langSwitch(false)}${mobileNav()}</div></div></header>`;
-const cred9 = () => `<div class="cred rv">${seal}<div>${T('h3', 'credH')}${T('p', 'cred')}<p class="reg"><a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a> <span class="reg-n" data-i="regNo">${txt('regNo')}</span></p><div class="canz"><span class="flag" data-i="canzLogo">${txt('canzLogo')}</span><p><span data-i="canz">${txt('canz')}</span> · <a class="tl" ${CANZ} data-i="canzLink">${txt('canzLink')}</a></p></div></div></div>`;
+const cred9 = () => `<div class="cred rv"><span class="t-ic">${IC.check}</span>${T('h3', 'credH')}${T('p', 'cred', 'class="t-lede"')}<dl class="crow">${[['credRows.0', `<b class="reg-n" data-i="regNum">${txt('regNum')}</b>`], ['credRows.1', `<a class="tl" ${DIA}>Celebrants Online</a>`], ['credRows.2', `<a class="tl" ${CANZ}>Celebrants Aotearoa</a>`]].map(([k, v]) => `<div><dt data-i="${k}">${txt(k)}</dt><dd>${v}</dd></div>`).join('')}</dl><p class="t-foot"><span data-i="credFootL">${txt('credFootL')}</span> <a class="tl" ${DIA}><span data-i="credFootR">${txt('credFootR')}</span></a></p></div>`;
 const travel9 = () => `<div class="travel rv" id="travel"><span class="t-ic">${IC.map}</span>${T('h3', 'travelH')}${T('p', 'travelLede', 'class="t-lede"')}<ul class="places">${[0, 1, 2, 3, 4, 5, 6].map((i) => `<li>${pin}<span data-i="places.${i}">${txt(`places.${i}`)}</span></li>`).join('')}</ul><p class="t-foot"><span data-i="travelNote">${txt('travelNote')}</span> <a class="tl" href="#enquire"><span data-i="travelAsk">${txt('travelAsk')}</span></a></p></div>`;
 const foot9 = () => `<footer class="ft ft9"><div class="ft-in"><div class="ft-a"><p class="sig ft-wm" lang="en">Vannarady Ng</p>${T('p', 'brandSub', 'class="ft-sub"')}${T('p', 'footNote', 'class="note"')}${socials('soc ft-soc')}<a class="btn ft-btn" href="#enquire" data-i="cta">${txt('cta')}</a></div><nav class="ft-col" aria-label="Footer">${T('p', 'ftExplore', 'class="ft-h"')}<ul>${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'].map((h, i) => `<li><a href="${h}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`).join('')}</ul></nav><div class="ft-col">${T('p', 'ftContact', 'class="ft-h"')}${T('p', 'footContact')}<p><a ${DIA} data-i="ftDia">${txt('ftDia')}</a> · <span data-i="regNo">${txt('regNo')}</span></p><p><a ${CANZ} data-i="canz">${txt('canz')}</a></p><p><a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p>${langSwitch(false)}</div></div><div class="ft-base">${T('span', 'copyright')}</div></footer>`;
 // Signature options for Van to compare (all SIL OFL 1.1, Latin subset only). Review switch: ?sig=a|b|c|d
@@ -855,6 +856,17 @@ main section{position:relative}
 .fm-h{grid-column:1/-1;padding-bottom:18px;margin-bottom:4px;border-bottom:1px solid color-mix(in srgb,var(--acc) 16%,transparent)}
 .fm-h h3{font-size:calc(var(--hs)*clamp(1.5rem,1.25rem + .6vw,1.875rem));margin:0 0 .3em}
 .fm-h p{margin:0;font-size:.9375rem;opacity:.85}
+
+.trust9 .cred{display:flex!important;flex-direction:column;align-items:stretch!important;gap:0!important}.trust9 .cred .t-lede{margin:0 0 6px}
+.trust9 .cred .seal{margin-bottom:18px}
+.trust9 .cred h3{margin-bottom:.3em}
+.crow{margin:8px 0 0;display:grid;gap:0}
+.crow>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px dashed color-mix(in srgb,var(--acc) 22%,transparent)}
+.crow>div:first-child{border-top:0}
+.crow dt{font-size:.9375rem;opacity:.8}
+.crow dd{margin:0;font-weight:600;text-align:right}
+:lang(zh) .crow dd{font-weight:400}
+.crow .reg-n{font-size:.9375rem;letter-spacing:.04em}
 /* polished build: pending-content flags stay in the source but are not shown */
 .flag{display:none!important}
 /* review-only signature switch */
