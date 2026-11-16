@@ -30,7 +30,7 @@ const extraEN = {
   privacyLink: 'Privacy notice',
   footContact: 'Auckland, New Zealand · Enquiries via the form',
   credLink: 'Find my listing on Celebrants Online',
-  faqH: 'Questions before enquiring',
+  faqH: 'Questions Before Enquiring',
   faq: [
     ['Which languages do you offer?', 'I offer personalised wedding ceremonies in English, Cantonese and Mandarin. For a ceremony in more than one language, tell me what you have in mind and we can talk it through.'],
     ['Where do you hold ceremonies?', 'East, central and west Auckland, the North Shore, Rangitoto Island, Hamilton and the South Island. Travel costs apply outside Auckland.'],
@@ -41,7 +41,7 @@ const extraEN = {
   ],
   ribbon: 'Personalised ceremonies in English, Cantonese and Mandarin · Auckland, Hamilton and the South Island',
   big1: 'Your story,', big2: 'in your words.',
-  chooseH: 'Plan your ceremony', chooseLang: 'Which languages will your guests speak?', chooseArea: 'Where are you getting married?',
+  chooseH: 'Plan Your Ceremony', chooseLang: 'Which languages will your guests speak?', chooseArea: 'Where are you getting married?',
   areas: ['Auckland', 'North Shore', 'Rangitoto Island', 'Hamilton', 'South Island', 'Not sure yet'],
   chooseBtn: 'Request a Quote', chooseNote: 'Your choices are added to the enquiry form below.',
   more: 'Read more', scroll: 'Scroll',
@@ -57,7 +57,8 @@ const extraEN = {
   docTitle: 'Vannarady Ng · Auckland Wedding Celebrant · English, Cantonese & Mandarin',
   h1t: 'Auckland Wedding Celebrant in English, Cantonese and Mandarin',
   chStep: ['Languages', 'Location'], chGo: 'Request a Quote',
-  // Title-case CTAs (Arnold, 16 Nov 2026)
+  // Title-case CTAs and headings (Arnold, 16 Nov 2026)
+  enqH: 'Start With Your Date and Your Ideas', credH: 'Registered Celebrant', travelH: 'Where I Travel', approachH: 'A Ceremony With Your Story at Its Heart', langH: 'Think About the People Sharing Your Day', servicesH: 'Ceremonies',
   cta: 'Request a Quote', submit: 'Request a Quote',
   docDesc: 'Van Ng is a registered marriage and civil union celebrant in Auckland, leading personalised wedding ceremonies in English, Cantonese and Mandarin.',
   aboutEb: 'About Van', aboutH: 'Hi, I’m Van.',
@@ -67,20 +68,20 @@ const extraEN = {
     'I bring that same care and attention to your wedding. From checking your marriage licence to lodging your particulars with Births, Deaths and Marriages afterwards, I’ll take care of all the legal details for you. All you need to do is be present, hold each other’s hands and soak in every moment of your special day.',
   ],
   aboutMore: 'Read More About Me', aboutLess: 'Read Less',
-  svcEb: 'Ceremonies', svcH: 'A ceremony that feels like the two of you',
+  svcEb: 'Ceremonies', svcH: 'A Ceremony That Feels Like the Two of You',
   cardLink: ['Request a Quote', 'See Where I Travel', 'Ask About Languages'],
   faqMore: 'Still wondering about something?', faqCta: 'Ask Van',
-  aboutWhyH: 'Why I became a celebrant',
+  aboutWhyH: 'Why I Became a Celebrant',
   aboutWhy: [
     'To me, being a celebrant is a real privilege. I get to stand beside two people at one of the biggest milestones of their lives. A wedding is more than a celebration. It’s the moment two people step into new roles together. You become a husband or a wife, a partner for life, a son-in-law or daughter-in-law. One day, perhaps, you’ll become a father or a mother. Two families become one.',
     'I’ve always felt that moments like these deserve to be marked with meaning, and with words that truly belong to you. Being there as you make that promise, surrounded by the people who love you most, is what drew me to this work. It’s also what keeps me coming back to it with a full heart.',
   ],
-  aboutYoursH: 'Your ceremony, your story',
+  aboutYoursH: 'Your Ceremony, Your Story',
   aboutYours: [
     'Your ceremony should be all about the two of you, not me. I’ll take the time to get to know you, hear your story and help you find your own words. That way your ceremony feels personal, relaxed and completely yours.',
     'Whether you’re dreaming of an intimate ceremony on Rangitoto Island, a garden wedding in Auckland or a celebration further afield, I’d love to hear from you.',
   ],
-  testiEb: 'Kind words', testiH: 'From couples I’ve married',
+  testiEb: 'Kind words', testiH: 'From Couples I’ve Married',
   testi: [
     {
       q: ['Thank you so much, Vannarady. From the moment I met you, I’ve always felt you were so sweet and gentle, and so easy to get along with. Before and after the wedding, you gave me not only professional help and support, but you were also like a big sister to me, which made me feel so reassured.',

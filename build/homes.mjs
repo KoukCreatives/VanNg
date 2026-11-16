@@ -739,8 +739,8 @@ main section{position:relative}
 .ab-g{display:grid;gap:clamp(40px,6vw,96px);align-items:start}@media(min-width:900px){.ab-g{grid-template-columns:5fr 7fr}.ab-pic{position:sticky;top:120px}}
 .ab-pic{position:relative;max-width:30rem;margin-inline:auto;width:100%}
 .ab-frame{position:relative}
-.ab-frame::before{content:"";position:absolute;inset:-14px 14px 14px -14px;border:1px solid color-mix(in srgb,var(--acc) 45%,transparent);border-radius:999px 999px 28px 28px}
-.ab-frame .ph{aspect-ratio:4/5;border-radius:999px 999px 28px 28px;box-shadow:0 40px 80px -40px rgba(59,42,46,.6)}
+.ab-frame::before{content:"";position:absolute;inset:-14px 14px 14px -14px;border:1px solid color-mix(in srgb,var(--acc) 45%,transparent);border-radius:28px}
+.ab-frame .ph{aspect-ratio:4/5;border-radius:28px;box-shadow:0 40px 80px -40px rgba(59,42,46,.6)}
 .ab-badge{position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);margin:0;white-space:nowrap;background:#fff;color:var(--acc);font-family:var(--f-head);font-size:1.0625rem;padding:.65rem 1.4rem;border-radius:999px;box-shadow:0 18px 36px -18px rgba(59,42,46,.55)}
 .ab-h{font-family:var(--sig),"Literata",serif!important;font-weight:400!important;font-size:calc(var(--sig-s)*clamp(3.5rem,2.6rem + 3vw,5.5rem))!important;line-height:1!important;color:var(--acc);margin:0 0 .3em!important}
 :lang(zh) .ab-h{font-family:var(--f-head)!important;font-size:calc(var(--hs)*clamp(2.125rem,1.5rem + 2.2vw,3.25rem))!important;color:var(--ink)}
@@ -769,6 +769,7 @@ main section{position:relative}
 .tq{grid-auto-columns:min(100%,52rem)}
 /* credentials + travel */
 .trust9{background:#fff}
+.trust9 .two{align-items:stretch}.trust9 .two>*{height:100%;margin:0}
 .trust9 .cred,.trust9 .travel{border-radius:26px;padding:clamp(26px,3vw,40px);border:0;box-shadow:0 30px 60px -44px rgba(59,42,46,.55)}
 .trust9 .cred{background:linear-gradient(140deg,#FFF 0,#FBEDEB 100%);border:1px solid color-mix(in srgb,var(--acc) 14%,transparent)}
 .trust9 .travel{background:linear-gradient(140deg,#FFF 0,#F7EEF0 100%);border:1px solid color-mix(in srgb,var(--acc) 14%,transparent)}
@@ -779,20 +780,21 @@ main section{position:relative}
 .trust9 .places li:hover{background:var(--acc);color:#fff}.trust9 .places li:hover svg{color:#fff}
 /* faq */
 .faq9{background:linear-gradient(180deg,#fff 0,var(--bg) 100%)}
-.faq9 .faqx-ph{border-radius:999px 999px 26px 26px;aspect-ratio:4/5}
+.faq9 .faqx-ph{border-radius:24px;aspect-ratio:4/3}
+@media(min-width:950px){.faq9 .faqx{align-items:start}.faq9 .faqx-l{position:sticky;top:124px;align-self:start}}
 .faq9 .faq details{background:#fff;border:1px solid color-mix(in srgb,var(--acc) 14%,transparent)!important;border-radius:18px;padding:0 22px;margin-bottom:12px;transition:box-shadow .25s ease,background .25s ease}
 .faq9 .faq details[open]{background:#FFF8F7;box-shadow:0 24px 48px -36px rgba(59,42,46,.6)}
 .faq9 .faq summary{padding:20px 0;font-size:1.0625em}
 .faq9 .faq summary::after{content:"+";display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:50%;background:color-mix(in srgb,var(--acc) 10%,#fff);color:var(--acc);font-size:1.25rem;opacity:1;transition:transform .25s ease,background .25s ease}
 .faq9 .faq details[open] summary::after{content:"+";transform:rotate(45deg);background:var(--acc);color:#fff}
 .faq9 .faq details p{padding-bottom:4px}
-.faq-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 20px;margin-top:clamp(40px,5vw,64px);padding:22px 28px;border-radius:999px;background:#fff;box-shadow:0 24px 48px -36px rgba(59,42,46,.55);max-width:40rem;margin-inline:auto}
+.faq-cta{display:grid;justify-items:start;gap:14px;margin-top:28px;padding:24px 26px;border-radius:22px;background:#fff;box-shadow:0 24px 48px -36px rgba(59,42,46,.55);max-width:30rem}
 .faq-cta p{margin:0;font-family:var(--f-head);font-size:1.25rem}
 .faq-cta .btn{border-radius:999px;gap:8px}
-@media(max-width:600px){.faq-cta{border-radius:24px;text-align:center}}
+
 /* enquire */
 #enquire.band{background:radial-gradient(ellipse 60% 70% at 85% 20%,#F7E5E2 0,rgba(247,229,226,0) 70%),var(--blush)}
-#enquire .enq-ph{border-radius:999px 999px 26px 26px;aspect-ratio:4/3!important}
+#enquire .enq-ph{border-radius:24px;aspect-ratio:4/3!important}
 #enquire .inc{list-style:none;padding:0}
 #enquire .inc li{position:relative;padding-left:34px;margin-bottom:12px}
 #enquire .inc li::before{content:"";position:absolute;left:0;top:.2em;width:22px;height:22px;border-radius:50%;background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5 5.5-6' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
@@ -836,7 +838,7 @@ ${socPops()}
 <section class="testi9" id="kind-words"><div class="in"><div class="testi-h rv">${B.eb('testiEb')}${T('h2', 'testiH')}</div>
 <ul class="tq">${DICT_TESTI().map((_, i) => `<li class="rv"><blockquote><span class="qm" aria-hidden="true">“</span>${testiQ(i)}<footer data-i="testi.${i}.by">${txt(`testi.${i}.by`)}</footer></blockquote></li>`).join('')}</ul></div></section>
 <section class="trust9"><div class="in two">${cred9()}${B.travel()}</div></section>
-<section class="faq9"><div class="in">${faqBlock()}<div class="faq-cta rv"><p data-i="faqMore">${txt('faqMore')}</p><a class="btn" href="#enquire"><span data-i="faqCta">${txt('faqCta')}</span>${IC.arrow}</a></div></div></section>
+<section class="faq9"><div class="in"><div class="faqx" id="faq"><div class="faqx-l"><p class="sec-eb" data-i="secQuestions">${txt('secQuestions')}</p>${T('h2', 'faqH')}${T('p', 'faqIntro')}<div class="faq-cta"><p data-i="faqMore">${txt('faqMore')}</p><a class="btn" href="#enquire"><span data-i="faqCta">${txt('faqCta')}</span>${IC.arrow}</a></div></div><div class="faq">${[0, 1, 2, 3, 4, 5].map((i) => `<details${i === 0 ? ' open' : ''}><summary data-i="faq.${i}.0">${txt(`faq.${i}.0`)}</summary>${T('p', `faq.${i}.1`)}</details>`).join('')}</div></div></div></section>
 <section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('d')}</div></div></section>
 </main>${foot9()}
 <!-- signature styles: preview with ?sig=b|c|d (a = Corinthia, default) -->
