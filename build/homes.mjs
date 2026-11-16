@@ -567,6 +567,7 @@ const socPops = () => ['red', 'wx'].map((k) => { const s = SOC[k]; return `<div 
 const IC = {
   rings: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="14" r="5.5"/><path d="M10.5 4.5l1.5-2 1.5 2-1.5 2z" stroke-linejoin="round"/></g></svg>',
   talk: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3.5 5.5h11a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5H8l-3.5 3v-3h-1A1.5 1.5 0 0 1 2 13V7a1.5 1.5 0 0 1 1.5-1.5z"/><path d="M16 9.5h4.5A1.5 1.5 0 0 1 22 11v5.5a1.5 1.5 0 0 1-1.5 1.5h-1v2.5L16.5 18H12a1.5 1.5 0 0 1-1.5-1.5V15"/></g></svg>',
+  map: '<svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 6.5l5.5-2.5 7 2.5L21 4v13.5L15.5 20l-7-2.5L3 20z"/><path d="M8.5 4v13.5M15.5 6.5V20"/></g></svg>',
   arrow: '<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M4 10h11m-4-4.5L15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   plus: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
   minus: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
@@ -574,6 +575,7 @@ const IC = {
 const sigBrand = () => `<a class="brand" href="#"><span class="sig" lang="en">Vannarady Ng</span><span class="bs" data-i="brandSub">${txt('brandSub')}</span></a>`;
 const head9 = () => `<header class="hd"><div class="hd-in">${sigBrand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${socials()}${langSwitch(false)}${mobileNav()}</div></div></header>`;
 const cred9 = () => `<div class="cred rv">${seal}<div>${T('h3', 'credH')}${T('p', 'cred')}<p class="reg"><a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a> <span class="reg-n" data-i="regNo">${txt('regNo')}</span></p><div class="canz"><span class="flag" data-i="canzLogo">${txt('canzLogo')}</span><p><span data-i="canz">${txt('canz')}</span> · <a class="tl" ${CANZ} data-i="canzLink">${txt('canzLink')}</a></p></div></div></div>`;
+const travel9 = () => `<div class="travel rv" id="travel"><span class="t-ic">${IC.map}</span>${T('h3', 'travelH')}${T('p', 'travelLede', 'class="t-lede"')}<ul class="places">${[0, 1, 2, 3, 4, 5, 6].map((i) => `<li>${pin}<span data-i="places.${i}">${txt(`places.${i}`)}</span></li>`).join('')}</ul><p class="t-foot"><span data-i="travelNote">${txt('travelNote')}</span> <a class="tl" href="#enquire"><span data-i="travelAsk">${txt('travelAsk')}</span></a></p></div>`;
 const foot9 = () => `<footer class="ft ft9"><div class="ft-in"><div class="ft-a"><p class="sig ft-wm" lang="en">Vannarady Ng</p>${T('p', 'brandSub', 'class="ft-sub"')}${T('p', 'footNote', 'class="note"')}${socials('soc ft-soc')}<a class="btn ft-btn" href="#enquire" data-i="cta">${txt('cta')}</a></div><nav class="ft-col" aria-label="Footer">${T('p', 'ftExplore', 'class="ft-h"')}<ul>${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'].map((h, i) => `<li><a href="${h}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`).join('')}</ul></nav><div class="ft-col">${T('p', 'ftContact', 'class="ft-h"')}${T('p', 'footContact')}<p><a ${DIA} data-i="ftDia">${txt('ftDia')}</a> · <span data-i="regNo">${txt('regNo')}</span></p><p><a ${CANZ} data-i="canz">${txt('canz')}</a></p><p><a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p>${langSwitch(false)}</div></div><div class="ft-base">${T('span', 'copyright')}</div></footer>`;
 // Signature options for Van to compare (all SIL OFL 1.1, Latin subset only). Review switch: ?sig=a|b|c|d
 const SIGS = [['a', 'Corinthia', 'corinthia'], ['b', 'Pinyon Script', 'pinyon-script'], ['c', 'Great Vibes', 'great-vibes'], ['d', 'Allura', 'allura']];
@@ -826,7 +828,7 @@ main section{position:relative}
 #enquire .inc li::before{content:"";position:absolute;left:0;top:.2em;width:22px;height:22px;border-radius:50%;background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5 5.5-6' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
 #enquire .enq{align-items:start}#enquire .enq>div:last-child>form{flex:none}@media(min-width:950px){#enquire .enq>div:last-child{position:sticky;top:110px}}
 #enquire form{background:#fff;border-radius:28px;padding:clamp(24px,3vw,40px);box-shadow:0 40px 80px -48px rgba(59,42,46,.6);gap:18px}
-@media(min-width:700px){#enquire form{grid-template-columns:1fr 1fr}#enquire form>*{grid-column:1/-1}#enquire form>.field:nth-of-type(-n+4){grid-column:auto}}
+@media(min-width:700px){#enquire form{grid-template-columns:1fr 1fr}#enquire form>*{grid-column:1/-1}#enquire form>.field:nth-child(n+2):nth-child(-n+5){grid-column:auto}}
 #enquire input,#enquire textarea{border-radius:14px;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);background:#FFFCFB;transition:border-color .2s ease,box-shadow .2s ease}
 #enquire input:focus,#enquire textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 16%,transparent)}
 #enquire form .btn{width:100%;border-radius:999px;min-height:54px;font-size:1.0625rem;box-shadow:0 14px 28px -14px rgba(115,59,73,.9)}
@@ -843,6 +845,16 @@ main section{position:relative}
 .ft9 .ls button[aria-pressed=true]{background:#fff;color:var(--plum)}
 .ft9 .ft-base{border-top-color:rgba(255,255,255,.12)}
 
+
+.trust9 .t-ic{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;border:1.5px solid var(--acc);color:var(--acc);margin-bottom:18px}
+.trust9 .travel h3{margin-bottom:.3em}
+.trust9 .t-lede{margin:0 0 6px}
+.trust9 .t-foot{margin:auto 0 0;padding-top:16px;border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent);font-size:.9375rem;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:space-between}
+.trust9 .travel{display:flex;flex-direction:column}
+.trust9 .cred{align-content:start}
+.fm-h{grid-column:1/-1;padding-bottom:18px;margin-bottom:4px;border-bottom:1px solid color-mix(in srgb,var(--acc) 16%,transparent)}
+.fm-h h3{font-size:calc(var(--hs)*clamp(1.5rem,1.25rem + .6vw,1.875rem));margin:0 0 .3em}
+.fm-h p{margin:0;font-size:.9375rem;opacity:.85}
 /* polished build: pending-content flags stay in the source but are not shown */
 .flag{display:none!important}
 /* review-only signature switch */
@@ -863,9 +875,9 @@ ${socPops()}
 <p class="ab-sig" lang="en" aria-hidden="true">Van</p></div></div></section>
 <section class="testi9" id="kind-words"><div class="in"><div class="testi-h rv">${B.eb('testiEb')}${T('h2', 'testiH')}</div>
 <ul class="tq">${DICT_TESTI().map((_, i) => `<li class="rv"><blockquote><div class="stars" role="img" aria-label="5 out of 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></div><p class="rate" data-i="testiRate">${txt('testiRate')}</p>${testiQ9(i)}<footer data-i="testiAttr">${txt('testiAttr')}</footer></blockquote></li>`).join('')}</ul></div></section>
-<section class="trust9"><div class="in two">${cred9()}${B.travel()}</div></section>
+<section class="trust9"><div class="in two">${cred9()}${travel9()}</div></section>
 <section class="faq9"><div class="in"><div class="faqx" id="faq"><div class="faqx-l"><p class="sec-eb" data-i="secQuestions">${txt('secQuestions')}</p>${T('h2', 'faqH')}${T('p', 'faqIntro')}<div class="faq-cta"><p data-i="faqMore">${txt('faqMore')}</p><a class="btn" href="#enquire"><span data-i="faqCta">${txt('faqCta')}</span>${IC.arrow}</a></div></div><div class="faq">${[0, 1, 2, 3, 4, 5].map((i) => `<details${i === 0 ? ' open' : ''}><summary data-i="faq.${i}.0">${txt(`faq.${i}.0`)}</summary>${T('p', `faq.${i}.1`)}</details>`).join('')}</div></div></div></section>
-<section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('d')}</div></div></section>
+<section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('d').replace('aria-describedby="d-priv">', `aria-describedby="d-priv" aria-labelledby="fm-h"><div class="fm-h"><h3 id="fm-h" data-i="formH">${txt('formH')}</h3>${T('p', 'formP')}</div>`)}</div></div></section>
 </main>${foot9()}
 <!-- signature styles: preview with ?sig=b|c|d (a = Corinthia, default) -->
 <script>
