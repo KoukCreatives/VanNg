@@ -711,6 +711,7 @@ designs.push({
 /* ───────── sections ───────── */
 :root{--plum:#3B2A2E;--plum-2:#4C3138;--blush:#F3DEDA;--cream:#FFFCFB}
 main section{position:relative}
+@media(min-width:900px){[id]{scroll-margin-top:110px}}
 .sec-h{text-align:center;max-width:46rem;margin:0 auto clamp(36px,5vw,64px)}
 .sec-h .sec-eb{justify-content:center}
 .sec-l{font-size:1.125em;line-height:1.7;opacity:.88;margin:0 auto}
