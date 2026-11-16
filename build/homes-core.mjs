@@ -55,6 +55,8 @@ const extraEN = {
   langNote: ['Ceremony in English', 'Ceremony in Cantonese', 'Ceremony in Mandarin'],
   // ── Home-09 (Round 2 merge, Van's feedback 14 Nov 2026) ──
   docTitle: 'Vannarady Ng · Auckland Wedding Celebrant · English, Cantonese & Mandarin',
+  h1t: 'Auckland Wedding Celebrant in English, Cantonese and Mandarin',
+  chStep: ['Languages', 'Location'], chGo: 'Request a quote',
   docDesc: 'Van Ng is a registered marriage and civil union celebrant in Auckland, leading personalised wedding ceremonies in English, Cantonese and Mandarin.',
   aboutEb: 'About Van', aboutH: 'Hi, I’m Van.',
   about: [
@@ -142,6 +144,8 @@ const extraZH = {
   langNote: ['以英語主持儀式', '以粵語主持儀式', '以普通話主持儀式'],
   // ── Home-09: working draft for layout only; needs the agreed translator + Van's review ──
   docTitle: 'Vannarady Ng · 奧克蘭證婚人 · 英語、粵語及普通話',
+  h1t: '奧克蘭證婚人，以英語、粵語及普通話主持婚禮',
+  chStep: ['語言', '地點'], chGo: '索取報價',
   docDesc: 'Van Ng 是奧克蘭註冊婚姻及民事結合證婚人，以英語、粵語及普通話主持個人化婚禮儀式。',
   aboutEb: '關於 Van', aboutH: '你好，我是 Van。',
   about: [
