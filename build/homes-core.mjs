@@ -66,7 +66,10 @@ const extraEN = {
     'By day, I’m a solicitor at a law firm in East Auckland, and I genuinely love what I do. My journey in law began in Hong Kong, and it has grown into a career I’m truly passionate about. I help clients buy their first homes, protect their families and plan for the future. Nothing is more rewarding than taking something that feels complicated or worrying and making it clear and simple. I enjoy finding solutions, spotting risks early and giving my clients real peace of mind.',
     'I bring that same care and attention to your wedding. From checking your marriage licence to lodging your particulars with Births, Deaths and Marriages afterwards, I’ll take care of all the legal details for you. All you need to do is be present, hold each other’s hands and soak in every moment of your special day.',
   ],
-  aboutMore: 'Read More About Me',
+  aboutMore: 'Read More About Me', aboutLess: 'Read Less',
+  svcEb: 'Ceremonies', svcH: 'A ceremony that feels like the two of you',
+  cardLink: ['Request a Quote', 'See Where I Travel', 'Ask About Languages'],
+  faqMore: 'Still wondering about something?', faqCta: 'Ask Van',
   aboutWhyH: 'Why I became a celebrant',
   aboutWhy: [
     'To me, being a celebrant is a real privilege. I get to stand beside two people at one of the biggest milestones of their lives. A wedding is more than a celebration. It’s the moment two people step into new roles together. You become a husband or a wife, a partner for life, a son-in-law or daughter-in-law. One day, perhaps, you’ll become a father or a mother. Two families become one.',
@@ -155,7 +158,10 @@ const extraZH = {
     '平日，我是奧克蘭東區一間律師事務所的律師，我很熱愛自己的工作。我的法律之路始於香港，後來發展成一份我真心熱愛的事業。我協助客戶購買第一個家、保障家人，並為將來作好規劃。把看似複雜或令人擔心的事情變得清晰簡單，是最有滿足感的事。我享受尋找解決方法、及早發現風險，讓客戶真正安心。',
     '我會以同樣的用心和細心對待你們的婚禮。由核對你們的結婚證書（marriage licence），到婚禮後向出生、死亡及婚姻登記處（Births, Deaths and Marriages）遞交婚姻資料，所有法律細節都由我為你們處理。你們只需要全心投入，牽著對方的手，好好感受這個特別日子的每一刻。',
   ],
-  aboutMore: '閱讀更多',
+  aboutMore: '閱讀更多', aboutLess: '收起',
+  svcEb: '婚禮儀式', svcH: '一場屬於你們兩人的儀式',
+  cardLink: ['索取報價', '查看服務地區', '了解語言安排'],
+  faqMore: '還有其他問題？', faqCta: '問問 Van',
   aboutWhyH: '我為何成為證婚人',
   aboutWhy: [
     '對我來說，成為證婚人是一份榮幸。我可以在兩個人人生最重要的里程碑之一，站在他們身旁。婚禮不只是一場慶祝，更是兩個人一同踏入新角色的時刻。你們成為丈夫或妻子、成為一生的伴侶、成為女婿或媳婦，將來或許還會成為父親或母親。兩個家庭從此合而為一。',

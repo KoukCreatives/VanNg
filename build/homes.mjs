@@ -563,10 +563,17 @@ const socials = (cls = 'soc') => `<ul class="${cls}" aria-label="${SOC.fb.label}
   ? `<li><a href="${s.href}" target="_blank" rel="noopener" aria-label="${s.label}" title="${s.label}">${svgIcon(s.icon)}</a></li>`
   : `<li><button type="button" popovertarget="pop-${k}" aria-label="${s.label}" title="${s.label}">${svgIcon(s.icon)}</button></li>`).join('')}</ul>`;
 const socPops = () => ['red', 'wx'].map((k) => { const s = SOC[k]; return `<div class="pop" id="pop-${k}" popover><div class="pop-h">${svgIcon(s.icon)}<p data-i="${s.key}">${txt(s.key)}</p></div><p class="pop-id" lang="en">${s.id}</p><p class="pop-n" data-i="socHint">${txt('socHint')}</p><p><span class="flag" data-i="socQr">${txt('socQr')}</span></p><div class="pop-b"><button type="button" class="btn" data-copy="${s.id}" data-i="socCopy">${txt('socCopy')}</button><button type="button" class="tl" popovertarget="pop-${k}" popovertargetaction="hide" data-i="socClose">${txt('socClose')}</button></div></div>`; }).join('');
+const IC = {
+  rings: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="14" r="5.5"/><path d="M10.5 4.5l1.5-2 1.5 2-1.5 2z" stroke-linejoin="round"/></g></svg>',
+  talk: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3.5 5.5h11a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5H8l-3.5 3v-3h-1A1.5 1.5 0 0 1 2 13V7a1.5 1.5 0 0 1 1.5-1.5z"/><path d="M16 9.5h4.5A1.5 1.5 0 0 1 22 11v5.5a1.5 1.5 0 0 1-1.5 1.5h-1v2.5L16.5 18H12a1.5 1.5 0 0 1-1.5-1.5V15"/></g></svg>',
+  arrow: '<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M4 10h11m-4-4.5L15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  plus: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  minus: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+};
 const sigBrand = () => `<a class="brand" href="#"><span class="sig" lang="en">Vannarady Ng</span><span class="bs" data-i="brandSub">${txt('brandSub')}</span></a>`;
 const head9 = () => `<header class="hd"><div class="hd-in">${sigBrand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${socials()}${langSwitch(false)}${mobileNav()}</div></div></header>`;
 const cred9 = () => `<div class="cred rv">${seal}<div>${T('h3', 'credH')}${T('p', 'cred')}<p class="reg"><a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a> <span class="reg-n" data-i="regNo">${txt('regNo')}</span></p><div class="canz"><span class="flag" data-i="canzLogo">${txt('canzLogo')}</span><p><span data-i="canz">${txt('canz')}</span> · <a class="tl" ${CANZ} data-i="canzLink">${txt('canzLink')}</a></p></div></div></div>`;
-const foot9 = () => `<footer class="ft"><div class="ft-in"><div class="ft-a"><p class="sig ft-wm" lang="en">Vannarady Ng</p>${T('p', 'brandSub', 'class="ft-sub"')}${T('p', 'footNote', 'class="note"')}${socials('soc ft-soc')}<a class="btn ft-btn" href="#enquire" data-i="cta">${txt('cta')}</a></div><nav class="ft-col" aria-label="Footer">${T('p', 'ftExplore', 'class="ft-h"')}<ul>${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'].map((h, i) => `<li><a href="${h}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`).join('')}</ul></nav><div class="ft-col">${T('p', 'ftContact', 'class="ft-h"')}${T('p', 'footContact')}<p><a ${DIA} data-i="ftDia">${txt('ftDia')}</a> · <span data-i="regNo">${txt('regNo')}</span></p><p><a ${CANZ} data-i="canz">${txt('canz')}</a></p><p><a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p>${langSwitch(false)}</div></div><div class="ft-base">${T('span', 'copyright')}</div></footer>`;
+const foot9 = () => `<footer class="ft ft9"><div class="ft-in"><div class="ft-a"><p class="sig ft-wm" lang="en">Vannarady Ng</p>${T('p', 'brandSub', 'class="ft-sub"')}${T('p', 'footNote', 'class="note"')}${socials('soc ft-soc')}<a class="btn ft-btn" href="#enquire" data-i="cta">${txt('cta')}</a></div><nav class="ft-col" aria-label="Footer">${T('p', 'ftExplore', 'class="ft-h"')}<ul>${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'].map((h, i) => `<li><a href="${h}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`).join('')}</ul></nav><div class="ft-col">${T('p', 'ftContact', 'class="ft-h"')}${T('p', 'footContact')}<p><a ${DIA} data-i="ftDia">${txt('ftDia')}</a> · <span data-i="regNo">${txt('regNo')}</span></p><p><a ${CANZ} data-i="canz">${txt('canz')}</a></p><p><a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p>${langSwitch(false)}</div></div><div class="ft-base">${T('span', 'copyright')}</div></footer>`;
 // Signature options for Van to compare (all SIL OFL 1.1, Latin subset only). Review switch: ?sig=a|b|c|d
 const SIGS = [['a', 'Corinthia', 'corinthia'], ['b', 'Pinyon Script', 'pinyon-script'], ['c', 'Great Vibes', 'great-vibes'], ['d', 'Allura', 'allura']];
 designs.push({
@@ -606,7 +613,7 @@ designs.push({
 .hd .sig{font-size:calc(var(--sig-s)*3.1rem);margin:.14em 0 .02em!important;padding-top:.04em}
 .hd .bs{color:#F6DCE0}.hd.stuck .bs{color:var(--acc)}
 .nav-d ul{gap:4px!important}
-.nav-d a{display:block;padding:.5rem .95rem;border-radius:999px;font-size:.9375rem;font-weight:600;letter-spacing:.01em;text-decoration:none!important;transition:background .2s ease,color .2s ease}
+.nav-d a{display:block;padding:.5rem 1rem;border-radius:999px;font-size:1.0625rem;font-weight:600;letter-spacing:.01em;text-decoration:none!important;transition:background .2s ease,color .2s ease}
 :lang(zh) .nav-d a{font-weight:400}
 .nav-d a:hover{background:rgba(255,255,255,.16)}
 .nav-d a[aria-current]{background:rgba(255,255,255,.22);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
@@ -628,7 +635,7 @@ designs.push({
 .hd-cta{min-height:44px!important;padding:.55rem 1.3rem!important;border-radius:999px!important;font-size:.9375rem!important;box-shadow:0 10px 24px -12px rgba(115,59,73,.9);white-space:nowrap}
 .hero .hd-cta{background:#fff;color:var(--acc)}.hero .hd-cta:hover{background:#FBE6E8}
 .hd.stuck .hd-cta{background:var(--acc);color:#fff}
-@media(min-width:1280px) and (max-width:1439px){.hd-cta{display:none!important}}
+@media(min-width:1280px) and (max-width:1439px){.nav-d ul{gap:0!important}.nav-d a{padding:.5rem .7rem}.hd .soc{gap:4px}.hd-r{gap:8px!important}.hero .hd-in{padding-left:24px}}
 @media(max-width:1099px){.hd-cta{display:none!important}}
 .nav-m summary{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4)!important;font-weight:600}
 @media(max-width:899px){.hero .hd-in{border-radius:26px;padding:12px 14px 12px 18px}.hd .sig{font-size:calc(var(--sig-s)*2.6rem)}.hd .ls button{padding:.32rem .6rem}}
@@ -639,7 +646,7 @@ designs.push({
 /* Plan your ceremony card */
 .ch9{max-width:64rem;padding:clamp(22px,3vw,36px);border-radius:24px;gap:22px 28px;text-align:left}
 @media(min-width:900px){.ch9{grid-template-columns:1.25fr 1fr auto;align-items:end}}
-.ch-top{grid-column:1/-1;display:grid;gap:6px;justify-items:start;text-align:left;padding-bottom:18px;border-bottom:1px solid color-mix(in srgb,var(--acc) 16%,transparent)}
+.ch-top{grid-column:1/-1;display:grid;gap:6px;justify-items:center;text-align:center;padding-bottom:18px;border-bottom:1px solid color-mix(in srgb,var(--acc) 16%,transparent)}
 .ch9 .ch-h{font-size:calc(var(--hs)*clamp(1.375rem,1.1rem + .8vw,1.75rem));margin:0}
 .ch9 .cn{grid-column:auto;margin:0;font-size:.9375rem;color:#6E5459}
 .ch-f{border:0;margin:0;padding:0;min-width:0}
@@ -700,6 +707,113 @@ designs.push({
 /* credentials */
 .reg{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.reg-n{font-size:.9375rem;font-variant-numeric:tabular-nums;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:999px;padding:.05rem .65rem}
 .canz{margin-top:16px;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}.canz p{margin:6px 0 0;font-size:.9375rem}
+
+/* ───────── sections ───────── */
+:root{--plum:#3B2A2E;--plum-2:#4C3138;--blush:#F3DEDA;--cream:#FFFCFB}
+main section{position:relative}
+.sec-h{text-align:center;max-width:46rem;margin:0 auto clamp(36px,5vw,64px)}
+.sec-h .sec-eb{justify-content:center}
+.sec-l{font-size:1.125em;line-height:1.7;opacity:.88;margin:0 auto}
+:lang(zh) .sec-l{font-size:1.0625em;line-height:1.9}
+/* offer cards */
+.offer9{background:linear-gradient(180deg,var(--bg) 0,#fff 100%)}
+.cards9{display:grid;gap:clamp(20px,2.4vw,32px)}@media(min-width:900px){.cards9{grid-template-columns:repeat(3,1fr)}}
+.c9{background:#fff;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 0 rgba(59,42,46,.06),0 30px 60px -40px rgba(59,42,46,.45);transition:transform .35s ease,box-shadow .35s ease}
+.c9:hover{transform:translateY(-6px);box-shadow:0 1px 0 rgba(59,42,46,.06),0 40px 70px -40px rgba(59,42,46,.6)}
+.c9-img{position:relative;display:block;overflow:hidden;margin:12px 12px 0;border-radius:18px}
+.c9 .ph{aspect-ratio:4/3.4;border-radius:18px;background:#eadad7}
+.c9 .ph img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.c9:hover .ph img{transform:scale(1.06)}
+.c9-img::after{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(180deg,rgba(40,20,26,0) 55%,rgba(40,20,26,.35))}
+.c9-n{position:absolute;z-index:2;left:14px;top:14px;font:600 .8125rem/1 "Source Sans 3",system-ui,sans-serif;letter-spacing:.12em;color:#fff;background:rgba(40,20,26,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:.45rem .7rem}
+.c9-b{position:relative;padding:38px clamp(22px,2.2vw,30px) 28px;display:flex;flex-direction:column;gap:10px;flex:1}
+.c9-ic{position:absolute;top:-26px;left:clamp(22px,2.2vw,30px);display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--acc);color:#fff;box-shadow:0 0 0 6px #fff,0 12px 24px -10px rgba(142,74,90,.9)}
+.c9 h3{margin:0;font-size:calc(var(--hs)*clamp(1.5rem,1.25rem + .6vw,1.875rem))}
+.c9 p{margin:0;flex:1;opacity:.88}
+.c9-l{display:inline-flex;align-items:center;gap:8px;margin-top:10px;align-self:flex-start;color:var(--acc);font-weight:600;text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--acc) 35%,transparent);padding-bottom:3px}
+:lang(zh) .c9-l{font-weight:400}
+.c9-l svg{transition:transform .2s ease}.c9-l:hover svg{transform:translateX(4px)}
+/* about */
+.about9{background:radial-gradient(ellipse 60% 70% at 15% 30%,#F7E5E2 0,rgba(247,229,226,0) 70%),var(--blush)}
+.ab-g{display:grid;gap:clamp(40px,6vw,96px);align-items:start}@media(min-width:900px){.ab-g{grid-template-columns:5fr 7fr}.ab-pic{position:sticky;top:120px}}
+.ab-pic{position:relative;max-width:30rem;margin-inline:auto;width:100%}
+.ab-frame{position:relative}
+.ab-frame::before{content:"";position:absolute;inset:-14px 14px 14px -14px;border:1px solid color-mix(in srgb,var(--acc) 45%,transparent);border-radius:999px 999px 28px 28px}
+.ab-frame .ph{aspect-ratio:4/5;border-radius:999px 999px 28px 28px;box-shadow:0 40px 80px -40px rgba(59,42,46,.6)}
+.ab-badge{position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);margin:0;white-space:nowrap;background:#fff;color:var(--acc);font-family:var(--f-head);font-size:1.0625rem;padding:.65rem 1.4rem;border-radius:999px;box-shadow:0 18px 36px -18px rgba(59,42,46,.55)}
+.ab-h{font-family:var(--sig),"Literata",serif!important;font-weight:400!important;font-size:calc(var(--sig-s)*clamp(3.5rem,2.6rem + 3vw,5.5rem))!important;line-height:1!important;color:var(--acc);margin:0 0 .3em!important}
+:lang(zh) .ab-h{font-family:var(--f-head)!important;font-size:calc(var(--hs)*clamp(2.125rem,1.5rem + 2.2vw,3.25rem))!important;color:var(--ink)}
+.ab-lede{font-family:var(--f-head);font-size:calc(var(--hs)*clamp(1.125rem,1.05rem + .3vw,1.3125rem));line-height:1.55!important;color:var(--ink)}
+:lang(zh) .ab-lede{line-height:1.8!important}
+.ab-t p{max-width:40rem}
+.ab-t h3{font-size:calc(var(--hs)*1.5rem);margin-top:1.4em}
+.more summary,.less{display:inline-flex;align-items:center;gap:10px;cursor:pointer;list-style:none;font:inherit;font-weight:600;color:var(--acc);background:#fff;border:1px solid color-mix(in srgb,var(--acc) 30%,transparent);border-radius:999px;padding:.65rem 1.3rem;margin-top:10px;transition:background .2s ease,color .2s ease;border-bottom:1px solid color-mix(in srgb,var(--acc) 30%,transparent)}
+.more summary::after{content:none!important}
+:lang(zh) .more summary,:lang(zh) .less{font-weight:400}
+.more summary:hover,.less:hover{background:var(--acc);color:#fff}
+.more[open] summary{display:none}
+.more-b{animation:rise .5s ease both}
+.ab-sig{font-family:var(--sig),serif;font-size:calc(var(--sig-s)*3.75rem);line-height:1;color:var(--acc);margin:28px 0 0;opacity:.9}
+@media(max-width:899px){.ab-badge{font-size:.9375rem}}
+/* testimonials */
+.testi9{background:radial-gradient(ellipse 70% 60% at 50% 0,var(--plum-2),var(--plum));color:#FBEFF0;overflow:hidden}
+.testi9::before{content:"“";position:absolute;left:50%;top:-.18em;transform:translateX(-50%);font-family:Georgia,serif;font-size:clamp(16rem,30vw,28rem);line-height:1;color:rgba(255,255,255,.04);pointer-events:none}
+.testi9 .sec-eb{color:#F2C9D0}
+.testi9 h2{color:#fff}
+.testi9 .tq blockquote{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px);box-shadow:0 40px 80px -40px rgba(0,0,0,.6);color:#FBEFF0}
+.testi9 .tq .qm{color:#F2C9D0;opacity:.8}
+.testi9 .tq p{font-family:var(--f-head);font-size:calc(var(--hs)*clamp(1.0625rem,1rem + .3vw,1.25rem));line-height:1.75}
+.testi9 .tq p:first-of-type{font-size:calc(var(--hs)*clamp(1.25rem,1.1rem + .5vw,1.5rem));line-height:1.6}
+.testi9 .tq>li{grid-auto-columns:min(100%,52rem)}
+.tq{grid-auto-columns:min(100%,52rem)}
+/* credentials + travel */
+.trust9{background:#fff}
+.trust9 .cred,.trust9 .travel{border-radius:26px;padding:clamp(26px,3vw,40px);border:0;box-shadow:0 30px 60px -44px rgba(59,42,46,.55)}
+.trust9 .cred{background:linear-gradient(140deg,#FFF 0,#FBEDEB 100%);border:1px solid color-mix(in srgb,var(--acc) 14%,transparent)}
+.trust9 .travel{background:linear-gradient(140deg,#FFF 0,#F7EEF0 100%);border:1px solid color-mix(in srgb,var(--acc) 14%,transparent)}
+.trust9 .cred .seal{width:64px;height:64px}
+.trust9 h3{font-size:calc(var(--hs)*clamp(1.5rem,1.25rem + .6vw,1.875rem))}
+.trust9 .reg-n{background:var(--acc);color:#fff;border:0;padding:.25rem .85rem;font-weight:600}
+.trust9 .places li{background:#fff;border-color:color-mix(in srgb,var(--acc) 22%,transparent);padding:.45rem .95rem .45rem .75rem;transition:background .2s ease,color .2s ease}
+.trust9 .places li:hover{background:var(--acc);color:#fff}.trust9 .places li:hover svg{color:#fff}
+/* faq */
+.faq9{background:linear-gradient(180deg,#fff 0,var(--bg) 100%)}
+.faq9 .faqx-ph{border-radius:999px 999px 26px 26px;aspect-ratio:4/5}
+.faq9 .faq details{background:#fff;border:1px solid color-mix(in srgb,var(--acc) 14%,transparent)!important;border-radius:18px;padding:0 22px;margin-bottom:12px;transition:box-shadow .25s ease,background .25s ease}
+.faq9 .faq details[open]{background:#FFF8F7;box-shadow:0 24px 48px -36px rgba(59,42,46,.6)}
+.faq9 .faq summary{padding:20px 0;font-size:1.0625em}
+.faq9 .faq summary::after{content:"+";display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:50%;background:color-mix(in srgb,var(--acc) 10%,#fff);color:var(--acc);font-size:1.25rem;opacity:1;transition:transform .25s ease,background .25s ease}
+.faq9 .faq details[open] summary::after{content:"+";transform:rotate(45deg);background:var(--acc);color:#fff}
+.faq9 .faq details p{padding-bottom:4px}
+.faq-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 20px;margin-top:clamp(40px,5vw,64px);padding:22px 28px;border-radius:999px;background:#fff;box-shadow:0 24px 48px -36px rgba(59,42,46,.55);max-width:40rem;margin-inline:auto}
+.faq-cta p{margin:0;font-family:var(--f-head);font-size:1.25rem}
+.faq-cta .btn{border-radius:999px;gap:8px}
+@media(max-width:600px){.faq-cta{border-radius:24px;text-align:center}}
+/* enquire */
+#enquire.band{background:radial-gradient(ellipse 60% 70% at 85% 20%,#F7E5E2 0,rgba(247,229,226,0) 70%),var(--blush)}
+#enquire .enq-ph{border-radius:999px 999px 26px 26px;aspect-ratio:4/3!important}
+#enquire .inc{list-style:none;padding:0}
+#enquire .inc li{position:relative;padding-left:34px;margin-bottom:12px}
+#enquire .inc li::before{content:"";position:absolute;left:0;top:.2em;width:22px;height:22px;border-radius:50%;background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5 5.5-6' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+#enquire .enq{align-items:start}#enquire .enq>div:last-child>form{flex:none}@media(min-width:950px){#enquire .enq>div:last-child{position:sticky;top:110px}}
+#enquire form{background:#fff;border-radius:28px;padding:clamp(24px,3vw,40px);box-shadow:0 40px 80px -48px rgba(59,42,46,.6);gap:18px}
+@media(min-width:700px){#enquire form{grid-template-columns:1fr 1fr}#enquire form>*{grid-column:1/-1}#enquire form>.field:nth-of-type(-n+4){grid-column:auto}}
+#enquire input,#enquire textarea{border-radius:14px;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);background:#FFFCFB;transition:border-color .2s ease,box-shadow .2s ease}
+#enquire input:focus,#enquire textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 16%,transparent)}
+#enquire form .btn{width:100%;border-radius:999px;min-height:54px;font-size:1.0625rem;box-shadow:0 14px 28px -14px rgba(115,59,73,.9)}
+/* footer */
+.ft9{background:var(--plum);color:#F6E6E8;border-top:0}
+.ft9 .ft-wm{color:#fff}
+.ft9 .ft-h{color:#F2C9D0;opacity:1}
+.ft9 .ft-sub,.ft9 .note{opacity:.85}
+.ft9 .ft-btn{background:#fff!important;color:var(--acc)!important;border-radius:999px}
+.ft9 .soc a,.ft9 .soc button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2)}
+.ft9 .soc a:hover,.ft9 .soc button:hover{background:#fff;color:var(--plum)}
+.ft9 .ls{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px;display:inline-flex}
+.ft9 .ls .ls-l{display:none}.ft9 .ls button{border:0}
+.ft9 .ls button[aria-pressed=true]{background:#fff;color:var(--plum)}
+.ft9 .ft-base{border-top-color:rgba(255,255,255,.12)}
+
 /* polished build: pending-content flags stay in the source but are not shown */
 .flag{display:none!important}
 /* review-only signature switch */
@@ -712,17 +826,16 @@ designs.push({
 <form class="chooser ch9" id="chooser" onsubmit="return false" aria-labelledby="ch-h"><div class="ch-top"><p id="ch-h" class="ch-h" data-i="chooseH">${txt('chooseH')}</p><p class="cn" data-i="chooseNote">${txt('chooseNote')}</p></div><fieldset class="ch-f"><legend><span class="ch-n" aria-hidden="true">1</span><span data-i="chooseLang">${txt('chooseLang')}</span></legend><div class="pills">${[0, 1, 2].map((i) => `<label><input type="checkbox" name="lg" value="${i}"${i === 0 ? ' checked' : ''}><span><svg class="ck" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><b data-i="langChips.${i}">${txt(`langChips.${i}`)}</b></span></label>`).join('')}</div></fieldset><div class="ch-f"><label class="lb" for="area"><span class="ch-n" aria-hidden="true">2</span><span data-i="chooseArea">${txt('chooseArea')}</span></label><div class="sel">${pin}<select id="area">${[0, 1, 2, 3, 4, 5].map((i) => `<option value="${i}" data-i="areas.${i}">${txt(`areas.${i}`)}</option>`).join('')}</select></div></div><button class="btn ch-go" type="button" id="go"><span data-i="chGo">${txt('chGo')}</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11m-4-4.5L15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form></div></div>
 ${socPops()}
 <main id="main">
-<section><div class="in cards">
-<article class="rv">${ph('phDetail', '', 'hands')}<div class="tx">${T('h3', 'services.0.h')}${T('p', 'services.0.p')}</div></article>
-<article class="rv">${ph('phDetail', '', 'parkback')}<div class="tx">${T('h3', 'travelH')}${T('p', 'travel')}</div></article>
-<article class="rv">${ph('phDetail', '', 'vows')}<div class="tx">${T('h3', 'nav.3')}${T('p', 'lang1')}</div></article>
-</div></section>
-<section class="band" id="approach"><div class="in split about">${ph('phPortrait', 'rv', 'peonies')}<div class="rv">${B.eb('aboutEb')}${T('h2', 'aboutH')}${[0, 1, 2].map((i) => T('p', `about.${i}`)).join('')}
-<details class="more"><summary data-i="aboutMore">${txt('aboutMore')}</summary>${T('h3', 'aboutWhyH')}${[0, 1].map((i) => T('p', `aboutWhy.${i}`)).join('')}${T('h3', 'aboutYoursH')}${[0, 1].map((i) => T('p', `aboutYours.${i}`)).join('')}</details></div></div></section>
-<section id="kind-words"><div class="in"><div class="testi-h">${B.eb('testiEb')}${T('h2', 'testiH')}</div>
+<section class="offer9" id="ceremonies"><div class="in"><div class="sec-h rv">${B.eb('svcEb')}${T('h2', 'svcH')}${T('p', 'intro2', 'class="sec-l"')}</div>
+<div class="cards9">${[['hands', IC.rings, 'services.0.h', 'services.0.p', '#enquire', ''], ['parkback', pin.replace('width="16" height="16"', 'width="20" height="20"'), 'travelH', 'travel', '#travel', ''], ['vows', IC.talk, 'nav.3', 'lang1', '#faq', ' id="languages"']].map(([img, ic, h, p, href, id], i) => `<article class="c9 rv"${id}><a class="c9-img" href="${href}" tabindex="-1" aria-hidden="true">${ph('phDetail', '', img)}<span class="c9-n">0${i + 1}</span></a><div class="c9-b"><span class="c9-ic">${ic}</span>${T('h3', h)}${T('p', p)}<a class="c9-l" href="${href}"><span data-i="cardLink.${i}">${txt(`cardLink.${i}`)}</span>${IC.arrow}</a></div></article>`).join('')}</div></div></section>
+<section class="about9" id="approach"><div class="in ab-g"><div class="ab-pic rv"><div class="ab-frame">${ph('phPortrait', '', 'peonies')}</div>${T('p', 'heroFacts.0', 'class="ab-badge"')}</div>
+<div class="ab-t rv">${B.eb('aboutEb')}${T('h2', 'aboutH', 'class="ab-h"')}${T('p', 'about.0', 'class="ab-lede"')}${[1, 2].map((i) => T('p', `about.${i}`)).join('')}
+<details class="more" id="about-more"><summary><span data-i="aboutMore">${txt('aboutMore')}</span>${IC.plus}</summary><div class="more-b">${T('h3', 'aboutWhyH')}${[0, 1].map((i) => T('p', `aboutWhy.${i}`)).join('')}${T('h3', 'aboutYoursH')}${[0, 1].map((i) => T('p', `aboutYours.${i}`)).join('')}<button type="button" class="less" onclick="var d=this.closest('details');d.open=false;d.scrollIntoView({block:'center',behavior:'smooth'})"><span data-i="aboutLess">${txt('aboutLess')}</span>${IC.minus}</button></div></details>
+<p class="ab-sig" lang="en" aria-hidden="true">Van</p></div></div></section>
+<section class="testi9" id="kind-words"><div class="in"><div class="testi-h rv">${B.eb('testiEb')}${T('h2', 'testiH')}</div>
 <ul class="tq">${DICT_TESTI().map((_, i) => `<li class="rv"><blockquote><span class="qm" aria-hidden="true">“</span>${testiQ(i)}<footer data-i="testi.${i}.by">${txt(`testi.${i}.by`)}</footer></blockquote></li>`).join('')}</ul></div></section>
-<section style="padding-top:0"><div class="in two">${cred9()}${B.travel()}</div></section>
-<section style="padding-top:0"><div class="in">${faqBlock()}</div></section>
+<section class="trust9"><div class="in two">${cred9()}${B.travel()}</div></section>
+<section class="faq9"><div class="in">${faqBlock()}<div class="faq-cta rv"><p data-i="faqMore">${txt('faqMore')}</p><a class="btn" href="#enquire"><span data-i="faqCta">${txt('faqCta')}</span>${IC.arrow}</a></div></div></section>
 <section class="band" id="enquire"><div class="in enq"><div>${B.enq()}</div><div>${form('d')}</div></div></section>
 </main>${foot9()}
 <!-- signature styles: preview with ?sig=b|c|d (a = Corinthia, default) -->
