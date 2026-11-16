@@ -564,7 +564,7 @@ const socials = (cls = 'soc') => `<ul class="${cls}" aria-label="${SOC.fb.label}
   : `<li><button type="button" popovertarget="pop-${k}" aria-label="${s.label}" title="${s.label}">${svgIcon(s.icon)}</button></li>`).join('')}</ul>`;
 const socPops = () => ['red', 'wx'].map((k) => { const s = SOC[k]; return `<div class="pop" id="pop-${k}" popover><div class="pop-h">${svgIcon(s.icon)}<p data-i="${s.key}">${txt(s.key)}</p></div><p class="pop-id" lang="en">${s.id}</p><p class="pop-n" data-i="socHint">${txt('socHint')}</p><p><span class="flag" data-i="socQr">${txt('socQr')}</span></p><div class="pop-b"><button type="button" class="btn" data-copy="${s.id}" data-i="socCopy">${txt('socCopy')}</button><button type="button" class="tl" popovertarget="pop-${k}" popovertargetaction="hide" data-i="socClose">${txt('socClose')}</button></div></div>`; }).join('');
 const sigBrand = () => `<a class="brand" href="#"><span class="sig" lang="en">Vannarady Ng</span><span class="bs" data-i="brandSub">${txt('brandSub')}</span></a>`;
-const head9 = () => `<header class="hd"><div class="hd-in">${sigBrand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${socials()}${langSwitch(false)}<a class="btn hd-cta" href="#enquire" data-i="cta">${txt('cta')}</a>${mobileNav()}</div></div></header>`;
+const head9 = () => `<header class="hd"><div class="hd-in">${sigBrand()}<nav class="nav-d" aria-label="Main">${navList()}</nav><div class="hd-r">${socials()}${langSwitch(false)}${mobileNav()}</div></div></header>`;
 const cred9 = () => `<div class="cred rv">${seal}<div>${T('h3', 'credH')}${T('p', 'cred')}<p class="reg"><a class="tl" ${DIA} data-i="credLink">${txt('credLink')}</a> <span class="reg-n" data-i="regNo">${txt('regNo')}</span></p><div class="canz"><span class="flag" data-i="canzLogo">${txt('canzLogo')}</span><p><span data-i="canz">${txt('canz')}</span> · <a class="tl" ${CANZ} data-i="canzLink">${txt('canzLink')}</a></p></div></div></div>`;
 const foot9 = () => `<footer class="ft"><div class="ft-in"><div class="ft-a"><p class="sig ft-wm" lang="en">Vannarady Ng</p>${T('p', 'brandSub', 'class="ft-sub"')}${T('p', 'footNote', 'class="note"')}${socials('soc ft-soc')}<a class="btn ft-btn" href="#enquire" data-i="cta">${txt('cta')}</a></div><nav class="ft-col" aria-label="Footer">${T('p', 'ftExplore', 'class="ft-h"')}<ul>${['#main', '#approach', '#ceremonies', '#languages', '#faq', '#enquire'].map((h, i) => `<li><a href="${h}" data-i="nav.${i}">${txt(`nav.${i}`)}</a></li>`).join('')}</ul></nav><div class="ft-col">${T('p', 'ftContact', 'class="ft-h"')}${T('p', 'footContact')}<p><a ${DIA} data-i="ftDia">${txt('ftDia')}</a> · <span data-i="regNo">${txt('regNo')}</span></p><p><a ${CANZ} data-i="canz">${txt('canz')}</a></p><p><a href="privacy.html" data-i="privacyLink">${txt('privacyLink')}</a></p>${langSwitch(false)}</div></div><div class="ft-base">${T('span', 'copyright')}</div></footer>`;
 // Signature options for Van to compare (all SIL OFL 1.1, Latin subset only). Review switch: ?sig=a|b|c|d
@@ -600,10 +600,10 @@ designs.push({
 @media(max-width:599px){.hero .eb{font-size:.6875rem;letter-spacing:.18em}}
 /* header: floating frosted bar over the photo, turns blush once you scroll */
 .hero .hd{position:relative;z-index:10;padding:14px max(12px,env(safe-area-inset-left,0px)) 0;border-bottom:0;text-shadow:none}
-.hero .hd-in{max-width:1560px;background:rgba(44,20,28,.34);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:10px 12px 10px 28px;box-shadow:0 18px 40px -24px rgba(20,8,12,.6);transition:background .3s ease,color .3s ease,box-shadow .3s ease,border-color .3s ease}
+.hero .hd-in{max-width:1560px;background:rgba(44,20,28,.34);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:14px 14px 12px 30px;box-shadow:0 18px 40px -24px rgba(20,8,12,.6);transition:background .3s ease,color .3s ease,box-shadow .3s ease,border-color .3s ease}
 @media(min-width:900px){.hero .hd{position:fixed;top:0;left:0;right:0}.hero-c{padding-top:clamp(120px,10vw,150px)!important}}
 .hd.stuck .hd-in{background:rgba(251,243,241,.92);color:var(--ink);border-color:rgba(142,74,90,.18);box-shadow:0 18px 40px -22px rgba(59,42,46,.45)}
-.hd .sig{font-size:calc(var(--sig-s)*3.1rem)}
+.hd .sig{font-size:calc(var(--sig-s)*3.1rem);margin:.14em 0 .02em!important;padding-top:.04em}
 .hd .bs{color:#F6DCE0}.hd.stuck .bs{color:var(--acc)}
 .nav-d ul{gap:4px!important}
 .nav-d a{display:block;padding:.5rem .95rem;border-radius:999px;font-size:.9375rem;font-weight:600;letter-spacing:.01em;text-decoration:none!important;transition:background .2s ease,color .2s ease}
@@ -639,9 +639,9 @@ designs.push({
 /* Plan your ceremony card */
 .ch9{max-width:64rem;padding:clamp(22px,3vw,36px);border-radius:24px;gap:22px 28px;text-align:left}
 @media(min-width:900px){.ch9{grid-template-columns:1.25fr 1fr auto;align-items:end}}
-.ch-top{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 24px;padding-bottom:18px;border-bottom:1px solid color-mix(in srgb,var(--acc) 16%,transparent)}
+.ch-top{grid-column:1/-1;display:grid;gap:6px;justify-items:start;text-align:left;padding-bottom:18px;border-bottom:1px solid color-mix(in srgb,var(--acc) 16%,transparent)}
 .ch9 .ch-h{font-size:calc(var(--hs)*clamp(1.375rem,1.1rem + .8vw,1.75rem));margin:0}
-.ch9 .cn{grid-column:auto;margin:0;font-size:.875rem;color:#6E5459}
+.ch9 .cn{grid-column:auto;margin:0;font-size:.9375rem;color:#6E5459}
 .ch-f{border:0;margin:0;padding:0;min-width:0}
 .ch9 legend,.ch9 .lb{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.9375rem;margin-bottom:12px;padding:0}
 :lang(zh) .ch9 legend,:lang(zh) .ch9 .lb{font-weight:400}

@@ -43,7 +43,7 @@ const extraEN = {
   big1: 'Your story,', big2: 'in your words.',
   chooseH: 'Plan your ceremony', chooseLang: 'Which languages will your guests speak?', chooseArea: 'Where are you getting married?',
   areas: ['Auckland', 'North Shore', 'Rangitoto Island', 'Hamilton', 'South Island', 'Not sure yet'],
-  chooseBtn: 'Request a quote', chooseNote: 'Your choices are added to the enquiry form below.',
+  chooseBtn: 'Request a Quote', chooseNote: 'Your choices are added to the enquiry form below.',
   more: 'Read more', scroll: 'Scroll',
   secApproach: 'My approach', secCeremonies: 'Ceremonies', secLanguages: 'Languages', secQuestions: 'Questions', secEnquire: 'Enquire', secRegistered: 'Registered celebrant', secTravel: 'Travel',
   cuLine: 'I also lead civil union ceremonies, personalised with the same care.',
@@ -51,12 +51,14 @@ const extraEN = {
   places: ['East Auckland', 'Central Auckland', 'West Auckland', 'North Shore', 'Rangitoto Island', 'Hamilton', 'South Island'],
   travelNote: 'Travel costs apply outside Auckland.',
   faqIntro: 'Short answers to what couples usually ask first. Anything else, just include it in your enquiry.',
-  quoteCta: 'Request a quote', ftExplore: 'Explore', ftContact: 'Contact', ftDia: 'DIA Celebrants Online',
+  quoteCta: 'Request a Quote', ftExplore: 'Explore', ftContact: 'Contact', ftDia: 'DIA Celebrants Online',
   langNote: ['Ceremony in English', 'Ceremony in Cantonese', 'Ceremony in Mandarin'],
   // ── Home-09 (Round 2 merge, Van's feedback 14 Nov 2026) ──
   docTitle: 'Vannarady Ng · Auckland Wedding Celebrant · English, Cantonese & Mandarin',
   h1t: 'Auckland Wedding Celebrant in English, Cantonese and Mandarin',
-  chStep: ['Languages', 'Location'], chGo: 'Request a quote',
+  chStep: ['Languages', 'Location'], chGo: 'Request a Quote',
+  // Title-case CTAs (Arnold, 16 Nov 2026)
+  cta: 'Request a Quote', submit: 'Request a Quote',
   docDesc: 'Van Ng is a registered marriage and civil union celebrant in Auckland, leading personalised wedding ceremonies in English, Cantonese and Mandarin.',
   aboutEb: 'About Van', aboutH: 'Hi, I’m Van.',
   about: [
@@ -64,7 +66,7 @@ const extraEN = {
     'By day, I’m a solicitor at a law firm in East Auckland, and I genuinely love what I do. My journey in law began in Hong Kong, and it has grown into a career I’m truly passionate about. I help clients buy their first homes, protect their families and plan for the future. Nothing is more rewarding than taking something that feels complicated or worrying and making it clear and simple. I enjoy finding solutions, spotting risks early and giving my clients real peace of mind.',
     'I bring that same care and attention to your wedding. From checking your marriage licence to lodging your particulars with Births, Deaths and Marriages afterwards, I’ll take care of all the legal details for you. All you need to do is be present, hold each other’s hands and soak in every moment of your special day.',
   ],
-  aboutMore: 'Read more about me',
+  aboutMore: 'Read More About Me',
   aboutWhyH: 'Why I became a celebrant',
   aboutWhy: [
     'To me, being a celebrant is a real privilege. I get to stand beside two people at one of the biggest milestones of their lives. A wedding is more than a celebration. It’s the moment two people step into new roles together. You become a husband or a wife, a partner for life, a son-in-law or daughter-in-law. One day, perhaps, you’ll become a father or a mother. Two families become one.',
